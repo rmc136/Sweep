@@ -1,0 +1,178 @@
+// Arquivo build.gradle completo (projeto :html)
+
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'org.gretty:gretty:3.1.5'
+    classpath "org.docstr:gwt-gradle-plugin:$gwtPluginVersion"
+  }
+}
+apply plugin: "gwt"
+apply plugin: "war"
+apply plugin: "org.gretty"
+
+// 🔑 CORREÇÃO CRÍTICA: Define a variável que aponta para a pasta de assets do Android.
+// Assume-se que 'android' é um módulo irmão e contém a pasta 'assets'.
+ext.assetsDir = project(':android').file('assets').path
+
+gwt {
+  gwtVersion = "$gwtFrameworkVersion" // Deve corresponder à versão utilizada para compilar o backend GWT. Ver gradle.properties.
+  maxHeapSize = '1G' // 256m por defeito não é suficiente para o compilador GWT.
+  minHeapSize = '1G'
+
+  // Tem de vir antes de "modules" abaixo.
+  src = files(file('src/main/java'), project(":core").file('src/main/java'))
+  modules += ["com.sweepgame.GdxDefinition"]
+  devModules += ["com.sweepgame.GdxDefinitionSuperdev"]
+  project.webAppDirName = "webapp"
+
+  compiler.strict = true
+  compiler.disableCastChecking = true
+  //// A próxima linha pode ser útil se quiser output não ofuscado.
+//  compiler.style = org.docstr.gradle.plugins.gwt.Style.DETAILED
+
+  sourceLevel = 1.11
+}
+
+dependencies {
+  // Adicione esta linha para fornecer as classes compiladas (.class) para o compilador Java
+  implementation "com.badlogicgames.gdx:gdx-backend-gwt:$gdxVersion"
+
+  // Mantenha esta linha para fornecer o código fonte (.java) para o compilador GWT
+  implementation "com.badlogicgames.gdx:gdx-backend-gwt:$gdxVersion:sources"
+
+  implementation "com.badlogicgames.gdx:gdx:$gdxVersion:sources"
+  implementation "com.google.jsinterop:jsinterop-annotations:2.0.2:sources"
+  implementation project(':core')
+}
+
+import org.akhikhl.gretty.AppBeforeIntegrationTestTask
+import org.docstr.gradle.plugins.gwt.GwtSuperDev
+
+gretty.httpPort = 8080
+// A linha abaixo só precisa de ser alterada se mudar o diretório de compilação para algo diferente de "build".
+gretty.resourceBase = "${project.layout.buildDirectory.asFile.get().absolutePath}/gwt/draftOut"
+gretty.contextPath = "/"
+gretty.portPropertiesFileName = "TEMP_PORTS.properties"
+
+tasks.register('startHttpServer') {
+  dependsOn("draftCompileGwt")
+  doFirst {
+    copy {
+      from "webapp"
+      into gretty.resourceBase
+    }
+    copy {
+      from "war"
+      into gretty.resourceBase
+    }
+  }
+}
+
+tasks.register('beforeRun', AppBeforeIntegrationTestTask) {
+  dependsOn("startHttpServer")
+  gretty {
+    integrationTestTask("superDev")
+  }
+  // A próxima linha permite que as portas sejam reutilizadas.
+  file("build/TEMP_PORTS.properties").delete()
+  interactive = false
+}
+
+tasks.register('superDev', GwtSuperDev) {
+  group("gwt")
+  dependsOn("beforeRun")
+  doFirst {
+    gwt.modules = gwt.devModules
+  }
+}
+
+//// Eliminamos a pasta temporária war/
+clean.delete += [file("war")]
+
+// Caminho de saída para a versão de distribuição (dist).
+var outputPath = "build/dist/"
+
+tasks.register('dist') {
+  dependsOn(["clean", "compileGwt"])
+  doLast {
+    //delete(file(outputPath)) // Descomente se precisar de apagar a saída anterior
+
+    file(outputPath).mkdirs()
+    copy {
+      from("build/gwt/out") {
+        exclude '**/*.symbolMap' // Não usado na dist
+      }
+      into outputPath
+    }
+    copy {
+      from("webapp") {
+        exclude 'index.html' // Editamos este ficheiro HTML mais tarde.
+        exclude 'refresh.png' // Não precisamos deste botão.
+      }
+      into outputPath
+    }
+    copy {
+      from("webapp") {
+        // Remove o botão de superdev do index.html.
+        include 'index.html'
+        filter { String line -> line.replaceAll('<a class="superdev" .+', '') }
+      }
+      into outputPath
+    }
+    copy {
+      from "war"
+      into outputPath
+    }
+  }
+}
+
+tasks.register('addSource') {
+  doLast {
+    sourceSets.main.compileClasspath += files(project(':core').sourceSets.main.allJava.srcDirs)
+    sourceSets.main.compileClasspath += files("../core/build/generated/sources/annotationProcessor/java/main")
+    sourceSets.main.compileClasspath += files(sourceSets.main.output.resourcesDir)
+
+    // CORREÇÃO: Usamos 'runtimeClasspath' que PERMITE ler os arquivos (resolvível).
+    // E recolocamos a lógica de busca que estava como comentário no seu snippet.
+    def gwtBackendSources = configurations.runtimeClasspath.files.find { it.name.contains('gdx-backend-gwt') && it.name.endsWith('-sources.jar') }
+
+    if (gwtBackendSources != null) {
+      sourceSets.main.compileClasspath += files(gwtBackendSources)
+      println "INFO: Added gdx-backend-gwt sources to compilation classpath: ${gwtBackendSources.name}"
+    } else {
+      println "WARNING: Could not find gdx-backend-gwt sources JAR in 'runtimeClasspath' configuration."
+      // Debug: Lista o que tem no classpath para ajudar a encontrar o erro se persistir
+      configurations.runtimeClasspath.files.each { println "  - ${it.name}" }
+    }
+  }
+}
+
+tasks.register("distZip", Zip) {
+  dependsOn("dist")
+  //// Isto usa a saída da tarefa dist, que remove o botão superdev do index.html.
+  from(outputPath)
+  archiveVersion = projectVersion
+  archiveBaseName.set("${appName}-dist")
+  //// O resultado estará em html/build/ com um nome contendo "-dist".
+  destinationDirectory.set(file("build"))
+}
+
+// 🔑 CORREÇÃO CRÍTICA: Adiciona dependência em 'processResources' para evitar o erro de dependência implícita
+// no Gradle 8+, garantindo que os assets do Android sejam copiados antes da compilação.
+tasks.compileGwt.dependsOn("addSource", "processResources")
+tasks.draftCompileGwt.dependsOn("addSource", "processResources")
+tasks.checkGwt.dependsOn("addSource", "processResources")
+tasks.compileJava.dependsOn("addSource", "processResources")
+
+
+java.sourceCompatibility = JavaVersion.VERSION_11
+java.targetCompatibility = JavaVersion.VERSION_11
+sourceSets.main.java.srcDirs = [ "src/main/java/" ]
+
+eclipse.project.name = appName + "-html"
+
+// 🔑 CORREÇÃO CRÍTICA: Inclui a pasta de assets do Android como um diretório de recursos
+sourceSets.main.resources.srcDirs += [ ext.assetsDir ]
