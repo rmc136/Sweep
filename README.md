@@ -1,39 +1,28 @@
-# Sweep
+BASIC RULES:
+1. Each player takes turns playing a card.
+                
+2. Try to collect cards that sum up to 15.
+                
+3. You can only play one of the cards in your hand per turn, and try to combine it with the table cards to make 15 selecting the ones you want and prefer.
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
-
-This project was generated with a template including simple application launchers and an `ApplicationAdapter` extension that draws libGDX logo.
-
-## Platforms
-
-- `core`: Main module with the application logic shared by all platforms.
-- `lwjgl3`: Primary desktop platform using LWJGL3; was called 'desktop' in older docs.
-- `android`: Android mobile platform. Needs Android SDK.
-- `ios`: iOS mobile platform using RoboVM.
-- `html`: Web platform using GWT and WebGL. Supports only Java projects.
-
-## Gradle
-
-This project uses [Gradle](https://gradle.org/) to manage dependencies.
-The Gradle wrapper was included, so you can run Gradle tasks using `gradlew.bat` or `./gradlew` commands.
-Useful Gradle tasks and flags:
-
-- `--continue`: when using this flag, errors will not stop the tasks from running.
-- `--daemon`: thanks to this flag, Gradle daemon will be used to run chosen tasks.
-- `--offline`: when using this flag, cached dependency archives will be used.
-- `--refresh-dependencies`: this flag forces validation of all dependencies. Useful for snapshot versions.
-- `android:lint`: performs Android project validation.
-- `build`: builds sources and archives of every project.
-- `cleanEclipse`: removes Eclipse project data.
-- `cleanIdea`: removes IntelliJ project data.
-- `clean`: removes `build` folders, which store compiled classes and built archives.
-- `eclipse`: generates Eclipse project data.
-- `html:dist`: compiles GWT sources. The compiled application can be found at `html/build/dist`: you can use any HTTP server to deploy it.
-- `html:superDev`: compiles GWT sources and runs the application in SuperDev mode. It will be available at [localhost:8080/html](http://localhost:8080/html). Use only during development.
-- `idea`: generates IntelliJ project data.
-- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/libs`.
-- `lwjgl3:run`: starts the application.
-- `test`: runs unit tests (if any).
-
-Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
-For example, `core:clean` removes `build` folder only from the `core` project.
+4. Each Seven is worth 1 point and each diamond is worth a point, the 7 of diamonds is worth 2 points.
+                
+5. If you capture all table cards + your played card, you get a brush bonus (+1 point in the end).
+                
+6. The player with most points at the end wins!
+                
+7. If no cards can be collected, your card stays on the table.
+                
+8. Continue until all cards in deck are used.
+                
+SINGLEPLAYER MODES:
+             
+Easy: When you press a card of your deck and didn't select any cards on the table, it auto-selects a 15 sum randommly in available. No timer
+                
+Medium: When you press a card of your deck and didn't select any cards on the table, your card just goes to the table. No timer
+                
+Hard: When you press a card of your deck and didn't select any cards on the table, your card just goes to the table. 15 seconds timer
+                
+Pedrado: When you press a card of your deck and didn't select any cards on the table, your card just goes to the table. 10 seconds timer
+                
+ENJOY THE GAME!

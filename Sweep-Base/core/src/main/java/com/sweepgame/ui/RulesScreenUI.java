@@ -48,9 +48,10 @@ public class RulesScreenUI extends ScreenAdapter {
                 "2. Try to collect cards that sum up to 15.\n" +
                 "3. You can only play one of the cards in your hand per turn, and try to combine it with the table cards to make 15 selecting the ones you want and prefer\n" +
                 "4. If you capture all table cards + your played card, you get a brush bonus (+1 point in the end).\n" +
-                "5. The player with most points at the end wins!\n" +
-                "6. If no cards can be collected, your card stays on the table.\n" +
-                "7. Continue until all cards in deck are used.\n" + "\n"+
+                "5. Each Seven is worth 1 point and each diamond is worth a point, the 7 of diamonds is worth 2 points.\n" +
+                "6. The player with most points at the end wins!\n" +
+                "7. If no cards can be collected, your card stays on the table.\n" +
+                "8. Continue until all cards in deck are used.\n" + "\n"+
                 "SIGLEPLAYER MODES\n"+ "\n"+
                 "Easy: When you press a card of your deck and didn't select any cards on the table, it auto-selects a 15 sum randommly in available. No timer\n" +"\n"+
                 "Medium: When you press a card of your deck and didn't select any cards on the table, your card just goes to the table. No timer\n" +"\n"+
