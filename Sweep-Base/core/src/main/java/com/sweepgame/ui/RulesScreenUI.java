@@ -37,7 +37,7 @@ public class RulesScreenUI extends ScreenAdapter {
         stage.addActor(root);
 
         // Title
-        Label title = new Label("Brush Game Rules", skin);
+        Label title = new Label("Sweep Game Rules", skin);
         title.setFontScale(2f);
         root.top().add(title).padTop(20).padBottom(20).row();
 

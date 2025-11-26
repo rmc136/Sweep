@@ -50,9 +50,9 @@ public class ScoreUI {
     private String formatScore(Player p) {
         boolean isMobile = Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS;
         if (isMobile) {
-            return p.getName() + "\nPts: " + p.calculatePoints() + "\nBrushes: " + p.getBrushes() + "\nCards: " + p.getPointsStack().size();
+            return p.getName() + "\nPts: " + p.calculatePoints() + "\nSweeps: " + p.getBrushes() + "\nCards: " + p.getPointsStack().size();
         } else {
-            return p.getName() + ": " + p.calculatePoints() + " pts, Brushes: " + p.getBrushes() + ", Cards: " + p.getPointsStack().size();
+            return p.getName() + ": " + p.calculatePoints() + " pts, Sweeps: " + p.getBrushes() + ", Cards: " + p.getPointsStack().size();
         }
     }
 }
