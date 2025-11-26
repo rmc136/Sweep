@@ -15,6 +15,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.graphics.Texture;
 import com.sweepgame.game.SweepGameUI;
 
+import com.badlogic.gdx.Application;
+
 public class HomeScreenUI extends ScreenAdapter {
     private final Game game;
     private Stage stage;
@@ -24,7 +26,17 @@ public class HomeScreenUI extends ScreenAdapter {
 
     public HomeScreenUI(Game game) {
         this.game = game;
-        stage = new Stage(new FitViewport(VIRTUAL_WIDTH, VIRTUAL_HEIGHT));
+        
+        float width = VIRTUAL_WIDTH;
+        float height = VIRTUAL_HEIGHT;
+        
+        // If on Android/iOS, use smaller viewport to make UI elements bigger
+        if (Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS) {
+            width = 360;
+            height = 640;
+        }
+        
+        stage = new Stage(new FitViewport(width, height));
         skin = new Skin(Gdx.files.internal("uiskin.json"));
 
 
@@ -39,7 +51,7 @@ public class HomeScreenUI extends ScreenAdapter {
         Image logo = new Image(new Texture("icon.png"));
 
         titleRow.add(logo).padRight(10).size(64,64);
-        titleRow.add(new com.badlogic.gdx.scenes.scene2d.ui.Label("Brush", skin));
+        titleRow.add(new com.badlogic.gdx.scenes.scene2d.ui.Label("Sweep", skin));
 
         root.add(titleRow).padBottom(50).row();
 

@@ -1,5 +1,7 @@
 package com.sweepgame.ui;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -98,7 +100,8 @@ public class HandUI {
             Card card = cards.get(i);
             Texture texture = new Texture("cards/" + card.getImageName());
             Image img = new Image(texture);
-            img.setSize(120, 140);
+            boolean isMobile = Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS;
+            img.setSize(isMobile ? 140 : 120, isMobile ? 170 : 140);
             img.setPosition(startX, startY);
             stage.addActor(img);
 
@@ -125,8 +128,12 @@ public class HandUI {
 
     public void update() {
         table.clear();
+        boolean isMobile = Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS;
+        float handWidth = isMobile ? 100 : 80;
+        float handHeight = isMobile ? 130 : 100;
+        float padding = isMobile ? 3 : 2;
         for (Card c : player.getHand()) {
-            table.add(createCardImage(c)).size(80, 100).pad(2);
+            table.add(createCardImage(c)).size(handWidth, handHeight).pad(padding);
         }
     }
 }

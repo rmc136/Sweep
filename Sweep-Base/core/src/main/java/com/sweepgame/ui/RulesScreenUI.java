@@ -4,9 +4,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class RulesScreenUI extends ScreenAdapter {
 
@@ -17,7 +18,16 @@ public class RulesScreenUI extends ScreenAdapter {
     public RulesScreenUI(Game game) {
         this.game = game;
 
-        stage = new Stage(new ScreenViewport());
+        float width = 1280;
+        float height = 720;
+        
+        // If on Android/iOS, use smaller viewport to make UI elements bigger
+        if (Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS) {
+            width = 360;
+            height = 640;
+        }
+
+        stage = new Stage(new FitViewport(width, height));
         Gdx.input.setInputProcessor(stage);
 
         skin = new Skin(Gdx.files.internal("uiskin.json"));
@@ -29,7 +39,7 @@ public class RulesScreenUI extends ScreenAdapter {
         // Title
         Label title = new Label("Brush Game Rules", skin);
         title.setFontScale(2f);
-        root.top().add(title).padBottom(20).row();
+        root.top().add(title).padTop(20).padBottom(20).row();
 
         // Scrollable rules
         String rulesText =
@@ -50,14 +60,19 @@ public class RulesScreenUI extends ScreenAdapter {
 
         Label rulesLabel = new Label(rulesText, skin);
         rulesLabel.setWrap(true);
+        rulesLabel.setFontScale(1.2f);
 
         ScrollPane scrollPane = new ScrollPane(rulesLabel, skin);
         scrollPane.setFadeScrollBars(false);
-        root.add(scrollPane).width(Gdx.graphics.getWidth() * 0.8f)
-            .height(Gdx.graphics.getHeight() * 0.6f)
-            .padBottom(20).row();
+        scrollPane.setScrollingDisabled(true, false); // Enable vertical scrolling
+        scrollPane.setOverscroll(false, false);
+        
+        // Use fixed proportions of viewport
+        root.add(scrollPane).width(width * 0.85f)
+            .height(height * 0.6f)
+            .padBottom(10).expand().row();
 
-        // Back button
+        // Back button - ensure it's at the bottom
         TextButton backBtn = new TextButton("Back", skin);
         backBtn.addListener(event -> {
             if (backBtn.isPressed()) {
@@ -67,7 +82,7 @@ public class RulesScreenUI extends ScreenAdapter {
             return false;
         });
 
-        root.add(backBtn).padTop(10);
+        root.add(backBtn).padTop(10).padBottom(20);
     }
 
     @Override

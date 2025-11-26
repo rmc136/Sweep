@@ -33,9 +33,10 @@ android {
   sourceSets {
     main {
       // Garanta que os assets do seu módulo 'core' são incluídos aqui
-      assets.srcDirs = ['../core/assets']
+      assets.srcDirs = ['../assets']
       java.srcDirs = ['src']
       res.srcDirs = ['res']
+      jniLibs.srcDirs = ['libs']
     }
   }
 }

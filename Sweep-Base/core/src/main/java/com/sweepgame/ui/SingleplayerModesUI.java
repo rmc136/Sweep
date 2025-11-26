@@ -4,11 +4,12 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.sweepgame.game.SweepGameUI;
 
 public class SingleplayerModesUI extends ScreenAdapter {
@@ -20,7 +21,16 @@ public class SingleplayerModesUI extends ScreenAdapter {
     public SingleplayerModesUI(Game game) {
         this.game = game;
 
-        stage = new Stage(new ScreenViewport());
+        float width = 1280;
+        float height = 720;
+        
+        // If on Android/iOS, use smaller viewport to make UI elements bigger
+        if (Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS) {
+            width = 360;
+            height = 640;
+        }
+
+        stage = new Stage(new FitViewport(width, height));
         Gdx.input.setInputProcessor(stage);
 
         skin = new Skin(Gdx.files.internal("uiskin.json"));

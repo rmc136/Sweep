@@ -1,5 +1,7 @@
 package com.sweepgame.ui;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -46,9 +48,20 @@ public class PlayerSeatUI {
         rightTable.add(rightPlayerLabel).padBottom(10).row();
 
         // Place left and right tables at screen borders
-        rootTable.add(leftTable).expand().center().left();
-        rootTable.add().expand(); // spacer
-        rootTable.add(rightTable).expand().center().right();
+        // Place left and right tables at screen borders
+        boolean isMobile = Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS;
+        
+        if (isMobile) {
+            // Mobile: Align to TOP with padding to avoid table cards overlap
+            rootTable.add(leftTable).expand().top().left().padTop(150);
+            rootTable.add().expand(); // spacer
+            rootTable.add(rightTable).expand().top().right().padTop(150);
+        } else {
+            // Desktop: Center alignment
+            rootTable.add(leftTable).expand().center().left();
+            rootTable.add().expand(); // spacer
+            rootTable.add(rightTable).expand().center().right();
+        }
     }
 
     public Table getTable() {
