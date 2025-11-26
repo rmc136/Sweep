@@ -47,7 +47,7 @@ public class RulesScreenUI extends ScreenAdapter {
                 "1. Each player takes turns playing a card.\n" +
                 "2. Try to collect cards that sum up to 15.\n" +
                 "3. You can only play one of the cards in your hand per turn, and try to combine it with the table cards to make 15 selecting the ones you want and prefer\n" +
-                "4. If you capture all table cards + your played card, you get a brush bonus (+1 point in the end).\n" +
+                "4. If you capture all table cards + your played card, you get a Sweep bonus (+1 point in the turn).\n" +
                 "5. Each Seven is worth 1 point and each diamond is worth a point, the 7 of diamonds is worth 2 points.\n" +
                 "6. The player with most points at the end wins!\n" +
                 "7. If no cards can be collected, your card stays on the table.\n" +

@@ -1,3 +1,5 @@
+# SWEEP
+
 BASIC RULES:
 1. Each player takes turns playing a card.
                 
@@ -7,7 +9,7 @@ BASIC RULES:
 
 4. Each Seven is worth 1 point and each diamond is worth a point, the 7 of diamonds is worth 2 points.
                 
-5. If you capture all table cards + your played card, you get a brush bonus (+1 point in the end).
+5. If you capture all table cards + your played card, you get a Sweep bonus (+1 point in the end).
                 
 6. The player with most points at the end wins!
                 
