@@ -1,8 +1,7 @@
 package com.sweepgame.ui;
 
-import com.badlogic.gdx.Application;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.sweepgame.utils.LayoutHelper;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -22,8 +21,11 @@ public class PlayerSeatUI {
 
     private Texture backTexture;
 
-    private final float cardWidth = 80;
-    private final float cardHeight = 100;
+
+    
+    // Removed hardcoded sizes
+    // private final float cardWidth = 80;
+    // private final float cardHeight = 100;
 
     public PlayerSeatUI(Skin skin, Player left, Player right) {
         rootTable = new Table();
@@ -49,9 +51,9 @@ public class PlayerSeatUI {
 
         // Place left and right tables at screen borders
         // Place left and right tables at screen borders
-        boolean isMobile = Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS;
+        LayoutHelper layout = LayoutHelper.getInstance();
         
-        if (isMobile) {
+        if (layout.isMobile()) {
             // Mobile: Align to TOP with padding to avoid table cards overlap
             rootTable.add(leftTable).expand().top().left().padTop(150);
             rootTable.add().expand(); // spacer
@@ -69,6 +71,10 @@ public class PlayerSeatUI {
     }
 
     public void update() {
+        LayoutHelper layout = LayoutHelper.getInstance();
+        float cardWidth = layout.getHandCardWidth(); // Use same size as hand cards for consistency
+        float cardHeight = layout.getHandCardHeight();
+
         // Left side update
         leftTable.clearChildren();
         leftTable.add(leftPlayerLabel).padBottom(10).row();

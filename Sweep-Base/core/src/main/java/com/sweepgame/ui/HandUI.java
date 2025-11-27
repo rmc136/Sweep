@@ -13,7 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.sweepgame.cards.Card;
 import com.sweepgame.cards.Player;
+import com.sweepgame.game.SweepGameUI;
 import com.sweepgame.game.SweepLogic;
+import com.sweepgame.utils.LayoutHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,8 +102,8 @@ public class HandUI {
             Card card = cards.get(i);
             Texture texture = new Texture("cards/" + card.getImageName());
             Image img = new Image(texture);
-            boolean isMobile = Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS;
-            img.setSize(isMobile ? 140 : 120, isMobile ? 170 : 140);
+            LayoutHelper layout = LayoutHelper.getInstance();
+            img.setSize(layout.getHandCardWidth(), layout.getHandCardHeight());
             img.setPosition(startX, startY);
             stage.addActor(img);
 
@@ -128,10 +130,10 @@ public class HandUI {
 
     public void update() {
         table.clear();
-        boolean isMobile = Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS;
-        float handWidth = isMobile ? 100 : 80;
-        float handHeight = isMobile ? 130 : 100;
-        float padding = isMobile ? 3 : 2;
+        LayoutHelper layout = LayoutHelper.getInstance();
+        float handWidth = layout.getHandCardWidth();
+        float handHeight = layout.getHandCardHeight();
+        float padding = layout.getStandardPadding();
         for (Card c : player.getHand()) {
             table.add(createCardImage(c)).size(handWidth, handHeight).pad(padding);
         }

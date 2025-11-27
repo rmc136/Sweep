@@ -11,11 +11,14 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.sweepgame.SweepGame;
 import com.sweepgame.cards.Card;
+import com.sweepgame.cards.Deck;
 import com.sweepgame.cards.Player;
 import com.sweepgame.ui.*;
+import com.sweepgame.utils.LayoutHelper;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,16 +44,8 @@ public class SweepGameUI implements Screen {
     }
     @Override
     public void show() {
-        float width = 1280;
-        float height = 720;
-        
-        // On mobile, use portrait viewport to preserve layout
-        if (Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS) {
-            width = 720;
-            height = 1280;
-        }
-
-        stage = new Stage(new FitViewport(width, height));
+        LayoutHelper layout = LayoutHelper.getInstance();
+        stage = new Stage(new FitViewport(layout.getViewportWidth(), layout.getViewportHeight()));
         Gdx.input.setInputProcessor(stage);
 
         skin = new Skin(Gdx.files.internal("uiskin.json"));
@@ -251,8 +246,9 @@ public class SweepGameUI implements Screen {
             Card card = animCards.get(i);
             Texture texture = new Texture("cards/" + card.getImageName());
             Image img = new Image(texture);
-            boolean isMobile = Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS;
-            img.setSize(isMobile ? 150 : 120, isMobile ? 180 : 140);
+
+            LayoutHelper layout = LayoutHelper.getInstance();
+            img.setSize(layout.getAnimCardWidth(), layout.getAnimCardHeight());
             img.setPosition(aiX, aiY);
             stage.addActor(img);
 

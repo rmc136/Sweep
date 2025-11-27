@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.sweepgame.cards.Card;
+import com.sweepgame.utils.LayoutHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,9 +65,9 @@ public class TableUI {
         Table cardsRow = new Table();
         cardsRow.center();
 
-        boolean isMobile = Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS;
-        float cardWidth = isMobile ? 150f : 125f;
-        float cardHeight = isMobile ? 180f : 150f;
+        LayoutHelper layout = LayoutHelper.getInstance();
+        float cardWidth = layout.getTableCardWidth();
+        float cardHeight = layout.getTableCardHeight();
 
         for (Card c : tableCards) {
             Image img = createTableCardImage(c);
