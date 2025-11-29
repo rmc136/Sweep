@@ -14,11 +14,11 @@ public class PlayerSeatUI {
     private Table rootTable;
     private Table leftTable;
     private Table rightTable;
-    private Label leftPlayerLabel;
-    private Label rightPlayerLabel;
+
     private Player leftPlayer;
     private Player rightPlayer;
-
+    private Label leftScoreLabel;
+    private Label rightScoreLabel;
     private Texture backTexture;
 
 
@@ -27,42 +27,44 @@ public class PlayerSeatUI {
     // private final float cardWidth = 80;
     // private final float cardHeight = 100;
 
-    public PlayerSeatUI(Skin skin, Player left, Player right) {
+    public PlayerSeatUI(Skin skin, Player left, Player right, Label leftScore, Label rightScore) {
         rootTable = new Table();
         rootTable.setFillParent(true);
 
         leftPlayer = left;
         rightPlayer = right;
 
-        leftPlayerLabel = new Label(left.getName(), skin);
-        rightPlayerLabel = new Label(right.getName(), skin);
-
         backTexture = new Texture("cards/back_card.png");
 
         // Left side (name above, cards below)
         leftTable = new Table();
-        leftTable.center().left();
-        leftTable.add(leftPlayerLabel).padBottom(10).row();
-
+        // Fixed width, align top center
+        leftTable.top(); 
+        
         // Right side (name above, cards below)
         rightTable = new Table();
-        rightTable.center().right();
-        rightTable.add(rightPlayerLabel).padBottom(10).row();
+        // Fixed width, align top center
+        rightTable.top();
 
         // Place left and right tables at screen borders
         // Place left and right tables at screen borders
         LayoutHelper layout = LayoutHelper.getInstance();
         
         if (layout.isMobile()) {
-            // Mobile: Align to TOP with padding to avoid table cards overlap
-            rootTable.add(leftTable).expand().top().left().padTop(150);
+            // Mobile: Align to TOP with padding
+            // Use fixed width for the seats to prevent shifting
+            float seatWidth = layout.getSeatWidth();
+            
+            rootTable.add(leftTable).width(seatWidth).top().left().padTop(150);
             rootTable.add().expand(); // spacer
-            rootTable.add(rightTable).expand().top().right().padTop(150);
+            rootTable.add(rightTable).width(seatWidth).top().right().padTop(150);
         } else {
             // Desktop: Center alignment
-            rootTable.add(leftTable).expand().center().left();
+            float seatWidth = layout.getSeatWidth();
+
+            rootTable.add(leftTable).width(seatWidth).expand().center().left();
             rootTable.add().expand(); // spacer
-            rootTable.add(rightTable).expand().center().right();
+            rootTable.add(rightTable).width(seatWidth).expand().center().right();
         }
     }
 
@@ -70,29 +72,46 @@ public class PlayerSeatUI {
         return rootTable;
     }
 
+    public void setScoreLabels(Label left, Label right) {
+        this.leftScoreLabel = left;
+        this.rightScoreLabel = right;
+    }
+
     public void update() {
         LayoutHelper layout = LayoutHelper.getInstance();
-        float cardWidth = layout.getHandCardWidth(); // Use same size as hand cards for consistency
+        float cardWidth = layout.getHandCardWidth(); 
         float cardHeight = layout.getHandCardHeight();
 
         // Left side update
         leftTable.clearChildren();
-        leftTable.add(leftPlayerLabel).padBottom(10).row();
+        // Always add Score and Name at the top
+        leftTable.add(leftScoreLabel).padBottom(5).row();
+        
+        
+        // Container for cards to keep them centered within the seat
+        Table leftCardsTable = new Table();
         for (int i = 0; i < leftPlayer.getHand().size(); i++) {
             Image cardBack = new Image(backTexture);
             cardBack.setScaling(Scaling.fit);
             cardBack.setSize(cardWidth, cardHeight);
-            leftTable.add(cardBack).size(cardWidth, cardHeight).pad(0);
+            leftCardsTable.add(cardBack).size(cardWidth, cardHeight).pad(2); // pad 2 for overlap/spacing
         }
+        leftTable.add(leftCardsTable).row();
 
         // Right side update
         rightTable.clearChildren();
-        rightTable.add(rightPlayerLabel).padBottom(10).row();
+        // Always add Score and Name at the top
+        rightTable.add(rightScoreLabel).padBottom(5).row();
+        
+        // Container for cards
+        Table rightCardsTable = new Table();
         for (int i = 0; i < rightPlayer.getHand().size(); i++) {
             Image cardBack = new Image(backTexture);
             cardBack.setScaling(Scaling.fit);
             cardBack.setSize(cardWidth, cardHeight);
-            rightTable.add(cardBack).size(cardWidth, cardHeight).pad(0);
+            rightCardsTable.add(cardBack).size(cardWidth, cardHeight).pad(2);
         }
+        rightTable.add(rightCardsTable).row();
     }
 }
+

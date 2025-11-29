@@ -59,21 +59,49 @@ public class SweepGameUI implements Screen {
         Player rightPlayer = gameLogic.getPlayers().get(2);
 
         // Initialize modular UI
+        // 1. Create ScoreUI first to generate labels
         scoreUI = new ScoreUI(skin, gameLogic.getPlayers());
-        tableUI = new TableUI();
-        handUI = new HandUI(humanPlayer, gameLogic, tableUI, this::refreshUI);
-        seatUI = new PlayerSeatUI(skin, leftPlayer, rightPlayer);
 
-        // Layout table
+        // 2. Initialize Player Seats (Opponents) with their score labels
+        // Assuming player 0 is main player, 1 is left, 2 is right (or similar logic)
+        // Let's check how players are passed.
+        // In SweepGameUI, players list: 0=Main, 1=Left, 2=Right (usually)
+        // Let's verify player indices.
+        // PlayerSeatUI takes (left, right).
+        // If 3 players: Main(0), Left(1), Right(2).
+        
+        // Pass labels for Left(1) and Right(2)
+        // Pass labels for Left(1) and Right(2)
+        seatUI = new PlayerSeatUI(skin, gameLogic.getPlayers().get(1), gameLogic.getPlayers().get(2), scoreUI.getLabel(1), scoreUI.getLabel(2));
+        seatUI.setScoreLabels(scoreUI.getLabel(1), scoreUI.getLabel(2)); // Ensure they are stored
+        stage.addActor(seatUI.getTable());
+
+        // 3. Initialize Table UI
+        tableUI = new TableUI();
+        stage.addActor(tableUI.getTable());
+
+        // 4. Initialize Hand UI (Main Player)
+        handUI = new HandUI(this, gameLogic.getPlayers().get(0), gameLogic, tableUI, this::refreshUI);
+        // stage.addActor(handUI.getTable()); // We add it to mainTable instead
+
         Table mainTable = new Table();
         mainTable.setFillParent(true);
 
-        mainTable.top().add(scoreUI.getTable()).expandX().row();
         mainTable.center().add(tableUI.getTable()).expand().row();
-        mainTable.bottom().add(handUI.getTable()).expandX();
+        
+        // Bottom Row: [Hand (Centered)]
+        Table bottomRow = new Table();
+        bottomRow.add(handUI.getTable()).expandX().center();
+        mainTable.bottom().add(bottomRow).fillX();
 
         stage.addActor(mainTable);
         stage.addActor(seatUI.getTable());
+        
+        // Add User Score Label absolutely to the stage to ensure it never moves
+        Label userScore = scoreUI.getLabel(0);
+        userScore.setPosition(20, 20); // Fixed position at bottom-left
+        stage.addActor(userScore);
+
         seatUI.update();
 
         refreshUI();

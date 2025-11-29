@@ -18,19 +18,16 @@ public class SweepLogic {
         tableCards.clear();
         currentPlayerIndex = 0;
 
-        // Create players
         players.add(new Player("Johnny"));
         players.add(new Player("Joni"));
         players.add(new Player("Rodrigo"));
 
         deck.shuffle();
 
-        // Deal initial hands
         for (Player p : players) {
             for (int i = 0; i < 3; i++) p.drawCard(deck);
         }
 
-        // Deal initial table cards
         for (int i = 0; i < 4; i++) tableCards.add(deck.draw());
     }
 
@@ -42,7 +39,6 @@ public class SweepLogic {
     public List<Player> getPlayers() { return players; }
     public List<Card> getTableCards() { return tableCards; }
 
-    // Play a card (called by UI)
     public void playCard(Player player, Card card, List<Card> selected) {
         if (!player.getHand().contains(card)) return;
 
@@ -74,7 +70,6 @@ public class SweepLogic {
         List<Card> collected = new ArrayList<>();
 
         if (sum == 15 && new HashSet<>(tableCards).containsAll(selected)) {
-            // valid capture
             System.out.println("Cards i take from table and my card: " + selected + handCard);
             player.collectCards(selected);
             player.collectCards(Collections.singletonList(handCard));
@@ -87,7 +82,6 @@ public class SweepLogic {
             tableCards.add(handCard);
         }
 
-        // store lastCollectedCards for animation
         lastCollected = collected;
 
         advanceTurn();
@@ -135,7 +129,6 @@ public class SweepLogic {
         return true;
     }
 
-    // Deal 3 new cards if available
     public void dealNewRound() {
         for (Player p : players) {
             for (int i = 0; i < 3; i++) {
@@ -153,24 +146,18 @@ public class SweepLogic {
         int bestScore = Integer.MIN_VALUE;
 
         for (Player p : players) {
-            int score = p.calculatePoints() + p.getBrushes(); // total score
-            // choose higher score, or apply tiebreak if equal
+            int score = p.calculatePoints() + p.getBrushes(); 
             if (winner == null || score > bestScore) {
                 bestScore = score;
                 winner = p;
             } else if (score == bestScore) {
                 winner = tiebreak(winner, p);
-                // ensure bestScore remains the same (they tied on score)
             }
         }
         return winner;
     }
 
-    /**
-     * Tie-break rules (in order):
-     * 1) player with more cards in their points stack wins
-     * 2) if still tied, flip a coin (random pick)
-     */
+    
     private Player tiebreak(Player a, Player b) {
         int aCards = a.getPointsStack().size();
         int bCards = b.getPointsStack().size();
@@ -178,7 +165,6 @@ public class SweepLogic {
         if (aCards > bCards) return a;
         if (bCards > aCards) return b;
 
-        // final fallback: random pick (you could also implement deterministic rule instead)
         return Math.random() < 0.5 ? a : b;
     }
 

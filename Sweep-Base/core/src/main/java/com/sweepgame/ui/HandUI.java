@@ -3,6 +3,7 @@ package com.sweepgame.ui;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -25,16 +26,19 @@ public class HandUI {
     private Table table;
     private Player player;
     private SweepLogic gameLogic;
-    private TableUI tableUI; // <--- NEW
+    private TableUI tableUI;
     private Runnable onCardPlayed;
+    private SweepGameUI gameUI;
 
-    public HandUI(Player player, SweepLogic gameLogic, TableUI tableUI, Runnable onCardPlayed) {
-        table = new Table();
-        table.bottom();
+    public HandUI(SweepGameUI gameUI, Player player, SweepLogic gameLogic, TableUI tableUI, Runnable onCardPlayed) {
+        this.gameUI = gameUI;
         this.player = player;
         this.gameLogic = gameLogic;
-        this.tableUI = tableUI; // <--- NEW
+        this.tableUI = tableUI;
         this.onCardPlayed = onCardPlayed;
+
+        table = new Table();
+        table.bottom();
     }
 
     public Table getTable() {
@@ -134,6 +138,7 @@ public class HandUI {
         float handWidth = layout.getHandCardWidth();
         float handHeight = layout.getHandCardHeight();
         float padding = layout.getStandardPadding();
+        
         for (Card c : player.getHand()) {
             table.add(createCardImage(c)).size(handWidth, handHeight).pad(padding);
         }

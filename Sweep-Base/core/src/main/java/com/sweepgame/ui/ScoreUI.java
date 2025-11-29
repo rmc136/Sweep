@@ -14,9 +14,7 @@ public class ScoreUI {
     private Label[] playerScoreLabels;
 
     public ScoreUI(Skin skin, List<Player> players) {
-        table = new Table();
-        table.top();
-
+        // We no longer create a main table here, as labels will be distributed
         int playerCount = players.size();
         playerScoreLabels = new Label[playerCount];
 
@@ -27,17 +25,17 @@ public class ScoreUI {
             playerScoreLabels[i] = new Label(formatScore(p), skin);
             
             if (layout.isMobile()) {
-                playerScoreLabels[i].setWrap(true);
                 playerScoreLabels[i].setFontScale(0.8f);
-                table.add(playerScoreLabels[i]).width(200).pad(5);
-            } else {
-                table.add(playerScoreLabels[i]).pad(10);
+                // Width will be handled by the container (HandUI/PlayerSeatUI)
             }
         }
     }
 
-    public Table getTable() {
-        return table;
+    public Label getLabel(int playerIndex) {
+        if (playerIndex >= 0 && playerIndex < playerScoreLabels.length) {
+            return playerScoreLabels[playerIndex];
+        }
+        return null;
     }
 
     public void update(List<Player> players) {

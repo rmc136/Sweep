@@ -88,4 +88,8 @@ public class LayoutHelper {
     public float getStandardPadding() {
         return isMobile ? 5f : 2f;
     }
+
+    public float getSeatWidth() {
+        return isMobile ? getWidth(0.45f) : getWidth(0.25f);
+    }
 }
