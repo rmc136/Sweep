@@ -1,4 +1,7 @@
 // Arquivo build.gradle completo (projeto :html)
+import org.akhikhl.gretty.AppBeforeIntegrationTestTask
+import org.docstr.gradle.plugins.gwt.GwtSuperDev
+
 
 buildscript {
   repositories {
@@ -47,9 +50,6 @@ dependencies {
   implementation "com.google.jsinterop:jsinterop-annotations:2.0.2:sources"
   implementation project(':core')
 }
-
-import org.akhikhl.gretty.AppBeforeIntegrationTestTask
-import org.docstr.gradle.plugins.gwt.GwtSuperDev
 
 gretty.httpPort = 8080
 // A linha abaixo só precisa de ser alterada se mudar o diretório de compilação para algo diferente de "build".
