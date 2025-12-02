@@ -62,18 +62,88 @@ public class TableUI {
         table.clear();
         selectedCards.clear();
 
-        Table cardsRow = new Table();
-        cardsRow.center();
-
-        LayoutHelper layout = LayoutHelper.getInstance();
-        float cardWidth = layout.getTableCardWidth();
-        float cardHeight = layout.getTableCardHeight();
-
-        for (Card c : tableCards) {
-            Image img = createTableCardImage(c);
-            cardsRow.add(img).size(cardWidth, cardHeight).pad(2);
+        if (tableCards.isEmpty()) {
+            return;
         }
 
-        table.add(cardsRow).center();
+        LayoutHelper layout = LayoutHelper.getInstance();
+        
+        // Fixed container size
+        float containerWidth;
+        float containerHeight;
+        
+        if (layout.isMobile()) {
+            containerWidth = layout.getWidth(0.95f);
+            containerHeight = layout.getHeight(0.4f);
+            // Mobile: Align top with padding to push it down, instead of centering
+            table.top().padTop(layout.getHeight(0.15f)); 
+        } else {
+            containerWidth = layout.getWidth(0.5f);
+            containerHeight = layout.getHeight(0.6f);
+            // Desktop: Center alignment
+            table.center();
+        }
+
+        float maxOriginalWidth = layout.getTableCardWidth();
+        
+        int totalCards = tableCards.size();
+        
+        // OPTIMIZATION ALGORITHM:
+        // Find the configuration (1 to 4 rows) that yields the LARGEST card size.
+        
+        int bestNumRows = 1;
+        float bestCardWidth = 0;
+        float bestCardHeight = 0;
+        
+        for (int r = 1; r <= 4; r++) {
+            // Calculate columns needed for r rows
+            int c = (int) Math.ceil((double) totalCards / r);
+            
+            // Calculate max card size for this configuration
+            float availableW = containerWidth / c;
+            float availableH = containerHeight / r;
+            
+            float w = availableW * 0.95f; // 5% padding
+            float h = w * 1.4f;
+            
+            // Check height constraint
+            if (h > availableH * 0.95f) {
+                h = availableH * 0.95f;
+                w = h / 1.4f;
+            }
+            
+            // Cap at original size
+            if (w > maxOriginalWidth) {
+                w = maxOriginalWidth;
+                h = w * 1.4f;
+            }
+            
+            // Is this better?
+            if (w > bestCardWidth) {
+                bestCardWidth = w;
+                bestCardHeight = h;
+                bestNumRows = r;
+            }
+        }
+        
+        System.out.println("Best Fit: " + totalCards + " cards -> " + bestNumRows + " rows. Size: " + bestCardWidth);
+        
+        // Add cards using the best configuration
+        int cardIndex = 0;
+        for (int row = 0; row < bestNumRows; row++) {
+            int remainingCards = totalCards - cardIndex;
+            int remainingRows = bestNumRows - row;
+            int cardsInThisRow = (int) Math.ceil((double) remainingCards / remainingRows);
+            
+            for (int col = 0; col < cardsInThisRow; col++) {
+                if (cardIndex >= totalCards) break;
+                
+                Card c = tableCards.get(cardIndex);
+                Image img = createTableCardImage(c);
+                table.add(img).size(bestCardWidth, bestCardHeight).pad(2);
+                cardIndex++;
+            }
+            table.row();
+        }
     }
 }

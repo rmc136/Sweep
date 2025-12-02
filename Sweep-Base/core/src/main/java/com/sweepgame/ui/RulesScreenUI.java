@@ -31,6 +31,11 @@ public class RulesScreenUI extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
 
         skin = new Skin(Gdx.files.internal("uiskin.json"));
+        
+        // Replace bitmap fonts with crisp TTF fonts
+        com.sweepgame.utils.FontManager fontManager = com.sweepgame.utils.FontManager.getInstance();
+        skin.remove("default-font", com.badlogic.gdx.graphics.g2d.BitmapFont.class);
+        skin.add("default-font", fontManager.getLargeFont(), com.badlogic.gdx.graphics.g2d.BitmapFont.class);
 
         Table root = new Table();
         root.setFillParent(true);
@@ -38,7 +43,7 @@ public class RulesScreenUI extends ScreenAdapter {
 
         // Title
         Label title = new Label("Sweep Game Rules", skin);
-        title.setFontScale(2f);
+        // No font scaling needed - TTF fonts are crisp
         root.top().add(title).padTop(20).padBottom(20).row();
 
         // Scrollable rules
@@ -61,7 +66,7 @@ public class RulesScreenUI extends ScreenAdapter {
 
         Label rulesLabel = new Label(rulesText, skin);
         rulesLabel.setWrap(true);
-        rulesLabel.setFontScale(1.2f);
+        // No font scaling needed - TTF fonts are crisp
 
         ScrollPane scrollPane = new ScrollPane(rulesLabel, skin);
         scrollPane.setFadeScrollBars(false);

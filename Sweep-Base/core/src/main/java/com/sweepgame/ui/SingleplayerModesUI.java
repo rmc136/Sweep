@@ -34,6 +34,11 @@ public class SingleplayerModesUI extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
 
         skin = new Skin(Gdx.files.internal("uiskin.json"));
+        
+        // Replace bitmap fonts with crisp TTF fonts
+        com.sweepgame.utils.FontManager fontManager = com.sweepgame.utils.FontManager.getInstance();
+        skin.remove("default-font", com.badlogic.gdx.graphics.g2d.BitmapFont.class);
+        skin.add("default-font", fontManager.getLargeFont(), com.badlogic.gdx.graphics.g2d.BitmapFont.class);
 
         Table root = new Table();
         root.setFillParent(true);
@@ -41,7 +46,7 @@ public class SingleplayerModesUI extends ScreenAdapter {
 
         // Title
         Label title = new Label("Singleplayer Modes", skin);
-        title.setFontScale(2f);
+        // No font scaling needed - TTF fonts are crisp at any size
         root.top().add(title).padTop(10).row();
 
         // Buttons for each mode

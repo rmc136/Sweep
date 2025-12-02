@@ -49,6 +49,11 @@ public class SweepGameUI implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         skin = new Skin(Gdx.files.internal("uiskin.json"));
+        
+        // Replace bitmap fonts with crisp TTF fonts
+        com.sweepgame.utils.FontManager fontManager = com.sweepgame.utils.FontManager.getInstance();
+        skin.remove("default-font", com.badlogic.gdx.graphics.g2d.BitmapFont.class);
+        skin.add("default-font", fontManager.getLargeFont(), com.badlogic.gdx.graphics.g2d.BitmapFont.class);
 
         // Initialize game logic
         gameLogic = new SweepLogic();

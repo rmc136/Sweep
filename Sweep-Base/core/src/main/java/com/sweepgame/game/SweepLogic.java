@@ -12,6 +12,7 @@ public class SweepLogic {
     private final List<Card> tableCards = new ArrayList<>();
     private int currentPlayerIndex = 0;
     private List<Card> lastCollected = new ArrayList<>();// who plays now
+    private boolean isFirstRound = true;
 
     public void startGame() {
         players.clear();
@@ -29,6 +30,25 @@ public class SweepLogic {
         }
 
         for (int i = 0; i < 4; i++) tableCards.add(deck.draw());
+             
+        // First-round sweep: Check if initial table cards sum to 15
+        if (isFirstRound) {
+            int tableSum = 0;
+            for (Card c : tableCards) {
+                tableSum += c.getValue();
+            }
+            System.out.println("Initial table sum: " + tableSum);
+            
+            if (tableSum == 15) {
+                // First player (index 0) collects all table cards and gets a sweep
+                Player firstPlayer = players.get(0);
+                firstPlayer.collectCards(new ArrayList<>(tableCards));
+                firstPlayer.incrementBrushes();
+                System.out.println("First-round sweep! " + firstPlayer.getName() + " collected all table cards!");
+                tableCards.clear();
+                isFirstRound = false;
+            }
+        }
     }
 
     public boolean isGameOver() {
@@ -42,7 +62,7 @@ public class SweepLogic {
     public void playCard(Player player, Card card, List<Card> selected) {
         if (!player.getHand().contains(card)) return;
 
-        List<Card> collected = checkSum15(card);
+        List<Card> collected = checkSum15(card, false); // Normal sum-15 logic
         player.getHand().remove(card);
 
         if (selected.isEmpty()){
@@ -55,6 +75,7 @@ public class SweepLogic {
         } else {
             tableCards.add(card);
         }
+        
         lastCollected = new ArrayList<>(collected);
         advanceTurn();
     }
@@ -96,11 +117,14 @@ public class SweepLogic {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
     }
 
-    private List<Card> checkSum15(Card played) {
+    private List<Card> checkSum15(Card played, boolean isFirstRound) {
         List<Card> collected = new ArrayList<>();
         int n = tableCards.size();
         for (int mask = 0; mask < (1 << n); mask++) {
-            int sum = played.getValue();
+            int sum = 0;
+            if (!isFirstRound) {
+                sum = played.getValue();   
+            }
             List<Card> subset = new ArrayList<>();
             for (int i = 0; i < n; i++) {
                 if ((mask & (1 << i)) != 0) {

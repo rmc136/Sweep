@@ -38,6 +38,11 @@ public class HomeScreenUI extends ScreenAdapter {
         
         stage = new Stage(new FitViewport(width, height));
         skin = new Skin(Gdx.files.internal("uiskin.json"));
+        
+        // Replace bitmap fonts with crisp TTF fonts
+        com.sweepgame.utils.FontManager fontManager = com.sweepgame.utils.FontManager.getInstance();
+        skin.remove("default-font", com.badlogic.gdx.graphics.g2d.BitmapFont.class);
+        skin.add("default-font", fontManager.getLargeFont(), com.badlogic.gdx.graphics.g2d.BitmapFont.class);
 
 
         Gdx.input.setInputProcessor(stage);

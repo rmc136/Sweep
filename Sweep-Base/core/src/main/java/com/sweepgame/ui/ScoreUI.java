@@ -23,11 +23,7 @@ public class ScoreUI {
         for (int i = 0; i < playerCount; i++) {
             Player p = players.get(i);
             playerScoreLabels[i] = new Label(formatScore(p), skin);
-            
-            if (layout.isMobile()) {
-                playerScoreLabels[i].setFontScale(0.8f);
-                // Width will be handled by the container (HandUI/PlayerSeatUI)
-            }
+            // TTF fonts from FontManager are already crisp, no scaling needed
         }
     }
 
