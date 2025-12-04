@@ -100,8 +100,8 @@ public class PlayerSeatUI {
 
         // Right side update
         rightTable.clearChildren();
-        // Always add Score and Name at the top, right-aligned to prevent overflow
-        rightTable.add(rightScoreLabel).padBottom(5).right().row();
+        // Always add Score and Name at the top
+        rightTable.add(rightScoreLabel).padBottom(5).row();
         
         // Container for cards
         Table rightCardsTable = new Table();
