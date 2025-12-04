@@ -5,20 +5,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.Application;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.sweepgame.game.SweepGameUI;
 
-public class SingleplayerModesUI extends ScreenAdapter {
+public class SingleplayerModeSelectionUI extends ScreenAdapter {
 
     private final Game game;
     private Stage stage;
     private Skin skin;
 
-    public SingleplayerModesUI(Game game) {
+    public SingleplayerModeSelectionUI(Game game) {
         this.game = game;
 
         float width = 1280;
@@ -46,52 +43,41 @@ public class SingleplayerModesUI extends ScreenAdapter {
 
         // Title
         Label title = new Label("Singleplayer Modes", skin);
-        // No font scaling needed - TTF fonts are crisp at any size
         root.top().add(title).padTop(10).row();
 
-        // Buttons for each mode
-        TextButton easyBtn = new TextButton("Easy", skin);
-        TextButton mediumBtn = new TextButton("Medium", skin);
-        TextButton hardBtn = new TextButton("Hard", skin);
-        TextButton pedradoBtn = new TextButton("Pedrado", skin);
-        TextButton backBtn = new TextButton("Home", skin);
+        // Buttons for each tournament mode
+        TextButton singleGameBtn = new TextButton("Single Game", skin);
+        TextButton firstTo4Btn = new TextButton("First to 4 Wins", skin);
+        TextButton firstTo8Btn = new TextButton("First to 8 Wins", skin);
+        TextButton backBtn = new TextButton("Back", skin);
 
         // Add buttons to table
-        root.add(easyBtn).pad(10).row();
-        root.add(mediumBtn).pad(10).row();
-        root.add(hardBtn).pad(10).row();
-        root.add(pedradoBtn).pad(10).row();
+        root.add(singleGameBtn).pad(10).row();
+        root.add(firstTo4Btn).pad(10).row();
+        root.add(firstTo8Btn).pad(10).row();
         root.row();
         root.add(backBtn).expandY().bottom().center();
 
         // Button listeners
-        easyBtn.addListener(event -> {
-            if (easyBtn.isPressed()) {
-                startGameWithMode("Easy");
+        singleGameBtn.addListener(event -> {
+            if (singleGameBtn.isPressed()) {
+                selectTournamentMode("single");
                 return true;
             }
             return false;
         });
 
-        mediumBtn.addListener(event -> {
-            if (mediumBtn.isPressed()) {
-                startGameWithMode("Medium");
+        firstTo4Btn.addListener(event -> {
+            if (firstTo4Btn.isPressed()) {
+                selectTournamentMode("first_to_4");
                 return true;
             }
             return false;
         });
 
-        hardBtn.addListener(event -> {
-            if (hardBtn.isPressed()) {
-                startGameWithMode("Hard");
-                return true;
-            }
-            return false;
-        });
-
-        pedradoBtn.addListener(event -> {
-            if (pedradoBtn.isPressed()) {
-                startGameWithMode("Pedrado");
+        firstTo8Btn.addListener(event -> {
+            if (firstTo8Btn.isPressed()) {
+                selectTournamentMode("first_to_8");
                 return true;
             }
             return false;
@@ -106,14 +92,15 @@ public class SingleplayerModesUI extends ScreenAdapter {
         });
     }
 
-    private void returnHome() {
-        game.setScreen(new HomeScreenUI(game));
+    private void selectTournamentMode(String tournamentMode) {
+        // Navigate to difficulty selection with the selected tournament mode
+        game.setScreen(new SingleplayerDifficultyUI(game, tournamentMode));
+        dispose();
     }
 
-    private void startGameWithMode(String mode) {
-        // Pass the mode to BrushGameUI if you want to handle difficulty inside the game
-        game.setScreen(new SweepGameUI(game, mode));
-        dispose(); // clean up current stage
+    private void returnHome() {
+        game.setScreen(new HomeScreenUI(game));
+        dispose();
     }
 
     @Override
@@ -128,5 +115,10 @@ public class SingleplayerModesUI extends ScreenAdapter {
     public void dispose() {
         stage.dispose();
         skin.dispose();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height, true);
     }
 }

@@ -72,7 +72,7 @@ public class HomeScreenUI extends ScreenAdapter {
         // Button listeners
         singleBtn.addListener(event -> {
             if (singleBtn.isPressed()) {
-                game.setScreen((Screen) new SingleplayerModesUI(game)); // 🚀 start the game
+                game.setScreen(new SingleplayerModeSelectionUI(game));
                 return true;
             }
             return false;

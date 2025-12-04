@@ -12,9 +12,11 @@ public class ScoreUI {
 
     private Table table;
     private Label[] playerScoreLabels;
+    private com.sweepgame.game.TournamentManager tournamentManager;
 
-    public ScoreUI(Skin skin, List<Player> players) {
+    public ScoreUI(Skin skin, List<Player> players, com.sweepgame.game.TournamentManager tournamentManager) {
         // We no longer create a main table here, as labels will be distributed
+        this.tournamentManager = tournamentManager;
         int playerCount = players.size();
         playerScoreLabels = new Label[playerCount];
 
@@ -42,10 +44,12 @@ public class ScoreUI {
 
     private String formatScore(Player p) {
         LayoutHelper layout = LayoutHelper.getInstance();
-        if (layout.isMobile()) {
-            return p.getName() + "\nPts: " + p.calculatePoints() + "\nSweeps: " + p.getBrushes() + "\nCards: " + p.getPointsStack().size();
-        } else {
-            return p.getName() + ": " + p.calculatePoints() + " pts, Sweeps: " + p.getBrushes() + ", Cards: " + p.getPointsStack().size();
-        }
+        int gamesWon = tournamentManager.getWins(p.getName());
+        
+        // Only show games won if not in single game mode
+        String gamesWonText = tournamentManager.isSingleGame() ? "" : "Games: " + gamesWon + "/" + tournamentManager.getWinsNeeded() + "\n";
+        
+        // Use multi-line format for both mobile and desktop for better readability
+        return p.getName() + "\n" + gamesWonText + "Pts: " + p.calculatePoints() + "\nSweeps: " + p.getBrushes() + "\nCards: " + p.getPointsStack().size();
     }
 }

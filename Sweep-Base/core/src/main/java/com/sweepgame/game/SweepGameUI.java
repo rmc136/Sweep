@@ -37,11 +37,19 @@ public class SweepGameUI implements Screen {
     private PlayerSeatUI seatUI;
     private final Game game;
     private final String mode;
+    private final String tournamentMode;
+    private TournamentManager tournamentManager;
     private boolean aiTurnInProgress = false; // Track if AI is currently playing
 
-    public SweepGameUI(Game game, String mode) {
+    public SweepGameUI(Game game, String mode, String tournamentMode) {
         this.game = game;
         this.mode = mode;
+        this.tournamentMode = tournamentMode;
+        this.tournamentManager = TournamentManager.getInstance();
+        // Initialize tournament on first creation
+        if (tournamentManager.getTournamentMode() == null || !tournamentManager.getTournamentMode().equals(tournamentMode)) {
+            tournamentManager.initializeTournament(tournamentMode);
+        }
     }
     @Override
     public void show() {
@@ -60,13 +68,16 @@ public class SweepGameUI implements Screen {
         gameLogic = new SweepLogic();
         gameLogic.startGame();
 
+        // Initialize tournament manager with players
+        tournamentManager.initializePlayers(gameLogic.getPlayers());
+
         humanPlayer = gameLogic.getPlayers().get(0);
         Player leftPlayer = gameLogic.getPlayers().get(1);
         Player rightPlayer = gameLogic.getPlayers().get(2);
 
         // Initialize modular UI
         // 1. Create ScoreUI first to generate labels
-        scoreUI = new ScoreUI(skin, gameLogic.getPlayers());
+        scoreUI = new ScoreUI(skin, gameLogic.getPlayers(), tournamentManager);
 
         // 2. Initialize Player Seats (Opponents) with their score labels
         // Assuming player 0 is main player, 1 is left, 2 is right (or similar logic)
@@ -107,6 +118,17 @@ public class SweepGameUI implements Screen {
         Label userScore = scoreUI.getLabel(0);
         userScore.setPosition(20, 20); // Fixed position at bottom-left
         stage.addActor(userScore);
+        
+        // Add Exit Game button in bottom right corner
+        TextButton exitButton = new TextButton("Exit Game", skin);
+        exitButton.setPosition(stage.getWidth() - exitButton.getWidth() - 20, 20);
+        exitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                returnHome();
+            }
+        });
+        stage.addActor(exitButton);
 
         seatUI.update();
 
@@ -237,8 +259,24 @@ public class SweepGameUI implements Screen {
                 player = p;
             }
         }
+        
+        // Record the win in tournament manager
+        tournamentManager.recordWin(winnerName);
+        
         int points = player.calculatePoints() + player.getBrushes();
-        Label winnerLabel = new Label("Winner: " + winnerName + "! With " + points + " points!", skin);
+        int gamesWon = tournamentManager.getWins(winnerName);
+        
+        // Check if tournament is complete
+        boolean tournamentComplete = tournamentManager.isTournamentComplete();
+        
+        String message;
+        if (tournamentComplete) {
+            message = "Tournament Winner: " + winnerName + "!\nGames Won: " + gamesWon + "/" + tournamentManager.getWinsNeeded();
+        } else {
+            message = "Game Winner: " + winnerName + "! (" + points + " pts)\nGames Won: " + gamesWon + "/" + tournamentManager.getWinsNeeded();
+        }
+        
+        Label winnerLabel = new Label(message, skin);
         winnerLabel.setFontScale(2f);
 
         winnerLabel.setPosition(stage.getWidth() / 2f - winnerLabel.getWidth() / 2f,
@@ -259,8 +297,30 @@ public class SweepGameUI implements Screen {
             )
         );
 
-        showReplayButton();
+        // Show appropriate button based on tournament status
+        if (tournamentComplete) {
+            showReplayButton(); // Tournament is over, show replay
+        } else {
+            showNextGameButton(); // Tournament continues, show next game
+        }
+        
         showHomeButton();
+    }
+
+    private void showNextGameButton() {
+        TextButton nextGameBtn = new TextButton("Next Game", skin);
+
+        nextGameBtn.setPosition(stage.getWidth() / 2f - nextGameBtn.getWidth() / 2f,
+            stage.getHeight() / 2f - 100);
+
+        nextGameBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                startNextGame();
+            }
+        });
+
+        stage.addActor(nextGameBtn);
     }
 
     private void showReplayButton() {
@@ -349,8 +409,16 @@ public class SweepGameUI implements Screen {
         }
     }
 
+    private void startNextGame() {
+        // Start a new game while preserving tournament state
+        game.setScreen(new SweepGameUI(game, mode, tournamentMode));
+        // Transfer tournament state to new game instance
+        // Note: The new instance will create a new TournamentManager, 
+        // but we need to preserve the wins. We'll handle this differently.
+    }
+
     private void resetGame() {
-        game.setScreen(new SweepGameUI(game, mode));
+        game.setScreen(new SweepGameUI(game, mode, tournamentMode));
         // rebuild everything
     }
 
