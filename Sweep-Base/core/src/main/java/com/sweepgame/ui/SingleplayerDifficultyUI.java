@@ -56,15 +56,18 @@ public class SingleplayerDifficultyUI extends ScreenAdapter {
         TextButton mediumBtn = new TextButton("Medium", skin);
         TextButton hardBtn = new TextButton("Hard", skin);
         TextButton pedradoBtn = new TextButton("Pedrado", skin);
-        TextButton backBtn = new TextButton("Home", skin);
+        TextButton backBtn = new TextButton("Back", skin);
+        TextButton homeBtn = new TextButton("Home", skin);
 
         // Add buttons to table
         root.add(easyBtn).pad(10).row();
         root.add(mediumBtn).pad(10).row();
         root.add(hardBtn).pad(10).row();
         root.add(pedradoBtn).pad(10).row();
+        root.add().expandY(); // Spacer to push buttons to bottom
         root.row();
-        root.add(backBtn).expandY().bottom().center();
+        root.add(backBtn).pad(10).bottom().center().row();     
+        root.add(homeBtn).pad(10).bottom().center();
 
         // Button listeners
         easyBtn.addListener(event -> {
@@ -101,15 +104,28 @@ public class SingleplayerDifficultyUI extends ScreenAdapter {
 
         backBtn.addListener(event -> {
             if (backBtn.isPressed()) {
+                returnToModeSelection();
+                return true;
+            }
+            return false;
+        });
+
+        homeBtn.addListener(event -> {
+            if (homeBtn.isPressed()) {
                 returnHome();
                 return true;
             }
             return false;
         });
+        
     }
 
     private void returnHome() {
         game.setScreen(new HomeScreenUI(game));
+    }
+
+    private void returnToModeSelection() {
+        game.setScreen(new SingleplayerModeSelectionUI(game));
     }
 
     private void startGameWithMode(String mode) {
