@@ -15,9 +15,13 @@ public class SweepLogic {
     private boolean isFirstRound = true;
 
     public void startGame() {
+        startGame(0); // Default to player 0
+    }
+    
+    public void startGame(int startingPlayerIndex) {
         players.clear();
         tableCards.clear();
-        currentPlayerIndex = 0;
+        currentPlayerIndex = startingPlayerIndex % 3; // Ensure valid index
 
         players.add(new Player("Johnny"));
         players.add(new Player("Joni"));
@@ -136,6 +140,34 @@ public class SweepLogic {
         }
 
         return collected;
+    }
+
+    public List<Card> findRandomValidSum15(Card played) {
+        List<List<Card>> allValidCombinations = new ArrayList<>();
+        int n = tableCards.size();
+        
+        for (int mask = 0; mask < (1 << n); mask++) {
+            int sum = played.getValue();
+            List<Card> subset = new ArrayList<>();
+            
+            for (int i = 0; i < n; i++) {
+                if ((mask & (1 << i)) != 0) {
+                    sum += tableCards.get(i).getValue();
+                    subset.add(tableCards.get(i));
+                }
+            }
+            
+            if (sum == 15 && !subset.isEmpty()) {
+                allValidCombinations.add(new ArrayList<>(subset));
+            }
+        }
+        
+        if (!allValidCombinations.isEmpty()) {
+            int randomIndex = (int) (Math.random() * allValidCombinations.size());
+            return allValidCombinations.get(randomIndex);
+        }
+        
+        return new ArrayList<>();
     }
 
     public Deck getDeck() {

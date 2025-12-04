@@ -107,6 +107,8 @@ public class HomeScreenUI extends ScreenAdapter {
     @Override
     public void dispose() {
         stage.dispose();
+        // Remove shared font from skin so it doesn't get disposed
+        skin.remove("default-font", com.badlogic.gdx.graphics.g2d.BitmapFont.class);
         skin.dispose();
     }
 

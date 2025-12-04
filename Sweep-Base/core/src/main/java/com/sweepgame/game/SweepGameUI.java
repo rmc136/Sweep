@@ -39,13 +39,19 @@ public class SweepGameUI implements Screen {
     private final String mode;
     private final String tournamentMode;
     private TournamentManager tournamentManager;
-    private boolean aiTurnInProgress = false; // Track if AI is currently playing
+    private DifficultyConfig difficultyConfig;
+    private boolean aiTurnInProgress = false;
+    private Label timerLabel;
+    private com.badlogic.gdx.graphics.g2d.BitmapFont timerFont; // Keep reference to dispose
+    private float timeRemaining;
+    private boolean timerActive; // Track if AI is currently playing
 
     public SweepGameUI(Game game, String mode, String tournamentMode) {
         this.game = game;
         this.mode = mode;
         this.tournamentMode = tournamentMode;
         this.tournamentManager = TournamentManager.getInstance();
+        this.difficultyConfig = new DifficultyConfig(mode);
         // Initialize tournament on first creation
         if (tournamentManager.getTournamentMode() == null || !tournamentManager.getTournamentMode().equals(tournamentMode)) {
             tournamentManager.initializeTournament(tournamentMode);
@@ -66,7 +72,8 @@ public class SweepGameUI implements Screen {
 
         // Initialize game logic
         gameLogic = new SweepLogic();
-        gameLogic.startGame();
+        int startingPlayer = tournamentManager.getStartingPlayerIndex();
+        gameLogic.startGame(startingPlayer);
 
         // Initialize tournament manager with players
         tournamentManager.initializePlayers(gameLogic.getPlayers());
@@ -98,7 +105,7 @@ public class SweepGameUI implements Screen {
         stage.addActor(tableUI.getTable());
 
         // 4. Initialize Hand UI (Main Player)
-        handUI = new HandUI(this, gameLogic.getPlayers().get(0), gameLogic, tableUI, this::refreshUI);
+        handUI = new HandUI(this, gameLogic.getPlayers().get(0), gameLogic, tableUI, this::refreshUI, difficultyConfig);
         // stage.addActor(handUI.getTable()); // We add it to mainTable instead
 
         Table mainTable = new Table();
@@ -129,6 +136,18 @@ public class SweepGameUI implements Screen {
             }
         });
         stage.addActor(exitButton);
+        
+        // Add timer label if difficulty has timer
+        if (difficultyConfig.hasTimer()) {
+            Label.LabelStyle timerStyle = new Label.LabelStyle();
+            timerFont = com.sweepgame.utils.FontManager.getInstance().createTimerFont();
+            timerStyle.font = timerFont;
+            timerStyle.fontColor = com.badlogic.gdx.graphics.Color.WHITE;
+            timerLabel = new Label("", timerStyle);
+            timerLabel.setPosition(stage.getWidth() / 2f - 50, stage.getHeight() - 50);
+            stage.addActor(timerLabel);
+            resetTimer();
+        }
 
         seatUI.update();
 
@@ -146,11 +165,17 @@ public class SweepGameUI implements Screen {
 
         // Let AI play if it's their turn - start the sequence
         if (!(gameLogic.getCurrentPlayer().equals(humanPlayer)) && !gameLogic.isGameOver()) {
-            aiTurnInProgress = true; // Block user input
+            aiTurnInProgress = true;
+            pauseTimer(); // Pause timer during AI turns
             scheduleNextAITurn();
         } else {
             // Check for new round or game over only when it's human's turn
+            aiTurnInProgress = false;
             checkGameState();
+            // Only reset timer if it's actually the human's turn and game is not over
+            if (gameLogic.getCurrentPlayer().equals(humanPlayer) && !gameLogic.isGameOver()) {
+                resetTimer();
+            }
         }
     }
 
@@ -178,6 +203,7 @@ public class SweepGameUI implements Screen {
     private void scheduleNextAITurn() {
         // Check if current player is still an AI (not human)
         if (gameLogic.getCurrentPlayer().equals(humanPlayer) || gameLogic.isGameOver()) {
+            resetTimer();
             seatUI.update();
             checkGameState();
             return;
@@ -225,6 +251,16 @@ public class SweepGameUI implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0.1f, 0.2f, 0.4f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        
+        // Update timer if active
+        if (timerActive && difficultyConfig.hasTimer()) {
+            timeRemaining -= delta;
+            updateTimerDisplay();
+            
+            if (timeRemaining <= 0) {
+                handleTimerExpiration();
+            }
+        }
 
         stage.act(delta);
         stage.draw();
@@ -249,7 +285,61 @@ public class SweepGameUI implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        // Remove shared font from skin so it doesn't get disposed
+        skin.remove("default-font", com.badlogic.gdx.graphics.g2d.BitmapFont.class);
         skin.dispose();
+        if (timerFont != null) {
+            timerFont.dispose();
+        }
+    }
+    
+    private void resetTimer() {
+        if (difficultyConfig.hasTimer() && !gameLogic.isGameOver()) {
+            timeRemaining = difficultyConfig.getTimerSeconds();
+            timerActive = true;
+            updateTimerDisplay();
+        }
+    }
+    
+    private void pauseTimer() {
+        timerActive = false;
+    }
+    
+    private void updateTimerDisplay() {
+        if (timerLabel != null) {
+            int seconds = (int) Math.ceil(timeRemaining);
+            timerLabel.setText("Time: " + seconds + "s");
+        }
+    }
+    
+    private void handleTimerExpiration() {
+        timerActive = false;
+        
+        // Auto-play first card from hand when timer expires
+        if (!humanPlayer.getHand().isEmpty()) {
+            Card firstCard = humanPlayer.getHand().get(0);
+            List<Card> emptySelection = new ArrayList<>();
+            gameLogic.playCardWithSelection(humanPlayer, firstCard, emptySelection);
+            
+            // Update UI manually since we're not going through HandUI
+            scoreUI.update(gameLogic.getPlayers());
+            tableUI.update(gameLogic.getTableCards());
+            handUI.update();
+            
+            // Now check if it's AI's turn
+            if (!(gameLogic.getCurrentPlayer().equals(humanPlayer)) && !gameLogic.isGameOver()) {
+                aiTurnInProgress = true;
+                pauseTimer();
+                scheduleNextAITurn();
+                
+            } else {
+                // Still human's turn (shouldn't happen) or game over
+                checkGameState();
+                if (gameLogic.getCurrentPlayer().equals(humanPlayer) && !gameLogic.isGameOver()) {
+                    resetTimer();
+                }
+            }
+        }
     }
 
     private void showWinner(String winnerName) {
@@ -411,15 +501,14 @@ public class SweepGameUI implements Screen {
 
     private void startNextGame() {
         // Start a new game while preserving tournament state
+        // The new instance will use the singleton TournamentManager which has the updated state
         game.setScreen(new SweepGameUI(game, mode, tournamentMode));
-        // Transfer tournament state to new game instance
-        // Note: The new instance will create a new TournamentManager, 
-        // but we need to preserve the wins. We'll handle this differently.
     }
 
     private void resetGame() {
+        // Restart the tournament
+        tournamentManager.initializeTournament(tournamentMode);
         game.setScreen(new SweepGameUI(game, mode, tournamentMode));
-        // rebuild everything
     }
 
     private void returnHome() {

@@ -43,6 +43,9 @@ public class FontManager {
             defaultFont = new BitmapFont();
             largeFont = new BitmapFont();
             smallFont = new BitmapFont();
+            defaultFont.setColor(Color.WHITE);
+            largeFont.setColor(Color.WHITE);
+            smallFont.setColor(Color.WHITE);
         }
     }
     
@@ -56,6 +59,20 @@ public class FontManager {
     
     public BitmapFont getSmallFont() {
         return smallFont;
+    }
+    
+    public BitmapFont createTimerFont() {
+        try {
+            BitmapFont font = new BitmapFont(Gdx.files.internal("lsans-24.fnt"));
+            font.setColor(Color.WHITE);
+            return font;
+        } catch (Exception e) {
+            System.out.println("ERRO: Fontes .fnt não encontradas. Usando fonte padrão do sistema.");
+            BitmapFont font = new BitmapFont();
+            font.getData().setScale(2.0f);
+            font.setColor(Color.WHITE);
+            return font;
+        }
     }
     
     public void dispose() {

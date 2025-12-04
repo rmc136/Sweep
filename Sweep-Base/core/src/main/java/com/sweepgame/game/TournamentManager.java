@@ -12,10 +12,12 @@ public class TournamentManager {
     private String tournamentMode; 
     private final Map<String, Integer> playerWins;
     private int winsNeeded;
+    private int gamesPlayed;
     
     private TournamentManager() {
         this.playerWins = new HashMap<>();
         this.winsNeeded = 1;
+        this.gamesPlayed = 0;
     }
     
     public static TournamentManager getInstance() {
@@ -28,6 +30,7 @@ public class TournamentManager {
     public void initializeTournament(String tournamentMode) {
         this.tournamentMode = tournamentMode;
         this.playerWins.clear();
+        this.gamesPlayed = 0;
         
         switch (tournamentMode) {
             case "first_to_4":
@@ -53,6 +56,7 @@ public class TournamentManager {
     
     public void recordWin(String playerName) {
         playerWins.put(playerName, playerWins.getOrDefault(playerName, 0) + 1);
+        gamesPlayed++;
     }
     
     public int getWins(String playerName) {
@@ -94,5 +98,15 @@ public class TournamentManager {
     
     public boolean isSingleGame() {
         return "single".equals(tournamentMode);
+    }
+    
+    /**
+     * Get the starting player index for the current game (rotates anti-clockwise)
+     * Player 0 starts game 1, Player 2 starts game 2, Player 1 starts game 3, etc.
+     */
+    public int getStartingPlayerIndex() {
+        // Anti-clockwise rotation: 0 -> 2 -> 1 -> 0
+        // This is equivalent to: (3 - gamesPlayed) % 3
+        return (3 - (gamesPlayed % 3)) % 3;
     }
 }

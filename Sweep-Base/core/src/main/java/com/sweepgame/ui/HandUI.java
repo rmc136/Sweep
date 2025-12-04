@@ -29,13 +29,15 @@ public class HandUI {
     private TableUI tableUI;
     private Runnable onCardPlayed;
     private SweepGameUI gameUI;
+    private com.sweepgame.game.DifficultyConfig difficultyConfig;
 
-    public HandUI(SweepGameUI gameUI, Player player, SweepLogic gameLogic, TableUI tableUI, Runnable onCardPlayed) {
+    public HandUI(SweepGameUI gameUI, Player player, SweepLogic gameLogic, TableUI tableUI, Runnable onCardPlayed, com.sweepgame.game.DifficultyConfig difficultyConfig) {
         this.gameUI = gameUI;
         this.player = player;
         this.gameLogic = gameLogic;
         this.tableUI = tableUI;
         this.onCardPlayed = onCardPlayed;
+        this.difficultyConfig = difficultyConfig;
 
         table = new Table();
         table.bottom();
@@ -58,18 +60,24 @@ public class HandUI {
                 }
                 
                 List<Card> selected = tableUI.getSelectedCards();
+                
+                // Easy mode: Auto-select if no manual selection
+                if (selected.isEmpty() && difficultyConfig.hasAutoSelection()) {
+                    selected = gameLogic.findRandomValidSum15(c);
+                }
+                
                 if (!selected.isEmpty()) {
-                    // Use manual capture
+                    // Use manual or auto-selected capture
                     gameLogic.playCardWithSelection(player, c, selected);
                     tableUI.clearSelection();
-                    // reset highlight
                 } else {
-                    // Default auto logic
+                    // No valid selection - card goes to table
                     gameLogic.playCardWithSelection(player, c, selected);
                 }
+                
                 // Trigger animation for collected cards
                 List<Card> collected = gameLogic.getLastCollectedCards();
-                List<Card> cardsToAnimate;// get cards collected this turn
+                List<Card> cardsToAnimate;
                 boolean isCapture = !collected.isEmpty();
 
                 if (isCapture) {
