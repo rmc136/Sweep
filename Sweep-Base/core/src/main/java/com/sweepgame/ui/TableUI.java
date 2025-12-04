@@ -125,9 +125,7 @@ public class TableUI {
                 bestNumRows = r;
             }
         }
-        
-        System.out.println("Best Fit: " + totalCards + " cards -> " + bestNumRows + " rows. Size: " + bestCardWidth);
-        
+                
         // Add cards using the best configuration
         int cardIndex = 0;
         for (int row = 0; row < bestNumRows; row++) {

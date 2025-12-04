@@ -166,8 +166,10 @@ public class SweepGameUI implements Screen {
         // Let AI play if it's their turn - start the sequence
         if (!(gameLogic.getCurrentPlayer().equals(humanPlayer)) && !gameLogic.isGameOver()) {
             aiTurnInProgress = true;
-            pauseTimer(); // Pause timer during AI turns
+            pauseTimer(); 
             scheduleNextAITurn();
+            checkGameState();
+            System.out.println("HERE: " + gameLogic.getCurrentPlayer().getName());
         } else {
             // Check for new round or game over only when it's human's turn
             aiTurnInProgress = false;
@@ -180,8 +182,11 @@ public class SweepGameUI implements Screen {
     }
 
     private void checkGameState() {
-        aiTurnInProgress = false; // Re-enable user input
-        
+
+        if (gameLogic.getCurrentPlayer().equals(humanPlayer)) {
+            aiTurnInProgress = false; // Re-enable user input
+        }
+        System.out.println("HERE: " + gameLogic.allHandsEmpty() + " " + !gameLogic.getDeck().isEmpty());
         // If all players are out of cards but deck still has cards → deal new ones
         if (gameLogic.allHandsEmpty() && !gameLogic.getDeck().isEmpty()) {
             gameLogic.dealNewRound();
