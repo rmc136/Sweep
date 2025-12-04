@@ -31,20 +31,16 @@ public class SweepLogic {
 
         for (int i = 0; i < 4; i++) tableCards.add(deck.draw());
              
-        // First-round sweep: Check if initial table cards sum to 15
         if (isFirstRound) {
             int tableSum = 0;
             for (Card c : tableCards) {
                 tableSum += c.getValue();
             }
-            System.out.println("Initial table sum: " + tableSum);
             
             if (tableSum == 15) {
-                // First player (index 0) collects all table cards and gets a sweep
                 Player firstPlayer = players.get(0);
                 firstPlayer.collectCards(new ArrayList<>(tableCards));
                 firstPlayer.incrementBrushes();
-                System.out.println("First-round sweep! " + firstPlayer.getName() + " collected all table cards!");
                 tableCards.clear();
                 isFirstRound = false;
             }
@@ -114,7 +110,7 @@ public class SweepLogic {
     }
 
     private void advanceTurn() {
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+        currentPlayerIndex = (currentPlayerIndex - 1 + players.size()) % players.size();
     }
 
     private List<Card> checkSum15(Card played, boolean isFirstRound) {

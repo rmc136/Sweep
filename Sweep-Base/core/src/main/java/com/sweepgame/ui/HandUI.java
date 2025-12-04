@@ -52,6 +52,11 @@ public class HandUI {
         img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                // Block input during AI turns
+                if (gameUI.isAITurnInProgress()) {
+                    return;
+                }
+                
                 List<Card> selected = tableUI.getSelectedCards();
                 if (!selected.isEmpty()) {
                     // Use manual capture

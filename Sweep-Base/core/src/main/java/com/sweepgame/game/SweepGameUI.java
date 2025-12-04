@@ -37,6 +37,7 @@ public class SweepGameUI implements Screen {
     private PlayerSeatUI seatUI;
     private final Game game;
     private final String mode;
+    private boolean aiTurnInProgress = false; // Track if AI is currently playing
 
     public SweepGameUI(Game game, String mode) {
         this.game = game;
@@ -112,17 +113,28 @@ public class SweepGameUI implements Screen {
         refreshUI();
     }
 
+    public boolean isAITurnInProgress() {
+        return aiTurnInProgress;
+    }
+
     private void refreshUI() {
         scoreUI.update(gameLogic.getPlayers());
         tableUI.update(gameLogic.getTableCards());
         handUI.update();
 
-        // Let AI play if it's their turn
-        while (!(gameLogic.getCurrentPlayer().equals(humanPlayer)) && !gameLogic.isGameOver()) {
-            playAITurns();
-            seatUI.update();
+        // Let AI play if it's their turn - start the sequence
+        if (!(gameLogic.getCurrentPlayer().equals(humanPlayer)) && !gameLogic.isGameOver()) {
+            aiTurnInProgress = true; // Block user input
+            scheduleNextAITurn();
+        } else {
+            // Check for new round or game over only when it's human's turn
+            checkGameState();
         }
+    }
 
+    private void checkGameState() {
+        aiTurnInProgress = false; // Re-enable user input
+        
         // If all players are out of cards but deck still has cards → deal new ones
         if (gameLogic.allHandsEmpty() && !gameLogic.getDeck().isEmpty()) {
             gameLogic.dealNewRound();
@@ -140,20 +152,51 @@ public class SweepGameUI implements Screen {
         }
     }
 
-    // Simple AI turn logic
-    private void playAITurns() {
-        for (int i = 1; i < gameLogic.getPlayers().size(); i++) {
-            Player ai = gameLogic.getPlayers().get(i);
-            if (!ai.getHand().isEmpty()) {
-                Card cardToPlay = ai.getHand().get(0);
-                List<Card> selectedForAI = new ArrayList<>();
-                selectedForAI.add(cardToPlay);
-                gameLogic.playCard(ai, cardToPlay, selectedForAI);
-                List<Card> collected = new ArrayList<>(gameLogic.getLastCollectedCards());
-                animateAICards(ai, cardToPlay, collected);
-            }
+    // Schedule the next AI turn with a delay
+    private void scheduleNextAITurn() {
+        // Check if current player is still an AI (not human)
+        if (gameLogic.getCurrentPlayer().equals(humanPlayer) || gameLogic.isGameOver()) {
+            seatUI.update();
+            checkGameState();
+            return;
         }
-        refreshUI();
+
+        // Schedule this AI player's turn after a delay
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                playOneAITurn();
+            }
+        }, 2.5f); // 2.5 second delay
+    }
+
+    // Play a single AI turn
+    private void playOneAITurn() {
+        // Get the current player from game logic (respects turn order)
+        Player currentPlayer = gameLogic.getCurrentPlayer();
+        
+        // Safety check: make sure it's not the human player
+        if (currentPlayer.equals(humanPlayer)) {
+            checkGameState();
+            return;
+        }
+
+        if (!currentPlayer.getHand().isEmpty()) {
+            Card cardToPlay = currentPlayer.getHand().get(0);
+            List<Card> selectedForAI = new ArrayList<>();
+            selectedForAI.add(cardToPlay);
+            gameLogic.playCard(currentPlayer, cardToPlay, selectedForAI);
+            List<Card> collected = new ArrayList<>(gameLogic.getLastCollectedCards());
+            animateAICards(currentPlayer, cardToPlay, collected);
+        }
+
+        // Update UI after this AI's turn
+        scoreUI.update(gameLogic.getPlayers());
+        tableUI.update(gameLogic.getTableCards());
+        seatUI.update();
+
+        // Schedule the next AI turn (game logic already advanced the turn)
+        scheduleNextAITurn();
     }
 
     @Override
