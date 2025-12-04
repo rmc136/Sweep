@@ -11,17 +11,17 @@ public class SweepLogic {
     private final List<Player> players = new ArrayList<>();
     private final List<Card> tableCards = new ArrayList<>();
     private int currentPlayerIndex = 0;
-    private List<Card> lastCollected = new ArrayList<>();// who plays now
+    private List<Card> lastCollected = new ArrayList<>();
     private boolean isFirstRound = true;
 
     public void startGame() {
-        startGame(0); // Default to player 0
+        startGame(0);
     }
     
     public void startGame(int startingPlayerIndex) {
         players.clear();
         tableCards.clear();
-        currentPlayerIndex = startingPlayerIndex % 3; // Ensure valid index
+        currentPlayerIndex = startingPlayerIndex % 3;
 
         players.add(new Player("Johnny"));
         players.add(new Player("Joni"));
@@ -32,7 +32,6 @@ public class SweepLogic {
         for (Player p : players) {
             for (int i = 0; i < 3; i++) p.drawCard(deck);
         }
-
         for (int i = 0; i < 4; i++) tableCards.add(deck.draw());
              
         if (isFirstRound) {
@@ -41,8 +40,8 @@ public class SweepLogic {
                 tableSum += c.getValue();
             }
             
-            if (tableSum == 15) {
-                Player firstPlayer = players.get(0);
+            if (tableSum == 15) {       
+                Player firstPlayer = players.get(startingPlayerIndex);
                 firstPlayer.collectCards(new ArrayList<>(tableCards));
                 firstPlayer.incrementBrushes();
                 tableCards.clear();
@@ -62,7 +61,7 @@ public class SweepLogic {
     public void playCard(Player player, Card card, List<Card> selected) {
         if (!player.getHand().contains(card)) return;
 
-        List<Card> collected = checkSum15(card, false); // Normal sum-15 logic
+        List<Card> collected = checkSum15(card, false);
         player.getHand().remove(card);
 
         if (selected.isEmpty()){

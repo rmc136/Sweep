@@ -46,6 +46,17 @@ public class TournamentManager {
         }
     }
     
+    /**
+     * Reset tournament state without setting a mode.
+     * Used when returning to home screen.
+     */
+    public void reset() {
+        this.tournamentMode = null;
+        this.playerWins.clear();
+        this.gamesPlayed = 0;
+        this.winsNeeded = 1;
+    }
+    
     public void initializePlayers(List<Player> players) {
         if (playerWins.isEmpty()) {
             for (Player p : players) {

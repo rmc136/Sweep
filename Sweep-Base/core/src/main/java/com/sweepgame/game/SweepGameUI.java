@@ -44,7 +44,8 @@ public class SweepGameUI implements Screen {
     private Label timerLabel;
     private com.badlogic.gdx.graphics.g2d.BitmapFont timerFont; // Keep reference to dispose
     private float timeRemaining;
-    private boolean timerActive; // Track if AI is currently playing
+    private boolean timerActive;
+    private boolean winnerShown = false; // Prevent showing winner multiple times // Track if AI is currently playing
 
     public SweepGameUI(Game game, String mode, String tournamentMode) {
         this.game = game;
@@ -166,10 +167,8 @@ public class SweepGameUI implements Screen {
         // Let AI play if it's their turn - start the sequence
         if (!(gameLogic.getCurrentPlayer().equals(humanPlayer)) && !gameLogic.isGameOver()) {
             aiTurnInProgress = true;
-            pauseTimer(); 
+            pauseTimer();
             scheduleNextAITurn();
-            checkGameState();
-            System.out.println("HERE: " + gameLogic.getCurrentPlayer().getName());
         } else {
             // Check for new round or game over only when it's human's turn
             aiTurnInProgress = false;
@@ -186,7 +185,7 @@ public class SweepGameUI implements Screen {
         if (gameLogic.getCurrentPlayer().equals(humanPlayer)) {
             aiTurnInProgress = false; // Re-enable user input
         }
-        System.out.println("HERE: " + gameLogic.allHandsEmpty() + " " + !gameLogic.getDeck().isEmpty());
+        
         // If all players are out of cards but deck still has cards → deal new ones
         if (gameLogic.allHandsEmpty() && !gameLogic.getDeck().isEmpty()) {
             gameLogic.dealNewRound();
@@ -197,7 +196,8 @@ public class SweepGameUI implements Screen {
             gameLogic.finishGame();
             tableUI.update(gameLogic.getTableCards());
             Player winner = gameLogic.getWinner();
-            if (winner != null) {
+            if (winner != null && !winnerShown) {
+                winnerShown = true; // Mark as shown to prevent duplicate calls
                 scoreUI.update(gameLogic.getPlayers());
                 showWinner(winner.getName());
             }
@@ -247,6 +247,9 @@ public class SweepGameUI implements Screen {
         scoreUI.update(gameLogic.getPlayers());
         tableUI.update(gameLogic.getTableCards());
         seatUI.update();
+
+        // Check if new cards need to be dealt before scheduling next turn
+        checkGameState();
 
         // Schedule the next AI turn (game logic already advanced the turn)
         scheduleNextAITurn();
@@ -517,6 +520,9 @@ public class SweepGameUI implements Screen {
     }
 
     private void returnHome() {
+        // Reset tournament state when returning to home
+        // This ensures a fresh start when starting a new tournament
+        tournamentManager.reset();
         game.setScreen(new HomeScreenUI(game));
     }
 }
