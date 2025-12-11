@@ -22,4 +22,5 @@ public class PlayerStats {
     private Integer totalSweeps = 0;
     private Integer winStreak = 0;
     private Integer bestWinStreak = 0;
+    private Integer rankedPoints = 0;
 }

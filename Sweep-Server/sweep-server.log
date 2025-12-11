@@ -1,0 +1,108 @@
+2025-12-11 16:50:33.478 [main] INFO  c.s.server.SweepServerApplication - Starting SweepServerApplication using Java 17.0.14 with PID 16192 (D:\Sweep\Sweep-Server\build\classes\java\main started by Joao in D:\Sweep\Sweep-Server)
+2025-12-11 16:50:33.480 [main] DEBUG c.s.server.SweepServerApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-12-11 16:50:33.481 [main] INFO  c.s.server.SweepServerApplication - No active profile set, falling back to 1 default profile: "default"
+2025-12-11 16:50:34.100 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-11 16:50:34.149 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+2025-12-11 16:50:34.682 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-12-11 16:50:34.689 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-11 16:50:34.692 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-11 16:50:34.692 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-12-11 16:50:34.758 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-11 16:50:34.759 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1232 ms
+2025-12-11 16:50:34.896 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-11 16:50:34.944 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.3.1.Final
+2025-12-11 16:50:34.974 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-12-11 16:50:35.193 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-11 16:50:35.215 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-12-11 16:50:35.397 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1b47b7f5
+2025-12-11 16:50:35.398 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-12-11 16:50:35.448 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-11 16:50:36.246 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-11 16:50:36.368 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2025-12-11 16:50:36.368 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - constraint "uk_l4k0hn0g5bpvo38ngc8yxguq9" of relation "player_stats" does not exist, skipping
+2025-12-11 16:50:36.377 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2025-12-11 16:50:36.377 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - constraint "uk_6dotkott2kjsp8vw4d0m25fb7" of relation "users" does not exist, skipping
+2025-12-11 16:50:36.387 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2025-12-11 16:50:36.387 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - constraint "uk_r43af9ap4edm43mmtq01oddj6" of relation "users" does not exist, skipping
+2025-12-11 16:50:36.416 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-11 16:50:36.724 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-11 16:50:36.739 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: bacd028f-a356-4ac9-b97a-449069899ff9
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-12-11 16:50:36.970 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@52afcdd8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@397f925e, org.springframework.security.web.context.SecurityContextHolderFilter@29a1dab3, org.springframework.security.web.header.HeaderWriterFilter@51d34f02, org.springframework.security.web.authentication.logout.LogoutFilter@6859bbd4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6af0407c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@71c1ca1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@35975b05, org.springframework.security.web.session.SessionManagementFilter@390978, org.springframework.security.web.access.ExceptionTranslationFilter@3cfab56d, org.springframework.security.web.access.intercept.AuthorizationFilter@3b8a063d]
+2025-12-11 16:50:37.176 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-12-11 16:50:37.195 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2025-12-11 16:50:37.198 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2025-12-11 16:50:37.207 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'subProtocolWebSocketHandler'
+2025-12-11 16:50:37.209 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-11 16:50:37.210 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-12-11 16:50:37.219 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-12-11 16:50:37.230 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-11 16:50:37.245 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.context.ApplicationContextException: Failed to start bean 'subProtocolWebSocketHandler'
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:287)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:277)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:467)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:256)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:965)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:619)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331)
+	at com.sweepgame.server.SweepServerApplication.main(SweepServerApplication.java:10)
+Caused by: java.lang.IllegalStateException: No handlers
+	at org.springframework.util.Assert.state(Assert.java:76)
+	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.start(SubProtocolWebSocketHandler.java:271)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:284)
+	... 14 common frames omitted
+2025-12-11 16:52:35.649 [main] INFO  c.s.server.SweepServerApplication - Starting SweepServerApplication using Java 17.0.14 with PID 23908 (D:\Sweep\Sweep-Server\build\classes\java\main started by Joao in D:\Sweep\Sweep-Server)
+2025-12-11 16:52:35.652 [main] DEBUG c.s.server.SweepServerApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-12-11 16:52:35.652 [main] INFO  c.s.server.SweepServerApplication - No active profile set, falling back to 1 default profile: "default"
+2025-12-11 16:52:36.260 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-11 16:52:36.307 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 2 JPA repository interfaces.
+2025-12-11 16:52:36.827 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-12-11 16:52:36.835 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-11 16:52:36.838 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-11 16:52:36.838 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-12-11 16:52:36.910 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-11 16:52:36.912 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1213 ms
+2025-12-11 16:52:37.045 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-11 16:52:37.094 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.3.1.Final
+2025-12-11 16:52:37.123 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-12-11 16:52:37.336 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-11 16:52:37.356 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-12-11 16:52:37.499 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5889fc44
+2025-12-11 16:52:37.500 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-12-11 16:52:37.529 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-11 16:52:38.336 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-11 16:52:38.465 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-11 16:52:38.788 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-11 16:52:38.811 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: dfbcab5b-5428-412c-b6e4-9efd6ced985d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-12-11 16:52:39.026 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@47fbf95e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@49482761, org.springframework.security.web.context.SecurityContextHolderFilter@5af1b221, org.springframework.security.web.header.HeaderWriterFilter@736a8aea, org.springframework.security.web.authentication.logout.LogoutFilter@69d2c460, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7d49fe37, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@74ab8610, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ac0fd1d, org.springframework.security.web.session.SessionManagementFilter@690e7b89, org.springframework.security.web.access.ExceptionTranslationFilter@2487b621, org.springframework.security.web.access.intercept.AuthorizationFilter@2ba4b32b]
+2025-12-11 16:52:39.198 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-12-11 16:52:39.215 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2025-12-11 16:52:39.222 [main] INFO  c.s.server.SweepServerApplication - Started SweepServerApplication in 3.915 seconds (process running for 4.396)
+2025-12-11 16:53:28.607 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-11 16:53:28.607 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-11 16:53:28.608 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-12-11 16:53:28.624 [http-nio-8080-exec-2] WARN  o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/api/auth/register' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
+2025-12-11 16:53:28.809 [http-nio-8080-exec-2] INFO  c.s.server.controller.AuthController - Registration request received for username: testuser
+2025-12-11 16:53:28.810 [http-nio-8080-exec-2] INFO  c.s.server.service.AuthService - Attempting to register user: testuser
+2025-12-11 16:53:29.130 [http-nio-8080-exec-2] INFO  c.s.server.service.AuthService - User registered successfully: testuser
+2025-12-11 16:53:29.226 [http-nio-8080-exec-2] DEBUG c.s.server.service.AuthService - JWT token generated for user: testuser
+2025-12-11 16:53:29.227 [http-nio-8080-exec-2] INFO  c.s.server.controller.AuthController - User registered successfully: testuser
