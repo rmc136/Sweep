@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Scaling;
-import com.sweepgame.cards.Player;
+import com.sweepgame.game.Player;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

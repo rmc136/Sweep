@@ -1,4 +1,4 @@
-package com.sweepgame.cards;
+package com.sweepgame.game;
 
 public class Card {
     private final Suit suit;

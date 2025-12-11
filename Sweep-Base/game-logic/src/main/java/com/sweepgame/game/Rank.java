@@ -1,4 +1,4 @@
-package com.sweepgame.cards;
+package com.sweepgame.game;
 
 public enum Rank {
     ACE(1),

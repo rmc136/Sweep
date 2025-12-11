@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: sweep-postgres
+    environment:
+      POSTGRES_DB: sweepdb
+      POSTGRES_USER: sweepuser
+      POSTGRES_PASSWORD: sweeppass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - sweep-network
+
+  server:
+    build: .
+    container_name: sweep-server
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/sweepdb
+      SPRING_DATASOURCE_USERNAME: sweepuser
+      SPRING_DATASOURCE_PASSWORD: sweeppass
+    depends_on:
+      - postgres
+    networks:
+      - sweep-network
+
+volumes:
+  postgres-data:
+
+networks:
+  sweep-network:
+    driver: bridge

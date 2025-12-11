@@ -1,4 +1,4 @@
-package com.sweepgame.cards;
+package com.sweepgame.game;
 
 public enum Suit {
     HEARTS,

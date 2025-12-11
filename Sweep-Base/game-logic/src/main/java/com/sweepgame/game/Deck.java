@@ -1,4 +1,4 @@
-package com.sweepgame.cards;
+package com.sweepgame.game;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

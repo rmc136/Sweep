@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.sweepgame.cards.Card;
+import com.sweepgame.game.Card;
 import com.sweepgame.utils.LayoutHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
