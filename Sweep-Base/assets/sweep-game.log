@@ -443,3 +443,619 @@
 2025-12-11 13:48:52.074 [main] DEBUG com.sweepgame.ui.TableUI - Updating table UI with 0 cards
 2025-12-11 13:48:52.074 [main] DEBUG com.sweepgame.ui.TableUI - Table is empty
 2025-12-11 13:48:52.074 [main] DEBUG com.sweepgame.ui.PlayerSeatUI - Updated player seats: left=3 cards, right=2 cards
+2025-12-11 20:17:18.264 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI initialized
+2025-12-11 20:17:18.321 [main] INFO  com.sweepgame.utils.LayoutHelper - LayoutHelper initialized for DESKTOP: 1280.0x720.0
+2025-12-11 20:17:18.323 [main] DEBUG com.sweepgame.ui.WelcomeScreenUI - Logo loaded successfully
+2025-12-11 20:17:18.324 [main] DEBUG com.sweepgame.utils.FontManager - Generating fonts from TTF
+2025-12-11 20:17:18.377 [main] DEBUG com.sweepgame.utils.FontManager - Generated default font (size 18)
+2025-12-11 20:17:18.391 [main] DEBUG com.sweepgame.utils.FontManager - Generated large font (size 24)
+2025-12-11 20:17:18.400 [main] DEBUG com.sweepgame.utils.FontManager - Generated small font (size 14)
+2025-12-11 20:17:18.411 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI screen shown
+2025-12-11 20:17:25.740 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - Skip button clicked - going to home screen
+2025-12-11 20:17:25.742 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 20:17:25.795 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 20:17:25.796 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 20:17:28.420 [main] INFO  com.sweepgame.ui.HomeScreenUI - Multiplayer button clicked
+2025-12-11 20:17:28.452 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:17:28.459 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:17:30.428 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Returning to home screen
+2025-12-11 20:17:30.429 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 20:17:30.441 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 20:17:30.442 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 20:17:53.041 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI initialized
+2025-12-11 20:17:53.084 [main] INFO  com.sweepgame.utils.LayoutHelper - LayoutHelper initialized for DESKTOP: 1280.0x720.0
+2025-12-11 20:17:53.086 [main] DEBUG com.sweepgame.ui.WelcomeScreenUI - Logo loaded successfully
+2025-12-11 20:17:53.086 [main] DEBUG com.sweepgame.utils.FontManager - Generating fonts from TTF
+2025-12-11 20:17:53.124 [main] DEBUG com.sweepgame.utils.FontManager - Generated default font (size 18)
+2025-12-11 20:17:53.139 [main] DEBUG com.sweepgame.utils.FontManager - Generated large font (size 24)
+2025-12-11 20:17:53.149 [main] DEBUG com.sweepgame.utils.FontManager - Generated small font (size 14)
+2025-12-11 20:17:53.157 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI screen shown
+2025-12-11 20:17:55.495 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - Register button clicked
+2025-12-11 20:17:55.497 [main] INFO  com.sweepgame.ui.RegisterScreenUI - RegisterScreenUI initialized
+2025-12-11 20:17:55.510 [main] INFO  com.sweepgame.ui.RegisterScreenUI - RegisterScreenUI screen shown
+2025-12-11 20:18:16.757 [main] INFO  com.sweepgame.ui.RegisterScreenUI - Register attempt for username: joao
+2025-12-11 20:18:16.757 [main] WARN  com.sweepgame.ui.RegisterScreenUI - Registration error: Please enter a valid email
+2025-12-11 20:18:22.910 [main] INFO  com.sweepgame.ui.RegisterScreenUI - Register attempt for username: joao
+2025-12-11 20:18:22.915 [main] INFO  com.sweepgame.ui.RegisterScreenUI - Registration successful (mock)
+2025-12-11 20:18:22.916 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 20:18:22.970 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 20:18:22.972 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 20:18:24.944 [main] INFO  com.sweepgame.ui.HomeScreenUI - Multiplayer button clicked
+2025-12-11 20:18:24.979 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:24.984 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:27.448 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:18:27.448 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:18:27.448 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:18:27.450 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:18:27.461 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:27.467 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:18:27.979 [WebSocketConnectReadThread-17] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:18:27.979 [WebSocketConnectReadThread-17] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:18:27.981 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:27.982 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:27.992 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:39.035 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected ranked mode
+2025-12-11 20:18:39.035 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:18:39.035 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining ranked queue
+2025-12-11 20:18:39.035 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: true)
+2025-12-11 20:18:39.036 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:39.042 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:18:39.044 [WebSocketConnectReadThread-19] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:18:39.044 [WebSocketConnectReadThread-19] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:18:39.045 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:39.046 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:39.052 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:46.023 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:18:46.023 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:18:46.023 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:18:46.024 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:18:46.024 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:46.031 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:18:46.033 [WebSocketConnectReadThread-21] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:18:46.033 [WebSocketConnectReadThread-21] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:18:46.035 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:46.035 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:46.041 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:46.473 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:18:46.473 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:18:46.473 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:18:46.473 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:18:46.473 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:46.482 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:18:46.483 [WebSocketConnectReadThread-23] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:18:46.484 [WebSocketConnectReadThread-23] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:18:46.484 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:46.485 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:46.491 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:46.944 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:18:46.944 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:18:46.944 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:18:46.944 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:18:46.945 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:46.952 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:18:46.953 [WebSocketConnectReadThread-25] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:18:46.953 [WebSocketConnectReadThread-25] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:18:46.955 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:46.955 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:46.961 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:47.102 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:18:47.102 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:18:47.102 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:18:47.102 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:18:47.103 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:47.110 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:18:47.110 [WebSocketConnectReadThread-27] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:18:47.110 [WebSocketConnectReadThread-27] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:18:47.111 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:47.112 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:47.117 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:47.269 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:18:47.269 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:18:47.269 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:18:47.269 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:18:47.269 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:47.277 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:18:47.277 [WebSocketConnectReadThread-29] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:18:47.278 [WebSocketConnectReadThread-29] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:18:47.278 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:47.278 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:47.284 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:47.444 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:18:47.444 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:18:47.444 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:18:47.444 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:18:47.446 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:47.454 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:18:47.454 [WebSocketConnectReadThread-31] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:18:47.454 [WebSocketConnectReadThread-31] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:18:47.455 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:47.456 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:47.461 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:47.694 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:18:47.694 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:18:47.694 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:18:47.694 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:18:47.694 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:47.702 [WebSocketConnectReadThread-33] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:18:47.702 [WebSocketConnectReadThread-33] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:18:47.702 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:18:47.703 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:47.703 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:47.709 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:47.898 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:18:47.898 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:18:47.898 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:18:47.898 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:18:47.898 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:47.906 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:18:47.909 [WebSocketConnectReadThread-35] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:18:47.909 [WebSocketConnectReadThread-35] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:18:47.910 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:47.911 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:47.916 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:48.189 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:18:48.189 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:18:48.189 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:18:48.189 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:18:48.190 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:48.197 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:18:48.200 [WebSocketConnectReadThread-37] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:18:48.200 [WebSocketConnectReadThread-37] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:18:48.202 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:48.202 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:48.207 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:48.561 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:18:48.561 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:18:48.561 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:18:48.561 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:18:48.562 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:48.569 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:18:48.571 [WebSocketConnectReadThread-39] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:18:48.572 [WebSocketConnectReadThread-39] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:18:48.572 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:48.573 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:48.577 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:49.302 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected ranked mode
+2025-12-11 20:18:49.302 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:18:49.302 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining ranked queue
+2025-12-11 20:18:49.302 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: true)
+2025-12-11 20:18:49.302 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:49.310 [WebSocketConnectReadThread-41] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:18:49.310 [WebSocketConnectReadThread-41] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:18:49.311 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:18:49.311 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:18:49.311 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:49.317 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:49.998 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Returning to home screen
+2025-12-11 20:18:49.998 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 20:18:50.015 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 20:18:50.015 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 20:18:56.336 [main] INFO  com.sweepgame.ui.HomeScreenUI - Multiplayer button clicked
+2025-12-11 20:18:56.336 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:18:56.340 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:18:58.514 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Returning to home screen
+2025-12-11 20:18:58.514 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 20:18:58.524 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 20:18:58.526 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 20:19:00.144 [main] INFO  com.sweepgame.ui.HomeScreenUI - Multiplayer button clicked
+2025-12-11 20:19:00.144 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:19:00.149 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:21:21.691 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI initialized
+2025-12-11 20:21:21.736 [main] INFO  com.sweepgame.utils.LayoutHelper - LayoutHelper initialized for DESKTOP: 1280.0x720.0
+2025-12-11 20:21:21.737 [main] DEBUG com.sweepgame.ui.WelcomeScreenUI - Logo loaded successfully
+2025-12-11 20:21:21.738 [main] DEBUG com.sweepgame.utils.FontManager - Generating fonts from TTF
+2025-12-11 20:21:21.776 [main] DEBUG com.sweepgame.utils.FontManager - Generated default font (size 18)
+2025-12-11 20:21:21.791 [main] DEBUG com.sweepgame.utils.FontManager - Generated large font (size 24)
+2025-12-11 20:21:21.801 [main] DEBUG com.sweepgame.utils.FontManager - Generated small font (size 14)
+2025-12-11 20:21:21.812 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI screen shown
+2025-12-11 20:21:25.224 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - Login button clicked
+2025-12-11 20:21:25.227 [main] INFO  com.sweepgame.ui.LoginScreenUI - LoginScreenUI initialized
+2025-12-11 20:21:25.240 [main] INFO  com.sweepgame.ui.LoginScreenUI - LoginScreenUI screen shown
+2025-12-11 20:21:32.854 [main] INFO  com.sweepgame.ui.LoginScreenUI - Login attempt for username: joao
+2025-12-11 20:21:32.869 [main] INFO  com.sweepgame.ui.LoginScreenUI - Login successful (mock)
+2025-12-11 20:21:32.870 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 20:21:32.921 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 20:21:32.923 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 20:22:06.258 [main] INFO  com.sweepgame.ui.HomeScreenUI - Multiplayer button clicked
+2025-12-11 20:22:06.291 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:22:06.297 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:22:07.454 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:22:07.454 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:22:07.454 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:22:07.456 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:22:07.467 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:22:07.473 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:22:07.799 [WebSocketConnectReadThread-17] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:22:07.799 [WebSocketConnectReadThread-17] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:22:07.804 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:22:07.804 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:22:07.810 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:23:20.367 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Returning to home screen
+2025-12-11 20:23:20.367 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 20:23:20.380 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 20:23:20.381 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 20:23:44.428 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI initialized
+2025-12-11 20:23:44.468 [main] INFO  com.sweepgame.utils.LayoutHelper - LayoutHelper initialized for DESKTOP: 1280.0x720.0
+2025-12-11 20:23:44.470 [main] DEBUG com.sweepgame.ui.WelcomeScreenUI - Logo loaded successfully
+2025-12-11 20:23:44.471 [main] DEBUG com.sweepgame.utils.FontManager - Generating fonts from TTF
+2025-12-11 20:23:44.506 [main] DEBUG com.sweepgame.utils.FontManager - Generated default font (size 18)
+2025-12-11 20:23:44.521 [main] DEBUG com.sweepgame.utils.FontManager - Generated large font (size 24)
+2025-12-11 20:23:44.531 [main] DEBUG com.sweepgame.utils.FontManager - Generated small font (size 14)
+2025-12-11 20:23:44.537 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI screen shown
+2025-12-11 20:23:47.811 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - Skip button clicked - going to home screen
+2025-12-11 20:23:47.812 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 20:23:47.872 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 20:23:47.874 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 20:23:48.416 [main] INFO  com.sweepgame.ui.HomeScreenUI - Multiplayer button clicked
+2025-12-11 20:23:48.459 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:23:48.466 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:23:49.156 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:23:49.156 [main] WARN  com.sweepgame.ui.MultiplayerMenuUI - No access token found, proceeding anyway (Mock Mode)
+2025-12-11 20:23:49.156 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:23:49.158 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:23:49.170 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:23:49.175 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:23:49.251 [WebSocketConnectReadThread-16] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:23:49.252 [WebSocketConnectReadThread-16] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:23:49.256 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:23:49.257 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:23:49.262 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:31:43.641 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI initialized
+2025-12-11 20:31:43.694 [main] INFO  com.sweepgame.utils.LayoutHelper - LayoutHelper initialized for DESKTOP: 1280.0x720.0
+2025-12-11 20:31:43.696 [main] DEBUG com.sweepgame.ui.WelcomeScreenUI - Logo loaded successfully
+2025-12-11 20:31:43.697 [main] DEBUG com.sweepgame.utils.FontManager - Generating fonts from TTF
+2025-12-11 20:31:43.737 [main] DEBUG com.sweepgame.utils.FontManager - Generated default font (size 18)
+2025-12-11 20:31:43.751 [main] DEBUG com.sweepgame.utils.FontManager - Generated large font (size 24)
+2025-12-11 20:31:43.761 [main] DEBUG com.sweepgame.utils.FontManager - Generated small font (size 14)
+2025-12-11 20:31:43.772 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI screen shown
+2025-12-11 20:31:47.393 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - Register button clicked
+2025-12-11 20:31:47.435 [main] INFO  com.sweepgame.ui.RegisterScreenUI - RegisterScreenUI initialized
+2025-12-11 20:31:47.445 [main] INFO  com.sweepgame.ui.RegisterScreenUI - RegisterScreenUI screen shown
+2025-12-11 20:32:09.472 [main] INFO  com.sweepgame.ui.RegisterScreenUI - Register attempt for username: joao
+2025-12-11 20:32:09.484 [main] INFO  com.sweepgame.network.AuthService - Sending request to http://localhost:8080/api/auth/register
+2025-12-11 20:32:10.317 [NetThread0] INFO  com.sweepgame.network.AuthService - Response code: 200
+2025-12-11 20:32:10.320 [NetThread0] INFO  com.sweepgame.network.AuthService - Session updated
+2025-12-11 20:32:10.325 [main] INFO  com.sweepgame.ui.RegisterScreenUI - Registration successful for user: joao
+2025-12-11 20:32:10.326 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 20:32:10.369 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 20:32:10.372 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 20:32:35.821 [main] INFO  com.sweepgame.ui.HomeScreenUI - Multiplayer button clicked
+2025-12-11 20:32:35.824 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:32:35.831 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:32:36.942 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:32:36.942 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:32:36.943 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:32:36.956 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:32:36.964 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:32:37.067 [WebSocketConnectReadThread-19] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:32:37.067 [WebSocketConnectReadThread-19] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:32:37.071 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:32:37.071 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:32:37.076 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:32:47.342 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:32:47.342 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:32:47.342 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:32:47.342 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:32:47.350 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:32:47.355 [WebSocketConnectReadThread-21] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:32:47.356 [WebSocketConnectReadThread-21] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:32:47.358 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:32:47.358 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:32:47.364 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:33:00.817 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected ranked mode
+2025-12-11 20:33:00.817 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining ranked queue
+2025-12-11 20:33:00.817 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: true)
+2025-12-11 20:33:00.817 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:33:00.825 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:33:00.832 [WebSocketConnectReadThread-23] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:33:00.832 [WebSocketConnectReadThread-23] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:33:00.833 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:33:00.833 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:33:00.839 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 20:33:01.559 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 20:33:01.559 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 20:33:01.559 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 20:33:01.560 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:33:01.567 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 20:33:01.571 [WebSocketConnectReadThread-25] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 20:33:01.571 [WebSocketConnectReadThread-25] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 20:33:01.574 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 20:33:01.575 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 20:33:01.581 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 21:59:57.128 [main] INFO  com.sweepgame.network.AuthService - Token refresh scheduler started (interval: 840.0s)
+2025-12-11 21:59:57.136 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI initialized
+2025-12-11 21:59:57.175 [main] INFO  com.sweepgame.utils.LayoutHelper - LayoutHelper initialized for DESKTOP: 1280.0x720.0
+2025-12-11 21:59:57.175 [main] DEBUG com.sweepgame.ui.WelcomeScreenUI - Logo loaded successfully
+2025-12-11 21:59:57.175 [main] DEBUG com.sweepgame.utils.FontManager - Generating fonts from TTF
+2025-12-11 21:59:57.225 [main] DEBUG com.sweepgame.utils.FontManager - Generated default font (size 18)
+2025-12-11 21:59:57.237 [main] DEBUG com.sweepgame.utils.FontManager - Generated large font (size 24)
+2025-12-11 21:59:57.246 [main] DEBUG com.sweepgame.utils.FontManager - Generated small font (size 14)
+2025-12-11 21:59:57.254 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI screen shown
+2025-12-11 22:00:03.239 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - Register button clicked
+2025-12-11 22:00:03.240 [main] INFO  com.sweepgame.ui.RegisterScreenUI - RegisterScreenUI initialized
+2025-12-11 22:00:03.249 [main] INFO  com.sweepgame.ui.RegisterScreenUI - RegisterScreenUI screen shown
+2025-12-11 22:00:27.176 [main] INFO  com.sweepgame.ui.RegisterScreenUI - Register attempt for username: joao
+2025-12-11 22:00:27.189 [main] INFO  com.sweepgame.network.AuthService - Sending request to http://localhost:8080/api/auth/register
+2025-12-11 22:00:27.761 [NetThread0] INFO  com.sweepgame.network.AuthService - Response code: 400
+2025-12-11 22:00:27.767 [main] WARN  com.sweepgame.ui.RegisterScreenUI - Registration error: Request failed: 400
+2025-12-11 22:00:38.631 [main] INFO  com.sweepgame.ui.RegisterScreenUI - Back to welcome screen
+2025-12-11 22:00:38.632 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI initialized
+2025-12-11 22:00:38.640 [main] DEBUG com.sweepgame.ui.WelcomeScreenUI - Logo loaded successfully
+2025-12-11 22:00:38.640 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI screen shown
+2025-12-11 22:00:40.105 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - Login button clicked
+2025-12-11 22:00:40.106 [main] INFO  com.sweepgame.ui.LoginScreenUI - LoginScreenUI initialized
+2025-12-11 22:00:40.112 [main] INFO  com.sweepgame.ui.LoginScreenUI - LoginScreenUI screen shown
+2025-12-11 22:00:47.989 [main] INFO  com.sweepgame.ui.LoginScreenUI - Login attempt for username: joao
+2025-12-11 22:00:47.989 [main] INFO  com.sweepgame.network.AuthService - Sending request to http://localhost:8080/api/auth/login
+2025-12-11 22:00:48.317 [NetThread0] INFO  com.sweepgame.network.AuthService - Response code: 200
+2025-12-11 22:00:48.321 [NetThread0] INFO  com.sweepgame.network.AuthService - Session updated
+2025-12-11 22:00:48.325 [main] INFO  com.sweepgame.ui.LoginScreenUI - Login successful for user: joao
+2025-12-11 22:00:48.325 [main] INFO  com.sweepgame.network.AuthService - Token refresh scheduler stopped
+2025-12-11 22:00:48.325 [main] INFO  com.sweepgame.network.AuthService - Token refresh scheduler started (interval: 840.0s)
+2025-12-11 22:00:48.326 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 22:00:48.374 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 22:00:48.376 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 22:00:52.926 [main] INFO  com.sweepgame.ui.HomeScreenUI - Multiplayer button clicked
+2025-12-11 22:00:52.929 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 22:00:52.934 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 22:00:53.876 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 22:00:53.876 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 22:00:53.877 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 22:00:53.891 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 22:00:53.897 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 22:00:54.003 [WebSocketConnectReadThread-19] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 22:00:54.003 [WebSocketConnectReadThread-19] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 22:00:54.005 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 22:00:54.005 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 22:00:54.010 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 22:00:57.251 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected ranked mode
+2025-12-11 22:00:57.251 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining ranked queue
+2025-12-11 22:00:57.251 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: true)
+2025-12-11 22:00:57.251 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 22:00:57.258 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 22:00:57.265 [WebSocketConnectReadThread-21] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 22:00:57.266 [WebSocketConnectReadThread-21] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 22:00:57.267 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 22:00:57.267 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 22:00:57.273 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 22:00:58.051 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Returning to home screen
+2025-12-11 22:00:58.051 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 22:00:58.063 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 22:00:58.064 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 22:00:58.843 [main] INFO  com.sweepgame.ui.HomeScreenUI - Singleplayer button clicked
+2025-12-11 22:00:58.843 [main] INFO  c.s.ui.SingleplayerModeSelectionUI - Initializing singleplayer mode selection screen
+2025-12-11 22:00:58.855 [main] DEBUG c.s.ui.SingleplayerModeSelectionUI - Mode selection screen initialized successfully
+2025-12-11 22:00:59.797 [main] INFO  c.s.ui.SingleplayerModeSelectionUI - Tournament mode selected: first_to_4
+2025-12-11 22:00:59.797 [main] INFO  c.s.ui.SingleplayerDifficultyUI - Initializing difficulty selection screen: tournament=first_to_4
+2025-12-11 22:00:59.810 [main] DEBUG c.s.ui.SingleplayerDifficultyUI - Difficulty selection screen initialized successfully
+2025-12-11 22:00:59.810 [main] DEBUG c.s.ui.SingleplayerModeSelectionUI - Disposing mode selection screen resources
+2025-12-11 22:01:00.276 [main] INFO  c.s.ui.SingleplayerDifficultyUI - Starting game: difficulty=Easy, tournament=first_to_4
+2025-12-11 22:01:00.281 [main] INFO  com.sweepgame.game.SweepGameUI - Creating SweepGameUI (singleplayer): mode=Easy, tournament=first_to_4
+2025-12-11 22:01:00.282 [main] INFO  com.sweepgame.game.DifficultyConfig - DifficultyConfig created: difficulty=Easy, autoSelection=true, timer=false
+2025-12-11 22:01:00.284 [main] DEBUG com.sweepgame.game.Deck - Deck initialized with 40 cards
+2025-12-11 22:01:00.284 [main] INFO  com.sweepgame.game.TournamentManager - Tournament initialized: mode=first_to_4, wins needed=4
+2025-12-11 22:01:00.284 [main] INFO  com.sweepgame.game.SweepGameUI - Showing game screen
+2025-12-11 22:01:00.292 [main] DEBUG com.sweepgame.game.SweepGameUI - UI skin loaded successfully
+2025-12-11 22:01:00.292 [main] DEBUG com.sweepgame.game.TournamentManager - Game 1: Starting player index = 0
+2025-12-11 22:01:00.293 [main] INFO  com.sweepgame.game.SweepLogic - Starting game with starting player index: 0
+2025-12-11 22:01:00.294 [main] DEBUG com.sweepgame.game.Deck - Deck shuffled
+2025-12-11 22:01:00.294 [main] DEBUG com.sweepgame.game.SweepLogic - Deck shuffled, 40 cards total
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Deck - Card drawn: ACE of CLUBS, 39 cards remaining
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Player - Johnny: Drew card ACE of CLUBS
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Deck - Card drawn: THREE of HEARTS, 38 cards remaining
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Player - Johnny: Drew card THREE of HEARTS
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Deck - Card drawn: KING of DIAMONDS, 37 cards remaining
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Player - Johnny: Drew card KING of DIAMONDS
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Deck - Card drawn: QUEEN of CLUBS, 36 cards remaining
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Player - Joni: Drew card QUEEN of CLUBS
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Deck - Card drawn: QUEEN of HEARTS, 35 cards remaining
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Player - Joni: Drew card QUEEN of HEARTS
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Deck - Card drawn: SEVEN of HEARTS, 34 cards remaining
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Player - Joni: Drew card SEVEN of HEARTS
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Deck - Card drawn: TWO of CLUBS, 33 cards remaining
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Player - Rodrigo: Drew card TWO of CLUBS
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Deck - Card drawn: THREE of SPADES, 32 cards remaining
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Player - Rodrigo: Drew card THREE of SPADES
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Deck - Card drawn: KING of CLUBS, 31 cards remaining
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Player - Rodrigo: Drew card KING of CLUBS
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.SweepLogic - Dealt 3 cards to each player
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Deck - Card drawn: TWO of DIAMONDS, 30 cards remaining
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Deck - Card drawn: JACK of SPADES, 29 cards remaining
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Deck - Card drawn: KING of HEARTS, 28 cards remaining
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.Deck - Card drawn: FOUR of SPADES, 27 cards remaining
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.SweepLogic - Dealt 4 cards to table: [TWO of DIAMONDS, JACK of SPADES, KING of HEARTS, FOUR of SPADES]
+2025-12-11 22:01:00.295 [main] INFO  com.sweepgame.game.SweepLogic - Game started successfully
+2025-12-11 22:01:00.295 [main] DEBUG com.sweepgame.game.TournamentManager - Initialized 3 players for tournament
+2025-12-11 22:01:00.296 [main] DEBUG com.sweepgame.game.Player - Johnny: Calculated 0 points from 0 cards
+2025-12-11 22:01:00.296 [main] DEBUG com.sweepgame.game.Player - Joni: Calculated 0 points from 0 cards
+2025-12-11 22:01:00.296 [main] DEBUG com.sweepgame.game.Player - Rodrigo: Calculated 0 points from 0 cards
+2025-12-11 22:01:00.310 [main] DEBUG com.sweepgame.ui.PlayerSeatUI - PlayerSeatUI initialized for Joni and Rodrigo
+2025-12-11 22:01:00.312 [main] DEBUG com.sweepgame.ui.PlayerSeatUI - Updated player seats: left=3 cards, right=3 cards
+2025-12-11 22:01:00.312 [main] DEBUG com.sweepgame.game.SweepGameUI - Refreshing UI, current player: Johnny
+2025-12-11 22:01:00.312 [main] DEBUG com.sweepgame.ui.ScoreUI - Updating scores for 3 players
+2025-12-11 22:01:00.312 [main] DEBUG com.sweepgame.game.Player - Johnny: Calculated 0 points from 0 cards
+2025-12-11 22:01:00.312 [main] DEBUG com.sweepgame.game.Player - Joni: Calculated 0 points from 0 cards
+2025-12-11 22:01:00.312 [main] DEBUG com.sweepgame.game.Player - Rodrigo: Calculated 0 points from 0 cards
+2025-12-11 22:01:00.312 [main] DEBUG com.sweepgame.ui.TableUI - Updating table UI with 4 cards
+2025-12-11 22:01:00.341 [main] DEBUG com.sweepgame.ui.HandUI - Updating hand UI for player Johnny, 3 cards
+2025-12-11 22:01:00.359 [main] INFO  com.sweepgame.game.SweepGameUI - Game screen initialized successfully
+2025-12-11 22:01:00.360 [main] DEBUG c.s.ui.SingleplayerDifficultyUI - Disposing difficulty selection screen resources
+2025-12-11 22:01:01.376 [main] DEBUG com.sweepgame.ui.HandUI - Player clicked card: THREE of HEARTS
+2025-12-11 22:01:01.376 [main] DEBUG com.sweepgame.ui.HandUI - Auto-selected 2 cards for sum 15
+2025-12-11 22:01:01.376 [main] DEBUG com.sweepgame.ui.HandUI - Playing card THREE of HEARTS with 2 selected table cards
+2025-12-11 22:01:01.376 [main] DEBUG com.sweepgame.game.SweepLogic - Player Johnny captured: table cards [TWO of DIAMONDS, KING of HEARTS] + hand card THREE of HEARTS = 15
+2025-12-11 22:01:01.376 [main] DEBUG com.sweepgame.game.Player - Johnny: Collected 2 cards
+2025-12-11 22:01:01.376 [main] DEBUG com.sweepgame.game.Player - Johnny: Collected 1 cards
+2025-12-11 22:01:01.376 [main] DEBUG com.sweepgame.ui.HandUI - Animating 3 cards, capture=true
+2025-12-11 22:01:01.417 [main] DEBUG com.sweepgame.game.SweepGameUI - Refreshing UI, current player: Rodrigo
+2025-12-11 22:01:01.417 [main] DEBUG com.sweepgame.ui.ScoreUI - Updating scores for 3 players
+2025-12-11 22:01:01.417 [main] DEBUG com.sweepgame.game.Player - Johnny: Calculated 1 points from 3 cards
+2025-12-11 22:01:01.417 [main] DEBUG com.sweepgame.game.Player - Joni: Calculated 0 points from 0 cards
+2025-12-11 22:01:01.417 [main] DEBUG com.sweepgame.game.Player - Rodrigo: Calculated 0 points from 0 cards
+2025-12-11 22:01:01.417 [main] DEBUG com.sweepgame.ui.TableUI - Updating table UI with 2 cards
+2025-12-11 22:01:01.427 [main] DEBUG com.sweepgame.ui.HandUI - Updating hand UI for player Johnny, 2 cards
+2025-12-11 22:01:01.438 [main] DEBUG com.sweepgame.game.SweepGameUI - AI turn starting for Rodrigo
+2025-12-11 22:01:03.941 [main] DEBUG com.sweepgame.game.Player - Rodrigo: Collected 3 cards
+2025-12-11 22:01:03.941 [main] DEBUG com.sweepgame.game.Player - Rodrigo: Sweep! Total sweeps: 1
+2025-12-11 22:01:03.941 [main] INFO  com.sweepgame.game.SweepLogic - SWEEP! Player Rodrigo cleared the table with TWO of CLUBS
+2025-12-11 22:01:03.943 [main] DEBUG com.sweepgame.game.SweepGameUI - Animating 3 cards for AI Rodrigo
+2025-12-11 22:01:03.958 [main] DEBUG com.sweepgame.ui.ScoreUI - Updating scores for 3 players
+2025-12-11 22:01:03.958 [main] DEBUG com.sweepgame.game.Player - Johnny: Calculated 1 points from 3 cards
+2025-12-11 22:01:03.958 [main] DEBUG com.sweepgame.game.Player - Joni: Calculated 0 points from 0 cards
+2025-12-11 22:01:03.958 [main] DEBUG com.sweepgame.game.Player - Rodrigo: Calculated 0 points from 3 cards
+2025-12-11 22:01:03.958 [main] DEBUG com.sweepgame.ui.TableUI - Updating table UI with 0 cards
+2025-12-11 22:01:03.958 [main] DEBUG com.sweepgame.ui.TableUI - Table is empty
+2025-12-11 22:01:03.958 [main] DEBUG com.sweepgame.ui.PlayerSeatUI - Updated player seats: left=3 cards, right=2 cards
+2025-12-11 22:01:04.596 [main] INFO  com.sweepgame.game.SweepGameUI - Returning to home screen
+2025-12-11 22:01:04.596 [main] INFO  com.sweepgame.game.TournamentManager - Tournament reset
+2025-12-11 22:01:04.596 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 22:01:04.606 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 22:01:04.607 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 22:01:04.607 [main] DEBUG com.sweepgame.game.SweepGameUI - Hiding game screen
+2025-12-11 22:01:04.607 [main] DEBUG com.sweepgame.game.SweepGameUI - Disposing game screen resources
+2025-12-11 22:01:04.607 [main] INFO  com.sweepgame.game.SweepGameUI - Game screen resources disposed successfully
+2025-12-11 22:01:06.463 [main] DEBUG com.sweepgame.game.SweepLogic - Player Joni played QUEEN of CLUBS to table (no valid capture)
+2025-12-11 22:01:06.463 [main] DEBUG com.sweepgame.game.SweepGameUI - Animating 1 cards for AI Joni
+2025-12-11 22:01:06.473 [main] DEBUG com.sweepgame.ui.ScoreUI - Updating scores for 3 players
+2025-12-11 22:01:06.473 [main] DEBUG com.sweepgame.game.Player - Johnny: Calculated 1 points from 3 cards
+2025-12-11 22:01:06.473 [main] DEBUG com.sweepgame.game.Player - Joni: Calculated 0 points from 0 cards
+2025-12-11 22:01:06.473 [main] DEBUG com.sweepgame.game.Player - Rodrigo: Calculated 0 points from 3 cards
+2025-12-11 22:01:06.473 [main] DEBUG com.sweepgame.ui.TableUI - Updating table UI with 1 cards
+2025-12-11 22:01:06.481 [main] DEBUG com.sweepgame.ui.PlayerSeatUI - Updated player seats: left=2 cards, right=2 cards
+2025-12-11 22:01:06.481 [main] DEBUG com.sweepgame.ui.PlayerSeatUI - Updated player seats: left=2 cards, right=2 cards
+2025-12-11 22:01:06.863 [main] INFO  com.sweepgame.ui.HomeScreenUI - Rules button clicked
+2025-12-11 22:01:06.864 [main] INFO  com.sweepgame.ui.RulesScreenUI - Initializing rules screen
+2025-12-11 22:01:06.877 [main] DEBUG com.sweepgame.ui.RulesScreenUI - Rules screen initialized successfully
+2025-12-11 22:01:07.575 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 22:01:07.590 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 22:01:07.590 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 22:01:08.201 [main] INFO  com.sweepgame.ui.HomeScreenUI - Multiplayer button clicked
+2025-12-11 22:01:08.201 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 22:01:08.206 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 22:01:11.100 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Returning to home screen
+2025-12-11 22:01:11.100 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 22:01:11.111 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 22:01:11.111 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 22:01:11.696 [main] INFO  com.sweepgame.ui.HomeScreenUI - Multiplayer button clicked
+2025-12-11 22:01:11.697 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 22:01:11.701 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 22:01:16.767 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 22:01:16.767 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 22:01:16.767 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 22:01:16.767 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 22:01:16.774 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 22:01:16.778 [WebSocketConnectReadThread-23] INFO  c.sweepgame.network.WebSocketManager - WebSocket closed: Invalid status code received: 400 Status line: HTTP/1.1 400 
+2025-12-11 22:01:16.778 [WebSocketConnectReadThread-23] WARN  com.sweepgame.ui.MatchmakingQueueUI - Disconnected from server
+2025-12-11 22:01:16.779 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message, not connected
+2025-12-11 22:01:16.780 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 22:01:16.785 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 22:19:48.631 [main] INFO  com.sweepgame.network.AuthService - Token refresh scheduler started (interval: 840.0s)
+2025-12-11 22:19:48.640 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI initialized
+2025-12-11 22:19:48.679 [main] INFO  com.sweepgame.utils.LayoutHelper - LayoutHelper initialized for DESKTOP: 1280.0x720.0
+2025-12-11 22:19:48.679 [main] DEBUG com.sweepgame.ui.WelcomeScreenUI - Logo loaded successfully
+2025-12-11 22:19:48.679 [main] DEBUG com.sweepgame.utils.FontManager - Generating fonts from TTF
+2025-12-11 22:19:48.717 [main] DEBUG com.sweepgame.utils.FontManager - Generated default font (size 18)
+2025-12-11 22:19:48.729 [main] DEBUG com.sweepgame.utils.FontManager - Generated large font (size 24)
+2025-12-11 22:19:48.738 [main] DEBUG com.sweepgame.utils.FontManager - Generated small font (size 14)
+2025-12-11 22:19:48.747 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI screen shown
+2025-12-11 22:19:58.338 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - Login button clicked
+2025-12-11 22:19:58.338 [main] INFO  com.sweepgame.ui.LoginScreenUI - LoginScreenUI initialized
+2025-12-11 22:19:58.347 [main] INFO  com.sweepgame.ui.LoginScreenUI - LoginScreenUI screen shown
+2025-12-11 22:20:06.292 [main] INFO  com.sweepgame.ui.LoginScreenUI - Login attempt for username: joao
+2025-12-11 22:20:06.306 [main] INFO  com.sweepgame.network.AuthService - Sending request to http://localhost:8080/api/auth/login
+2025-12-11 22:20:06.426 [NetThread0] INFO  com.sweepgame.network.AuthService - Response code: 200
+2025-12-11 22:20:06.430 [NetThread0] INFO  com.sweepgame.network.AuthService - Session updated
+2025-12-11 22:20:06.433 [main] INFO  com.sweepgame.ui.LoginScreenUI - Login successful for user: joao
+2025-12-11 22:20:06.433 [main] INFO  com.sweepgame.network.AuthService - Token refresh scheduler stopped
+2025-12-11 22:20:06.433 [main] INFO  com.sweepgame.network.AuthService - Token refresh scheduler started (interval: 840.0s)
+2025-12-11 22:20:06.434 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 22:20:06.471 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 22:20:06.472 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 22:20:07.958 [main] INFO  com.sweepgame.ui.HomeScreenUI - Multiplayer button clicked
+2025-12-11 22:20:07.961 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 22:20:07.967 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 22:20:08.649 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 22:20:08.649 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 22:20:08.653 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 22:21:57.131 [main] INFO  com.sweepgame.network.AuthService - Token refresh scheduler started (interval: 840.0s)
+2025-12-11 22:21:57.139 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI initialized
+2025-12-11 22:21:57.171 [main] INFO  com.sweepgame.utils.LayoutHelper - LayoutHelper initialized for DESKTOP: 1280.0x720.0
+2025-12-11 22:21:57.171 [main] DEBUG com.sweepgame.ui.WelcomeScreenUI - Logo loaded successfully
+2025-12-11 22:21:57.172 [main] DEBUG com.sweepgame.utils.FontManager - Generating fonts from TTF
+2025-12-11 22:21:57.207 [main] DEBUG com.sweepgame.utils.FontManager - Generated default font (size 18)
+2025-12-11 22:21:57.220 [main] DEBUG com.sweepgame.utils.FontManager - Generated large font (size 24)
+2025-12-11 22:21:57.228 [main] DEBUG com.sweepgame.utils.FontManager - Generated small font (size 14)
+2025-12-11 22:21:57.236 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - WelcomeScreenUI screen shown
+2025-12-11 22:21:58.415 [main] INFO  com.sweepgame.ui.WelcomeScreenUI - Login button clicked
+2025-12-11 22:21:58.416 [main] INFO  com.sweepgame.ui.LoginScreenUI - LoginScreenUI initialized
+2025-12-11 22:21:58.424 [main] INFO  com.sweepgame.ui.LoginScreenUI - LoginScreenUI screen shown
+2025-12-11 22:22:06.818 [main] INFO  com.sweepgame.ui.LoginScreenUI - Login attempt for username: joao
+2025-12-11 22:22:06.837 [main] INFO  com.sweepgame.network.AuthService - Sending request to http://localhost:8080/api/auth/login
+2025-12-11 22:22:06.948 [NetThread0] INFO  com.sweepgame.network.AuthService - Response code: 200
+2025-12-11 22:22:06.951 [NetThread0] INFO  com.sweepgame.network.AuthService - Session updated
+2025-12-11 22:22:06.956 [main] INFO  com.sweepgame.ui.LoginScreenUI - Login successful for user: joao
+2025-12-11 22:22:06.956 [main] INFO  com.sweepgame.network.AuthService - Token refresh scheduler stopped
+2025-12-11 22:22:06.956 [main] INFO  com.sweepgame.network.AuthService - Token refresh scheduler started (interval: 840.0s)
+2025-12-11 22:22:06.957 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 22:22:06.994 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 22:22:06.996 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 22:22:08.023 [main] INFO  com.sweepgame.ui.HomeScreenUI - Multiplayer button clicked
+2025-12-11 22:22:08.026 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 22:22:08.032 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 22:22:08.774 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 22:22:08.774 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 22:22:08.775 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 22:22:09.032 [main] INFO  c.sweepgame.network.WebSocketManager - Connecting to STOMP server at http://localhost:8080/ws
+2025-12-11 22:22:09.149 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message to /app/game/join, not connected
+2025-12-11 22:22:09.155 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 22:22:09.487 [Grizzly(1)] INFO  c.sweepgame.network.WebSocketManager - STOMP connected successfully
+2025-12-11 22:22:09.492 [Grizzly(1)] INFO  c.sweepgame.network.WebSocketManager - Subscribed to all topics successfully
+2025-12-11 22:22:38.749 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - Cancelling matchmaking
+2025-12-11 22:22:38.750 [main] DEBUG c.sweepgame.network.WebSocketManager - Sent message to /app/game/leave: {}
+2025-12-11 22:22:38.757 [main] INFO  c.sweepgame.network.WebSocketManager - STOMP session disconnected
+2025-12-11 22:22:38.758 [main] INFO  c.sweepgame.network.WebSocketManager - STOMP client stopped
+2025-12-11 22:22:38.758 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 22:22:38.765 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 22:22:40.844 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected ranked mode
+2025-12-11 22:22:40.844 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining ranked queue
+2025-12-11 22:22:40.844 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: true)
+2025-12-11 22:22:40.847 [main] INFO  c.sweepgame.network.WebSocketManager - Connecting to STOMP server at http://localhost:8080/ws
+2025-12-11 22:22:40.856 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message to /app/game/join, not connected
+2025-12-11 22:22:40.862 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 22:22:40.873 [Grizzly(1)] INFO  c.sweepgame.network.WebSocketManager - STOMP connected successfully
+2025-12-11 22:22:40.876 [Grizzly(1)] INFO  c.sweepgame.network.WebSocketManager - Subscribed to all topics successfully
+2025-12-11 22:22:44.448 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - Cancelling matchmaking
+2025-12-11 22:22:44.449 [main] DEBUG c.sweepgame.network.WebSocketManager - Sent message to /app/game/leave: {}
+2025-12-11 22:22:44.451 [main] INFO  c.sweepgame.network.WebSocketManager - STOMP session disconnected
+2025-12-11 22:22:44.451 [main] INFO  c.sweepgame.network.WebSocketManager - STOMP client stopped
+2025-12-11 22:22:44.451 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 22:22:44.458 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 22:22:45.006 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 22:22:45.006 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 22:22:45.006 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 22:22:45.009 [main] INFO  c.sweepgame.network.WebSocketManager - Connecting to STOMP server at http://localhost:8080/ws
+2025-12-11 22:22:45.015 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message to /app/game/join, not connected
+2025-12-11 22:22:45.023 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 22:22:45.035 [Grizzly(1)] INFO  c.sweepgame.network.WebSocketManager - STOMP connected successfully
+2025-12-11 22:22:45.037 [Grizzly(1)] INFO  c.sweepgame.network.WebSocketManager - Subscribed to all topics successfully
+2025-12-11 22:26:04.054 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - Cancelling matchmaking
+2025-12-11 22:26:04.055 [main] DEBUG c.sweepgame.network.WebSocketManager - Sent message to /app/game/leave: {}
+2025-12-11 22:26:04.056 [main] INFO  c.sweepgame.network.WebSocketManager - STOMP session disconnected
+2025-12-11 22:26:04.057 [main] INFO  c.sweepgame.network.WebSocketManager - STOMP client stopped
+2025-12-11 22:26:04.057 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 22:26:04.064 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 22:26:09.425 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Selected casual mode
+2025-12-11 22:26:09.425 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - Joining casual queue
+2025-12-11 22:26:09.425 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI initialized (ranked: false)
+2025-12-11 22:26:09.428 [main] INFO  c.sweepgame.network.WebSocketManager - Connecting to STOMP server at http://localhost:8080/ws
+2025-12-11 22:26:09.435 [main] WARN  c.sweepgame.network.WebSocketManager - Cannot send message to /app/game/join, not connected
+2025-12-11 22:26:09.441 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - MatchmakingQueueUI screen shown
+2025-12-11 22:26:09.450 [Grizzly(1)] INFO  c.sweepgame.network.WebSocketManager - STOMP connected successfully
+2025-12-11 22:26:09.452 [Grizzly(1)] INFO  c.sweepgame.network.WebSocketManager - Subscribed to all topics successfully
+2025-12-11 22:26:40.824 [main] INFO  com.sweepgame.ui.MatchmakingQueueUI - Cancelling matchmaking
+2025-12-11 22:26:40.825 [main] DEBUG c.sweepgame.network.WebSocketManager - Sent message to /app/game/leave: {}
+2025-12-11 22:26:40.827 [main] INFO  c.sweepgame.network.WebSocketManager - STOMP session disconnected
+2025-12-11 22:26:40.828 [main] INFO  c.sweepgame.network.WebSocketManager - STOMP client stopped
+2025-12-11 22:26:40.828 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI initialized
+2025-12-11 22:26:40.835 [main] INFO  com.sweepgame.ui.MultiplayerMenuUI - MultiplayerMenuUI screen shown
+2025-12-11 22:26:43.234 [main] INFO  com.sweepgame.network.AuthService - Token refresh scheduler stopped

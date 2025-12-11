@@ -30,7 +30,8 @@ public class SweepGameUI implements Screen {
     private Stage stage;
     private Skin skin;
 
-    private SweepLogic gameLogic;
+    private GameMode gameMode;
+    private SweepLogic gameLogic; // For singleplayer compatibility
     private Player humanPlayer;
 
     // Modular UI components
@@ -50,17 +51,33 @@ public class SweepGameUI implements Screen {
     private boolean timerActive;
     private boolean winnerShown = false; // Prevent showing winner multiple times // Track if AI is currently playing
 
+    // Singleplayer constructor
     public SweepGameUI(Game game, String mode, String tournamentMode) {
-        logger.info("Creating SweepGameUI: mode={}, tournament={}", mode, tournamentMode);
+        logger.info("Creating SweepGameUI (singleplayer): mode={}, tournament={}", mode, tournamentMode);
         this.game = game;
         this.mode = mode;
         this.tournamentMode = tournamentMode;
         this.tournamentManager = TournamentManager.getInstance();
         this.difficultyConfig = new DifficultyConfig(mode);
+        
+        // Create singleplayer mode
+        this.gameMode = new SingleplayerMode();
+        
         // Initialize tournament on first creation
         if (tournamentManager.getTournamentMode() == null || !tournamentManager.getTournamentMode().equals(tournamentMode)) {
             tournamentManager.initializeTournament(tournamentMode);
         }
+    }
+    
+    // Multiplayer constructor
+    public SweepGameUI(Game game, GameMode gameMode, String mode) {
+        logger.info("Creating SweepGameUI (multiplayer): mode={}", mode);
+        this.game = game;
+        this.mode = mode;
+        this.tournamentMode = null; // No tournament in multiplayer
+        this.tournamentManager = null;
+        this.difficultyConfig = null;
+        this.gameMode = gameMode;
     }
     @Override
     public void show() {
@@ -79,20 +96,26 @@ public class SweepGameUI implements Screen {
         skin.add("default-font", fontManager.getLargeFont(), com.badlogic.gdx.graphics.g2d.BitmapFont.class);
 
         // Initialize game logic
-        gameLogic = new SweepLogic();
-        int startingPlayer = tournamentManager.getStartingPlayerIndex();
-        gameLogic.startGame(startingPlayer);
+        if (gameMode instanceof SingleplayerMode) {
+            // Singleplayer: use local SweepLogic
+            gameLogic = ((SingleplayerMode) gameMode).getLogic();
+            int startingPlayer = tournamentManager.getStartingPlayerIndex();
+            gameMode.startGame(startingPlayer);
+            
+            // Initialize tournament manager with players
+            tournamentManager.initializePlayers(gameMode.getPlayers());
+        } else {
+            // Multiplayer: game already started by server
+            gameMode.startGame(0);
+        }
 
-        // Initialize tournament manager with players
-        tournamentManager.initializePlayers(gameLogic.getPlayers());
-
-        humanPlayer = gameLogic.getPlayers().get(0);
-        Player leftPlayer = gameLogic.getPlayers().get(1);
-        Player rightPlayer = gameLogic.getPlayers().get(2);
+        humanPlayer = gameMode.getPlayers().get(0);
+        Player leftPlayer = gameMode.getPlayers().get(1);
+        Player rightPlayer = gameMode.getPlayers().get(2);
 
         // Initialize modular UI
         // 1. Create ScoreUI first to generate labels
-        scoreUI = new ScoreUI(skin, gameLogic.getPlayers(), tournamentManager);
+        scoreUI = new ScoreUI(skin, gameMode.getPlayers(), tournamentManager);
 
         // 2. Initialize Player Seats (Opponents) with their score labels
         // Assuming player 0 is main player, 1 is left, 2 is right (or similar logic)
@@ -104,7 +127,7 @@ public class SweepGameUI implements Screen {
         
         // Pass labels for Left(1) and Right(2)
         // Pass labels for Left(1) and Right(2)
-        seatUI = new PlayerSeatUI(skin, gameLogic.getPlayers().get(1), gameLogic.getPlayers().get(2), scoreUI.getLabel(1), scoreUI.getLabel(2));
+        seatUI = new PlayerSeatUI(skin, gameMode.getPlayers().get(1), gameMode.getPlayers().get(2), scoreUI.getLabel(1), scoreUI.getLabel(2));
         seatUI.setScoreLabels(scoreUI.getLabel(1), scoreUI.getLabel(2)); // Ensure they are stored
         stage.addActor(seatUI.getTable());
 
@@ -113,7 +136,7 @@ public class SweepGameUI implements Screen {
         stage.addActor(tableUI.getTable());
 
         // 4. Initialize Hand UI (Main Player)
-        handUI = new HandUI(this, gameLogic.getPlayers().get(0), gameLogic, tableUI, this::refreshUI, difficultyConfig);
+        handUI = new HandUI(this, gameMode.getPlayers().get(0), gameMode, tableUI, this::refreshUI, difficultyConfig);
         // stage.addActor(handUI.getTable()); // We add it to mainTable instead
 
         Table mainTable = new Table();

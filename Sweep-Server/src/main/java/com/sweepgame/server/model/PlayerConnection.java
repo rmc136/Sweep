@@ -2,13 +2,23 @@ package com.sweepgame.server.model;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class PlayerConnection {
-
-    private Long userId;
+    
     private String username;
+    private Long userId;
     private String sessionId;
-    private boolean connected;
-
-    // TODO: Add WebSocket session tracking
+    private String webSocketSessionId;
+    private LocalDateTime connectedAt;
+    private boolean ready;
+    
+    public PlayerConnection(String username, Long userId, String webSocketSessionId) {
+        this.username = username;
+        this.userId = userId;
+        this.webSocketSessionId = webSocketSessionId;
+        this.connectedAt = LocalDateTime.now();
+        this.ready = false;
+    }
 }

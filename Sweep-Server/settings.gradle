@@ -1,1 +1,10 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+
 rootProject.name = 'sweep-server'
+
+// Include local game-logic module
+include 'game-logic'

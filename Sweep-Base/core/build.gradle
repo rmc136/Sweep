@@ -11,8 +11,27 @@ dependencies {
   // Logging framework
   api "org.slf4j:slf4j-api:1.7.36"
   api "ch.qos.logback:logback-classic:1.2.11"
+  
+  // WebSocket client for multiplayer
+  api 'org.java-websocket:Java-WebSocket:1.5.3'
+  
+  // JSON parsing
+  api 'com.google.code.gson:gson:2.10.1'
 
   if(enableGraalNative == 'true') {
     implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"
   }
+
+  implementation 'org.springframework:spring-websocket:5.3.30'
+  implementation 'org.springframework:spring-messaging:5.3.30'
+  implementation 'org.springframework:spring-context:5.3.30'
+  
+  // Jackson for JSON serialization (used by Spring's message converter)
+  implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
+
+  // Java WebSocket API (required by StandardWebSocketClient)
+  implementation 'javax.websocket:javax.websocket-api:1.1'
+  
+  // Tyrus - WebSocket implementation
+  implementation 'org.glassfish.tyrus.bundles:tyrus-standalone-client:1.19'
 }

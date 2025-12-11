@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.graphics.Texture;
+import com.sweepgame.SweepGame;
 import com.sweepgame.game.SweepGameUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,7 +91,8 @@ public class HomeScreenUI extends ScreenAdapter {
         // For now, other buttons just print
         multiBtn.addListener(event -> {
             if (multiBtn.isPressed()) {
-                logger.info("Multiplayer button clicked (not implemented)");
+                logger.info("Multiplayer button clicked");
+                game.setScreen(new MultiplayerMenuUI((SweepGame) game));
                 return true;
             }
             return false;

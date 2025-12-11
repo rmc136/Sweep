@@ -13,6 +13,9 @@ repositories {
 }
 
 dependencies {
+    // Game logic shared module
+    implementation project(':game-logic')
+    
     // Spring Boot
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'

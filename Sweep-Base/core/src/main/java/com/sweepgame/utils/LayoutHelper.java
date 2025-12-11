@@ -97,4 +97,19 @@ public class LayoutHelper {
     public float getSeatWidth() {
         return isMobile ? getWidth(0.45f) : getWidth(0.25f);
     }
+    
+    // --- Scaling for UI Elements ---
+    
+    /**
+     * Scale a value based on platform (mobile vs desktop)
+     * For desktop, returns the value as-is
+     * For mobile, scales proportionally
+     */
+    public float scale(float value) {
+        if (isMobile) {
+            // Scale based on mobile viewport (720x1280)
+            return value * (viewportWidth / 1280f);
+        }
+        return value;
+    }
 }

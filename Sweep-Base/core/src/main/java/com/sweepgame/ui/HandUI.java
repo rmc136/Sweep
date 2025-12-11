@@ -13,9 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.sweepgame.game.Card;
+import com.sweepgame.game.GameMode;
 import com.sweepgame.game.Player;
 import com.sweepgame.game.SweepGameUI;
-import com.sweepgame.game.SweepLogic;
 import com.sweepgame.utils.LayoutHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,16 +28,16 @@ public class HandUI {
 
     private Table table;
     private Player player;
-    private SweepLogic gameLogic;
+    private GameMode gameMode;
     private TableUI tableUI;
     private Runnable onCardPlayed;
     private SweepGameUI gameUI;
     private com.sweepgame.game.DifficultyConfig difficultyConfig;
 
-    public HandUI(SweepGameUI gameUI, Player player, SweepLogic gameLogic, TableUI tableUI, Runnable onCardPlayed, com.sweepgame.game.DifficultyConfig difficultyConfig) {
+    public HandUI(SweepGameUI gameUI, Player player, GameMode gameMode, TableUI tableUI, Runnable onCardPlayed, com.sweepgame.game.DifficultyConfig difficultyConfig) {
         this.gameUI = gameUI;
         this.player = player;
-        this.gameLogic = gameLogic;
+        this.gameMode = gameMode;
         this.tableUI = tableUI;
         this.onCardPlayed = onCardPlayed;
         this.difficultyConfig = difficultyConfig;
@@ -68,26 +68,30 @@ public class HandUI {
                 List<Card> selected = tableUI.getSelectedCards();
                 
                 // Easy mode: Auto-select if no manual selection
-                if (selected.isEmpty() && difficultyConfig.hasAutoSelection()) {
-                    selected = gameLogic.findRandomValidSum15(c);
-                    if (!selected.isEmpty()) {
-                        logger.debug("Auto-selected {} cards for sum 15", selected.size());
+                if (selected.isEmpty() && difficultyConfig != null && difficultyConfig.hasAutoSelection()) {
+                    // Note: findRandomValidSum15 is not in GameMode interface
+                    // For multiplayer, auto-selection is disabled
+                    if (gameMode instanceof com.sweepgame.game.SingleplayerMode) {
+                        selected = ((com.sweepgame.game.SingleplayerMode) gameMode).getLogic().findRandomValidSum15(c);
+                        if (!selected.isEmpty()) {
+                            logger.debug("Auto-selected {} cards for sum 15", selected.size());
+                        }
                     }
                 }
                 
                 if (!selected.isEmpty()) {
                     // Use manual or auto-selected capture
                     logger.debug("Playing card {} with {} selected table cards", c, selected.size());
-                    gameLogic.playCardWithSelection(player, c, selected);
+                    gameMode.playCard(player, c, selected);
                     tableUI.clearSelection();
                 } else {
                     // No valid selection - card goes to table
                     logger.debug("Playing card {} to table (no capture)", c);
-                    gameLogic.playCardWithSelection(player, c, selected);
+                    gameMode.playCard(player, c, selected);
                 }
                 
                 // Trigger animation for collected cards
-                List<Card> collected = gameLogic.getLastCollectedCards();
+                List<Card> collected = gameMode.getLastCollectedCards();
                 List<Card> cardsToAnimate;
                 boolean isCapture = !collected.isEmpty();
 

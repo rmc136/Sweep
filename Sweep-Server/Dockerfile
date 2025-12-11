@@ -1,8 +1,12 @@
 FROM gradle:8.5-jdk17 AS build
 WORKDIR /app
 
-COPY build.gradle settings.gradle ./
-COPY src ./src
+# Copy game-logic module
+COPY Sweep-Base/game-logic /app/game-logic
+
+# Copy server files
+COPY Sweep-Server/build.gradle Sweep-Server/settings.gradle ./
+COPY Sweep-Server/src ./src
 
 RUN gradle build --no-daemon -x test
 
