@@ -5,10 +5,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.sweepgame.cards.Player;
 import com.sweepgame.utils.LayoutHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class ScoreUI {
+    private static final Logger logger = LoggerFactory.getLogger(ScoreUI.class);
 
     private Table table;
     private Label[] playerScoreLabels;
@@ -33,11 +36,13 @@ public class ScoreUI {
         if (playerIndex >= 0 && playerIndex < playerScoreLabels.length) {
             return playerScoreLabels[playerIndex];
         }
+        logger.warn("Invalid player index requested: {}", playerIndex);
         return null;
     }
 
     public void update(List<Player> players) {
-        for (int i = 0; i < playerScoreLabels.length; i++) {
+        logger.debug("Updating scores for {} players", players.size());
+        for (int i = 0; i < playerScoreLabels.length && i < players.size(); i++) {
             playerScoreLabels[i].setText(formatScore(players.get(i)));
         }
     }

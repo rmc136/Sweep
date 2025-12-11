@@ -2,8 +2,11 @@ package com.sweepgame.utils;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LayoutHelper {
+    private static final Logger logger = LoggerFactory.getLogger(LayoutHelper.class);
 
     private static LayoutHelper instance;
     private boolean isMobile;
@@ -19,9 +22,11 @@ public class LayoutHelper {
         if (isMobile) {
             viewportWidth = 720f;
             viewportHeight = 1280f;
+            logger.info("LayoutHelper initialized for MOBILE: {}x{}", viewportWidth, viewportHeight);
         } else {
             viewportWidth = 1280f;
             viewportHeight = 720f;
+            logger.info("LayoutHelper initialized for DESKTOP: {}x{}", viewportWidth, viewportHeight);
         }
     }
 

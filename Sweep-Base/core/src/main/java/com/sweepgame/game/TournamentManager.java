@@ -1,11 +1,14 @@
 package com.sweepgame.game;
 
 import com.sweepgame.cards.Player;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class TournamentManager {
+    private static final Logger logger = LoggerFactory.getLogger(TournamentManager.class);
     
     private static TournamentManager instance;
     
@@ -28,6 +31,11 @@ public class TournamentManager {
     }
     
     public void initializeTournament(String tournamentMode) {
+        if (tournamentMode == null || tournamentMode.isEmpty()) {
+            logger.warn("Invalid tournament mode, defaulting to 'single'");
+            tournamentMode = "single";
+        }
+        
         this.tournamentMode = tournamentMode;
         this.playerWins.clear();
         this.gamesPlayed = 0;
@@ -44,6 +52,8 @@ public class TournamentManager {
                 winsNeeded = 1;
                 break;
         }
+        
+        logger.info("Tournament initialized: mode={}, wins needed={}", tournamentMode, winsNeeded);
     }
     
     /**
@@ -51,6 +61,7 @@ public class TournamentManager {
      * Used when returning to home screen.
      */
     public void reset() {
+        logger.info("Tournament reset");
         this.tournamentMode = null;
         this.playerWins.clear();
         this.gamesPlayed = 0;
@@ -58,16 +69,31 @@ public class TournamentManager {
     }
     
     public void initializePlayers(List<Player> players) {
+        if (players == null || players.isEmpty()) {
+            logger.warn("Cannot initialize with null or empty player list");
+            return;
+        }
+        
         if (playerWins.isEmpty()) {
             for (Player p : players) {
                 playerWins.put(p.getName(), 0);
             }
+            logger.debug("Initialized {} players for tournament", players.size());
         }
     }
     
     public void recordWin(String playerName) {
-        playerWins.put(playerName, playerWins.getOrDefault(playerName, 0) + 1);
+        if (playerName == null || playerName.isEmpty()) {
+            logger.warn("Cannot record win for null/empty player name");
+            return;
+        }
+        
+        int newWins = playerWins.getOrDefault(playerName, 0) + 1;
+        playerWins.put(playerName, newWins);
         gamesPlayed++;
+        
+        logger.info("Win recorded: {} now has {}/{} wins (game {} of tournament)", 
+                   playerName, newWins, winsNeeded, gamesPlayed);
     }
     
     public int getWins(String playerName) {
@@ -75,8 +101,10 @@ public class TournamentManager {
     }
     
     public boolean isTournamentComplete() {
-        for (int wins : playerWins.values()) {
-            if (wins >= winsNeeded) {
+        for (Map.Entry<String, Integer> entry : playerWins.entrySet()) {
+            if (entry.getValue() >= winsNeeded) {
+                logger.info("Tournament complete! Winner: {} with {} wins", 
+                           entry.getKey(), entry.getValue());
                 return true;
             }
         }
@@ -118,6 +146,8 @@ public class TournamentManager {
     public int getStartingPlayerIndex() {
         // Anti-clockwise rotation: 0 -> 2 -> 1 -> 0
         // This is equivalent to: (3 - gamesPlayed) % 3
-        return (3 - (gamesPlayed % 3)) % 3;
+        int startingPlayer = (3 - (gamesPlayed % 3)) % 3;
+        logger.debug("Game {}: Starting player index = {}", gamesPlayed + 1, startingPlayer);
+        return startingPlayer;
     }
 }

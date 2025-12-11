@@ -9,11 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.sweepgame.cards.Card;
 import com.sweepgame.utils.LayoutHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TableUI {
+    private static final Logger logger = LoggerFactory.getLogger(TableUI.class);
 
     private Table table;
     private List<Card> selectedCards = new ArrayList<>();
@@ -32,12 +35,16 @@ public class TableUI {
     }
 
     public void clearSelection() {
+        if (!selectedCards.isEmpty()) {
+            logger.debug("Clearing {} selected cards", selectedCards.size());
+        }
         selectedCards.clear();
     }
 
     private Image createTableCardImage(Card c) {
-        Texture texture = new Texture("cards/" + c.getImageName());
-        Image img = new Image(texture);
+        try {
+            Texture texture = new Texture("cards/" + c.getImageName());
+            Image img = new Image(texture);
 
         img.addListener(new ClickListener() {
             private boolean selected = false;
@@ -48,21 +55,29 @@ public class TableUI {
                 if (selected) {
                     selectedCards.add(c);
                     img.setColor(0.5f, 1f, 0.5f, 1f); // green tint
+                    logger.debug("Card selected: {}, total selected: {}", c, selectedCards.size());
                 } else {
                     selectedCards.remove(c);
                     img.setColor(1f, 1f, 1f, 1f);
+                    logger.debug("Card deselected: {}, total selected: {}", c, selectedCards.size());
                 }
             }
         });
 
         return img;
+        } catch (Exception e) {
+            logger.error("Error creating table card image for: {}", c.getImageName(), e);
+            throw new RuntimeException("Failed to load card texture: " + c.getImageName(), e);
+        }
     }
 
     public void update(List<Card> tableCards) {
+        logger.debug("Updating table UI with {} cards", tableCards.size());
         table.clear();
         selectedCards.clear();
 
         if (tableCards.isEmpty()) {
+            logger.debug("Table is empty");
             return;
         }
 

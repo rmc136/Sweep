@@ -17,11 +17,14 @@ import com.sweepgame.cards.Player;
 import com.sweepgame.game.SweepGameUI;
 import com.sweepgame.game.SweepLogic;
 import com.sweepgame.utils.LayoutHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HandUI {
+    private static final Logger logger = LoggerFactory.getLogger(HandUI.class);
 
     private Table table;
     private Player player;
@@ -48,30 +51,38 @@ public class HandUI {
     }
 
     private Image createCardImage(Card c) {
-        Texture texture = new Texture("cards/" + c.getImageName());
-        Image img = new Image(texture);
+        try {
+            Texture texture = new Texture("cards/" + c.getImageName());
+            Image img = new Image(texture);
 
         img.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // Block input during AI turns
                 if (gameUI.isAITurnInProgress()) {
+                    logger.debug("Card click blocked: AI turn in progress");
                     return;
                 }
                 
+                logger.debug("Player clicked card: {}", c);
                 List<Card> selected = tableUI.getSelectedCards();
                 
                 // Easy mode: Auto-select if no manual selection
                 if (selected.isEmpty() && difficultyConfig.hasAutoSelection()) {
                     selected = gameLogic.findRandomValidSum15(c);
+                    if (!selected.isEmpty()) {
+                        logger.debug("Auto-selected {} cards for sum 15", selected.size());
+                    }
                 }
                 
                 if (!selected.isEmpty()) {
                     // Use manual or auto-selected capture
+                    logger.debug("Playing card {} with {} selected table cards", c, selected.size());
                     gameLogic.playCardWithSelection(player, c, selected);
                     tableUI.clearSelection();
                 } else {
                     // No valid selection - card goes to table
+                    logger.debug("Playing card {} to table (no capture)", c);
                     gameLogic.playCardWithSelection(player, c, selected);
                 }
                 
@@ -91,11 +102,21 @@ public class HandUI {
         });
 
         return img;
+        } catch (Exception e) {
+            logger.error("Error creating card image for: {}", c.getImageName(), e);
+            // Return a placeholder or rethrow
+            throw new RuntimeException("Failed to load card texture: " + c.getImageName(), e);
+        }
     }
 
     private void animateCollectedCards(List<Card> cards, boolean moveToPlayer) {
         Stage stage = table.getStage();
-        if (stage == null) return;
+        if (stage == null) {
+            logger.warn("Cannot animate cards: stage is null");
+            return;
+        }
+        
+        logger.debug("Animating {} cards, capture={}", cards.size(), moveToPlayer);
 
         // Starting position: hand card
         Actor firstCardActor = table.getChildren().first();
@@ -117,8 +138,9 @@ public class HandUI {
 
         for (int i = 0; i < n; i++) {
             Card card = cards.get(i);
-            Texture texture = new Texture("cards/" + card.getImageName());
-            Image img = new Image(texture);
+            try {
+                Texture texture = new Texture("cards/" + card.getImageName());
+                Image img = new Image(texture);
             LayoutHelper layout = LayoutHelper.getInstance();
             img.setSize(layout.getHandCardWidth(), layout.getHandCardHeight());
             img.setPosition(startX, startY);
@@ -130,22 +152,26 @@ public class HandUI {
             if (moveToPlayer) {
                 // Capture: move to center, pause, then fly to player
                 img.addAction(Actions.sequence(
-                    Actions.moveTo(targetX, targetY, 0.5f),
+                    Actions.moveTo(targetX, targetY, 1f),
                     Actions.delay(1f),
-                    Actions.moveTo(playerX, playerY, 0.5f),
+                    Actions.moveTo(playerX, playerY, 1f),
                     Actions.run(() -> img.remove())
                 ));
             } else {
                 // Not a capture: just move to table center and stay
                 img.addAction(Actions.sequence(
-                    Actions.moveTo(targetX, targetY, 0.5f),
+                    Actions.moveTo(targetX, targetY, 1f),
                     Actions.run(() -> img.remove()) // optional: remove after animation
                 ));
+            }
+            } catch (Exception e) {
+                logger.error("Error loading texture for animation: {}", card.getImageName(), e);
             }
         }
     }
 
     public void update() {
+        logger.debug("Updating hand UI for player {}, {} cards", player.getName(), player.getHand().size());
         table.clear();
         LayoutHelper layout = LayoutHelper.getInstance();
         float handWidth = layout.getHandCardWidth();

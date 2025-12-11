@@ -8,14 +8,18 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RulesScreenUI extends ScreenAdapter {
+    private static final Logger logger = LoggerFactory.getLogger(RulesScreenUI.class);
 
     private final Game game;
     private Stage stage;
     private Skin skin;
 
     public RulesScreenUI(Game game) {
+        logger.info("Initializing rules screen");
         this.game = game;
 
         float width = 1280;
@@ -90,6 +94,8 @@ public class RulesScreenUI extends ScreenAdapter {
         });
 
         root.add(backBtn).padTop(10).padBottom(20);
+        
+        logger.debug("Rules screen initialized successfully");
     }
 
     @Override
@@ -102,7 +108,8 @@ public class RulesScreenUI extends ScreenAdapter {
 
     @Override
     public void dispose() {
-        stage.dispose();
-        skin.dispose();
+        logger.debug("Disposing rules screen resources");
+        if (stage != null) stage.dispose();
+        if (skin != null) skin.dispose();
     }
 }

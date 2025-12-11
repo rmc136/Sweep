@@ -19,10 +19,13 @@ import com.sweepgame.cards.Deck;
 import com.sweepgame.cards.Player;
 import com.sweepgame.ui.*;
 import com.sweepgame.utils.LayoutHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SweepGameUI implements Screen {
+    private static final Logger logger = LoggerFactory.getLogger(SweepGameUI.class);
 
     private Stage stage;
     private Skin skin;
@@ -48,6 +51,7 @@ public class SweepGameUI implements Screen {
     private boolean winnerShown = false; // Prevent showing winner multiple times // Track if AI is currently playing
 
     public SweepGameUI(Game game, String mode, String tournamentMode) {
+        logger.info("Creating SweepGameUI: mode={}, tournament={}", mode, tournamentMode);
         this.game = game;
         this.mode = mode;
         this.tournamentMode = tournamentMode;
@@ -60,11 +64,14 @@ public class SweepGameUI implements Screen {
     }
     @Override
     public void show() {
-        LayoutHelper layout = LayoutHelper.getInstance();
-        stage = new Stage(new FitViewport(layout.getViewportWidth(), layout.getViewportHeight()));
-        Gdx.input.setInputProcessor(stage);
+        logger.info("Showing game screen");
+        try {
+            LayoutHelper layout = LayoutHelper.getInstance();
+            stage = new Stage(new FitViewport(layout.getViewportWidth(), layout.getViewportHeight()));
+            Gdx.input.setInputProcessor(stage);
 
-        skin = new Skin(Gdx.files.internal("uiskin.json"));
+            skin = new Skin(Gdx.files.internal("uiskin.json"));
+            logger.debug("UI skin loaded successfully");
         
         // Replace bitmap fonts with crisp TTF fonts
         com.sweepgame.utils.FontManager fontManager = com.sweepgame.utils.FontManager.getInstance();
@@ -140,6 +147,7 @@ public class SweepGameUI implements Screen {
         
         // Add timer label if difficulty has timer
         if (difficultyConfig.hasTimer()) {
+            logger.debug("Initializing timer for difficulty mode: {}", mode);
             Label.LabelStyle timerStyle = new Label.LabelStyle();
             timerFont = com.sweepgame.utils.FontManager.getInstance().createTimerFont();
             timerStyle.font = timerFont;
@@ -153,6 +161,11 @@ public class SweepGameUI implements Screen {
         seatUI.update();
 
         refreshUI();
+        logger.info("Game screen initialized successfully");
+        } catch (Exception e) {
+            logger.error("Error initializing game screen", e);
+            throw e;
+        }
     }
 
     public boolean isAITurnInProgress() {
@@ -160,12 +173,14 @@ public class SweepGameUI implements Screen {
     }
 
     private void refreshUI() {
+        logger.debug("Refreshing UI, current player: {}", gameLogic.getCurrentPlayer().getName());
         scoreUI.update(gameLogic.getPlayers());
         tableUI.update(gameLogic.getTableCards());
         handUI.update();
 
         // Let AI play if it's their turn - start the sequence
         if (!(gameLogic.getCurrentPlayer().equals(humanPlayer)) && !gameLogic.isGameOver()) {
+            logger.debug("AI turn starting for {}", gameLogic.getCurrentPlayer().getName());
             aiTurnInProgress = true;
             pauseTimer();
             scheduleNextAITurn();
@@ -188,11 +203,13 @@ public class SweepGameUI implements Screen {
         
         // If all players are out of cards but deck still has cards → deal new ones
         if (gameLogic.allHandsEmpty() && !gameLogic.getDeck().isEmpty()) {
+            logger.debug("All hands empty, dealing new round");
             gameLogic.dealNewRound();
             handUI.update();
         }
 
         if (gameLogic.isGameOver()) {
+            logger.info("Game over detected");
             gameLogic.finishGame();
             tableUI.update(gameLogic.getTableCards());
             Player winner = gameLogic.getWinner();
@@ -200,6 +217,8 @@ public class SweepGameUI implements Screen {
                 winnerShown = true; // Mark as shown to prevent duplicate calls
                 scoreUI.update(gameLogic.getPlayers());
                 showWinner(winner.getName());
+            } else if (winner == null) {
+                logger.warn("Game over but no winner determined");
             }
         }
     }
@@ -287,17 +306,26 @@ public class SweepGameUI implements Screen {
 
     @Override
     public void hide() {
+        logger.debug("Hiding game screen");
         dispose();
     }
 
     @Override
     public void dispose() {
-        stage.dispose();
-        // Remove shared font from skin so it doesn't get disposed
-        skin.remove("default-font", com.badlogic.gdx.graphics.g2d.BitmapFont.class);
-        skin.dispose();
-        if (timerFont != null) {
-            timerFont.dispose();
+        logger.debug("Disposing game screen resources");
+        try {
+            if (stage != null) stage.dispose();
+            // Remove shared font from skin so it doesn't get disposed
+            if (skin != null) {
+                skin.remove("default-font", com.badlogic.gdx.graphics.g2d.BitmapFont.class);
+                skin.dispose();
+            }
+            if (timerFont != null) {
+                timerFont.dispose();
+            }
+            logger.info("Game screen resources disposed successfully");
+        } catch (Exception e) {
+            logger.error("Error disposing game screen resources", e);
         }
     }
     
@@ -306,6 +334,7 @@ public class SweepGameUI implements Screen {
             timeRemaining = difficultyConfig.getTimerSeconds();
             timerActive = true;
             updateTimerDisplay();
+            logger.debug("Timer reset: {}s", (int)timeRemaining);
         }
     }
     
@@ -321,11 +350,13 @@ public class SweepGameUI implements Screen {
     }
     
     private void handleTimerExpiration() {
+        logger.warn("Timer expired! Auto-playing card for {}", humanPlayer.getName());
         timerActive = false;
         
         // Auto-play first card from hand when timer expires
         if (!humanPlayer.getHand().isEmpty()) {
             Card firstCard = humanPlayer.getHand().get(0);
+            logger.debug("Auto-playing card: {}", firstCard);
             List<Card> emptySelection = new ArrayList<>();
             gameLogic.playCardWithSelection(humanPlayer, firstCard, emptySelection);
             
@@ -347,15 +378,23 @@ public class SweepGameUI implements Screen {
                     resetTimer();
                 }
             }
+        } else {
+            logger.warn("Timer expired but player has no cards");
         }
     }
 
     private void showWinner(String winnerName) {
+        logger.info("Displaying winner: {}", winnerName);
         Player player = null;
         for (Player p : gameLogic.getPlayers()) {
             if (winnerName.equals(p.getName())) {
                 player = p;
             }
+        }
+        
+        if (player == null) {
+            logger.error("Winner player not found: {}", winnerName);
+            return;
         }
         
         // Record the win in tournament manager
@@ -455,7 +494,10 @@ public class SweepGameUI implements Screen {
 
     private void animateAICards(Player ai, Card aiCard, List<Card> collectedCards) {
         Stage stage = this.stage;
-        if (stage == null) return;
+        if (stage == null) {
+            logger.warn("Cannot animate AI cards: stage is null");
+            return;
+        }
 
         // AI hand position
         float aiX = (ai == gameLogic.getPlayers().get(1)) ? 100 : stage.getWidth() - 200;
@@ -475,10 +517,12 @@ public class SweepGameUI implements Screen {
 
         int n = animCards.size();
         float spacing = 30f;
+        logger.debug("Animating {} cards for AI {}", n, ai.getName());
 
         for (int i = 0; i < n; i++) {
             Card card = animCards.get(i);
-            Texture texture = new Texture("cards/" + card.getImageName());
+            try {
+                Texture texture = new Texture("cards/" + card.getImageName());
             Image img = new Image(texture);
 
             LayoutHelper layout = LayoutHelper.getInstance();
@@ -493,33 +537,39 @@ public class SweepGameUI implements Screen {
 
             if (moveToAIHand) {
                 img.addAction(Actions.sequence(
-                    Actions.moveTo(targetX, targetY, 0.5f),
+                    Actions.moveTo(targetX, targetY, 1f),
                     Actions.delay(1f),
-                    Actions.moveTo(aiX, aiY, 0.5f),
+                    Actions.moveTo(aiX, aiY, 1f),
                     Actions.run(img::remove)
                 ));
             } else {
                 img.addAction(Actions.sequence(
-                    Actions.moveTo(targetX, targetY, 0.5f),
+                    Actions.moveTo(targetX, targetY, 1f),
                     Actions.run(img::remove)
                 ));
+            }
+            } catch (Exception e) {
+                logger.error("Error loading texture for card animation: {}", card.getImageName(), e);
             }
         }
     }
 
     private void startNextGame() {
+        logger.info("Starting next game in tournament");
         // Start a new game while preserving tournament state
         // The new instance will use the singleton TournamentManager which has the updated state
         game.setScreen(new SweepGameUI(game, mode, tournamentMode));
     }
 
     private void resetGame() {
+        logger.info("Resetting tournament");
         // Restart the tournament
         tournamentManager.initializeTournament(tournamentMode);
         game.setScreen(new SweepGameUI(game, mode, tournamentMode));
     }
 
     private void returnHome() {
+        logger.info("Returning to home screen");
         // Reset tournament state when returning to home
         // This ensures a fresh start when starting a new tournament
         tournamentManager.reset();

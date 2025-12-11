@@ -5,8 +5,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FontManager {
+    private static final Logger logger = LoggerFactory.getLogger(FontManager.class);
+    
     private static FontManager instance;
     private BitmapFont defaultFont;
     private BitmapFont largeFont;
@@ -24,6 +28,7 @@ public class FontManager {
     }
     
     private void generateFonts() {
+        logger.debug("Generating fonts from TTF");
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("lsans.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         
@@ -32,12 +37,15 @@ public class FontManager {
         parameter.minFilter = com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
         parameter.magFilter = com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
         defaultFont = generator.generateFont(parameter);
+        logger.debug("Generated default font (size 18)");
         
         parameter.size = 24;
         largeFont = generator.generateFont(parameter);
+        logger.debug("Generated large font (size 24)");
         
         parameter.size = 14;
         smallFont = generator.generateFont(parameter);
+        logger.debug("Generated small font (size 14)");
         
         generator.dispose();
     }
@@ -49,6 +57,7 @@ public class FontManager {
             try {
                 if (defaultFont.getRegion().getTexture() == null) needsRegeneration = true;
             } catch (Exception e) {
+                logger.warn("Font texture check failed, regenerating fonts", e);
                 needsRegeneration = true;
             }
         } else {
@@ -56,6 +65,7 @@ public class FontManager {
         }
         
         if (needsRegeneration) {
+            logger.info("Regenerating fonts");
             generateFonts();
         }
     }
@@ -80,6 +90,7 @@ public class FontManager {
      * The caller is responsible for disposing this font!
      */
     public BitmapFont createTimerFont() {
+        logger.debug("Creating timer font (size 32)");
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("lsans.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 32; // Large crisp size
@@ -92,6 +103,7 @@ public class FontManager {
     }
     
     public void dispose() {
+        logger.debug("Disposing FontManager resources");
         if (defaultFont != null) defaultFont.dispose();
         if (largeFont != null) largeFont.dispose();
         if (smallFont != null) smallFont.dispose();

@@ -8,14 +8,18 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SingleplayerModeSelectionUI extends ScreenAdapter {
+    private static final Logger logger = LoggerFactory.getLogger(SingleplayerModeSelectionUI.class);
 
     private final Game game;
     private Stage stage;
     private Skin skin;
 
     public SingleplayerModeSelectionUI(Game game) {
+        logger.info("Initializing singleplayer mode selection screen");
         this.game = game;
 
         float width = 1280;
@@ -90,15 +94,19 @@ public class SingleplayerModeSelectionUI extends ScreenAdapter {
             }
             return false;
         });
+        
+        logger.debug("Mode selection screen initialized successfully");
     }
 
     private void selectTournamentMode(String tournamentMode) {
+        logger.info("Tournament mode selected: {}", tournamentMode);
         // Navigate to difficulty selection with the selected tournament mode
         game.setScreen(new SingleplayerDifficultyUI(game, tournamentMode));
         dispose();
     }
 
     private void returnHome() {
+        logger.info("Returning to home screen");
         game.setScreen(new HomeScreenUI(game));
         dispose();
     }
@@ -113,8 +121,9 @@ public class SingleplayerModeSelectionUI extends ScreenAdapter {
 
     @Override
     public void dispose() {
-        stage.dispose();
-        skin.dispose();
+        logger.debug("Disposing mode selection screen resources");
+        if (stage != null) stage.dispose();
+        if (skin != null) skin.dispose();
     }
 
     @Override

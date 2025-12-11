@@ -11,8 +11,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.sweepgame.game.SweepGameUI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SingleplayerDifficultyUI extends ScreenAdapter {
+    private static final Logger logger = LoggerFactory.getLogger(SingleplayerDifficultyUI.class);
 
     private final Game game;
     private Stage stage;
@@ -20,6 +23,7 @@ public class SingleplayerDifficultyUI extends ScreenAdapter {
     private final String tournamentMode;
 
     public SingleplayerDifficultyUI(Game game, String tournamentMode) {
+        logger.info("Initializing difficulty selection screen: tournament={}", tournamentMode);
         this.game = game;
         this.tournamentMode = tournamentMode;
 
@@ -118,17 +122,21 @@ public class SingleplayerDifficultyUI extends ScreenAdapter {
             return false;
         });
         
+        logger.debug("Difficulty selection screen initialized successfully");
     }
 
     private void returnHome() {
+        logger.info("Returning to home screen");
         game.setScreen(new HomeScreenUI(game));
     }
 
     private void returnToModeSelection() {
+        logger.info("Returning to mode selection");
         game.setScreen(new SingleplayerModeSelectionUI(game));
     }
 
     private void startGameWithMode(String mode) {
+        logger.info("Starting game: difficulty={}, tournament={}", mode, tournamentMode);
         // Pass the difficulty mode and tournament mode to SweepGameUI
         game.setScreen(new SweepGameUI(game, mode, tournamentMode));
         dispose(); // clean up current stage
@@ -144,7 +152,8 @@ public class SingleplayerDifficultyUI extends ScreenAdapter {
 
     @Override
     public void dispose() {
-        stage.dispose();
-        skin.dispose();
+        logger.debug("Disposing difficulty selection screen resources");
+        if (stage != null) stage.dispose();
+        if (skin != null) skin.dispose();
     }
 }

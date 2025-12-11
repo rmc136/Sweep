@@ -8,8 +8,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Scaling;
 import com.sweepgame.cards.Player;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PlayerSeatUI {
+    private static final Logger logger = LoggerFactory.getLogger(PlayerSeatUI.class);
 
     private Table rootTable;
     private Table leftTable;
@@ -66,6 +69,8 @@ public class PlayerSeatUI {
             rootTable.add().expand(); // spacer
             rootTable.add(rightTable).width(seatWidth).expand().center().right();
         }
+        
+        logger.debug("PlayerSeatUI initialized for {} and {}", left.getName(), right.getName());
     }
 
     public Table getTable() {
@@ -112,6 +117,9 @@ public class PlayerSeatUI {
             rightCardsTable.add(cardBack).size(cardWidth, cardHeight).pad(2);
         }
         rightTable.add(rightCardsTable).row();
+        
+        logger.debug("Updated player seats: left={} cards, right={} cards", 
+                    leftPlayer.getHand().size(), rightPlayer.getHand().size());
     }
 }
 

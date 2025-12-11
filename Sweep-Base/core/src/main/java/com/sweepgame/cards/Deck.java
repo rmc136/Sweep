@@ -1,10 +1,14 @@
 package com.sweepgame.cards;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.Collections;
 
 
 public class Deck {
+    private static final Logger logger = LoggerFactory.getLogger(Deck.class);
+    
     private final List<Card> cards = new ArrayList<>();
 
     public Deck() {
@@ -19,16 +23,21 @@ public class Deck {
                 cards.add(new Card(suit, rank));
             }
         }
+        logger.debug("Deck initialized with {} cards", cards.size());
     }
 
     public void shuffle() {
         Collections.shuffle(cards);
+        logger.debug("Deck shuffled");
     }
 
     public Card draw() {
         if (!cards.isEmpty()) {
-            return cards.remove(0);
+            Card drawn = cards.remove(0);
+            logger.debug("Card drawn: {}, {} cards remaining", drawn, cards.size());
+            return drawn;
         }
+        logger.warn("Attempted to draw from empty deck");
         return null; // deck empty
     }
 
@@ -43,5 +52,9 @@ public class Deck {
 
     public int size() {
         return cards.size();
+    }
+
+    public List<Card> getCards() {
+        return cards;
     }
 }

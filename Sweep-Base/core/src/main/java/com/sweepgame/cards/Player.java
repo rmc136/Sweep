@@ -1,9 +1,13 @@
 package com.sweepgame.cards;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+    private static final Logger logger = LoggerFactory.getLogger(Player.class);
+    
     private final String name;
     private final List<Card> hand = new ArrayList<>();        // current hand (max 3 cards)
     private final List<Card> pointsStack = new ArrayList<>(); // collected cards for points
@@ -18,8 +22,17 @@ public class Player {
     }
 
     public void drawCard(Deck deck) {
+        if (deck == null) {
+            logger.warn("{}: Cannot draw from null deck", name);
+            return;
+        }
         Card card = deck.draw();
-        if (card != null) hand.add(card);
+        if (card != null) {
+            hand.add(card);
+            logger.debug("{}: Drew card {}", name, card);
+        } else {
+            logger.warn("{}: Tried to draw from empty deck", name);
+        }
     }
 
     public List<Card> getPointsStack() {
@@ -27,11 +40,15 @@ public class Player {
     }
 
     public void collectCards(List<Card> cards) {
-        pointsStack.addAll(cards);
+        if (cards != null && !cards.isEmpty()) {
+            pointsStack.addAll(cards);
+            logger.debug("{}: Collected {} cards", name, cards.size());
+        }
     }
 
     public void incrementBrushes() {
         brushes++;
+        logger.debug("{}: Sweep! Total sweeps: {}", name, brushes);
     }
 
     public int getBrushes() {
@@ -51,7 +68,8 @@ public class Player {
                 points++; // each 7 = 1 point
             }
         }
-
+        
+        logger.debug("{}: Calculated {} points from {} cards", name, points, pointsStack.size());
         return points;
     }
 

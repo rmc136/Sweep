@@ -1,0 +1,124 @@
+2025-12-11 13:01:24.017 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 13:01:24.105 [main] DEBUG com.sweepgame.utils.FontManager - Generating fonts from TTF
+2025-12-11 13:01:24.139 [main] DEBUG com.sweepgame.utils.FontManager - Generated default font (size 18)
+2025-12-11 13:01:24.154 [main] DEBUG com.sweepgame.utils.FontManager - Generated large font (size 24)
+2025-12-11 13:01:24.163 [main] DEBUG com.sweepgame.utils.FontManager - Generated small font (size 14)
+2025-12-11 13:01:24.175 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 13:01:24.183 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 13:01:33.098 [main] INFO  com.sweepgame.ui.HomeScreenUI - Singleplayer button clicked
+2025-12-11 13:01:33.099 [main] INFO  c.s.ui.SingleplayerModeSelectionUI - Initializing singleplayer mode selection screen
+2025-12-11 13:01:33.112 [main] DEBUG c.s.ui.SingleplayerModeSelectionUI - Mode selection screen initialized successfully
+2025-12-11 13:01:41.202 [main] INFO  c.s.ui.SingleplayerModeSelectionUI - Returning to home screen
+2025-12-11 13:01:41.202 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 13:01:41.215 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 13:01:41.216 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 13:01:41.216 [main] DEBUG c.s.ui.SingleplayerModeSelectionUI - Disposing mode selection screen resources
+2025-12-11 13:01:41.785 [main] INFO  com.sweepgame.ui.HomeScreenUI - Singleplayer button clicked
+2025-12-11 13:01:41.785 [main] INFO  c.s.ui.SingleplayerModeSelectionUI - Initializing singleplayer mode selection screen
+2025-12-11 13:01:41.796 [main] DEBUG c.s.ui.SingleplayerModeSelectionUI - Mode selection screen initialized successfully
+2025-12-11 13:01:42.685 [main] INFO  c.s.ui.SingleplayerModeSelectionUI - Returning to home screen
+2025-12-11 13:01:42.685 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 13:01:42.697 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 13:01:42.698 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 13:01:42.698 [main] DEBUG c.s.ui.SingleplayerModeSelectionUI - Disposing mode selection screen resources
+2025-12-11 13:01:43.260 [main] INFO  com.sweepgame.ui.HomeScreenUI - Singleplayer button clicked
+2025-12-11 13:01:43.261 [main] INFO  c.s.ui.SingleplayerModeSelectionUI - Initializing singleplayer mode selection screen
+2025-12-11 13:01:43.269 [main] DEBUG c.s.ui.SingleplayerModeSelectionUI - Mode selection screen initialized successfully
+2025-12-11 13:01:43.736 [main] INFO  c.s.ui.SingleplayerModeSelectionUI - Tournament mode selected: single
+2025-12-11 13:01:43.737 [main] INFO  c.s.ui.SingleplayerDifficultyUI - Initializing difficulty selection screen: tournament=single
+2025-12-11 13:01:43.750 [main] DEBUG c.s.ui.SingleplayerDifficultyUI - Difficulty selection screen initialized successfully
+2025-12-11 13:01:43.750 [main] DEBUG c.s.ui.SingleplayerModeSelectionUI - Disposing mode selection screen resources
+2025-12-11 13:01:44.985 [main] INFO  c.s.ui.SingleplayerDifficultyUI - Starting game: difficulty=Easy, tournament=single
+2025-12-11 13:01:44.989 [main] INFO  com.sweepgame.game.SweepGameUI - Creating SweepGameUI: mode=Easy, tournament=single
+2025-12-11 13:01:44.990 [main] INFO  com.sweepgame.game.DifficultyConfig - DifficultyConfig created: difficulty=Easy, autoSelection=true, timer=false
+2025-12-11 13:01:44.991 [main] INFO  com.sweepgame.game.TournamentManager - Tournament initialized: mode=single, wins needed=1
+2025-12-11 13:01:44.991 [main] INFO  com.sweepgame.game.SweepGameUI - Showing game screen
+2025-12-11 13:01:44.991 [main] INFO  com.sweepgame.utils.LayoutHelper - LayoutHelper initialized for DESKTOP: 1280.0x720.0
+2025-12-11 13:01:45.005 [main] DEBUG com.sweepgame.game.SweepGameUI - UI skin loaded successfully
+2025-12-11 13:01:45.007 [main] DEBUG com.sweepgame.cards.Deck - Deck initialized with 40 cards
+2025-12-11 13:01:45.007 [main] DEBUG com.sweepgame.game.TournamentManager - Game 1: Starting player index = 0
+2025-12-11 13:01:45.007 [main] INFO  com.sweepgame.game.SweepLogic - Starting game with starting player index: 0
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Deck - Deck shuffled
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.game.SweepLogic - Deck shuffled, 40 cards total
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Deck - Card drawn: QUEEN of DIAMONDS, 39 cards remaining
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Player - Johnny: Drew card QUEEN of DIAMONDS
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Deck - Card drawn: ACE of DIAMONDS, 38 cards remaining
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Player - Johnny: Drew card ACE of DIAMONDS
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Deck - Card drawn: ACE of CLUBS, 37 cards remaining
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Player - Johnny: Drew card ACE of CLUBS
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Deck - Card drawn: FOUR of HEARTS, 36 cards remaining
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Player - Joni: Drew card FOUR of HEARTS
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Deck - Card drawn: JACK of DIAMONDS, 35 cards remaining
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Player - Joni: Drew card JACK of DIAMONDS
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Deck - Card drawn: QUEEN of SPADES, 34 cards remaining
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Player - Joni: Drew card QUEEN of SPADES
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Deck - Card drawn: SIX of DIAMONDS, 33 cards remaining
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Player - Rodrigo: Drew card SIX of DIAMONDS
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Deck - Card drawn: KING of CLUBS, 32 cards remaining
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Player - Rodrigo: Drew card KING of CLUBS
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Deck - Card drawn: THREE of HEARTS, 31 cards remaining
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Player - Rodrigo: Drew card THREE of HEARTS
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.game.SweepLogic - Dealt 3 cards to each player
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Deck - Card drawn: SEVEN of SPADES, 30 cards remaining
+2025-12-11 13:01:45.008 [main] DEBUG com.sweepgame.cards.Deck - Card drawn: KING of HEARTS, 29 cards remaining
+2025-12-11 13:01:45.010 [main] DEBUG com.sweepgame.cards.Deck - Card drawn: THREE of DIAMONDS, 28 cards remaining
+2025-12-11 13:01:45.010 [main] DEBUG com.sweepgame.cards.Deck - Card drawn: KING of SPADES, 27 cards remaining
+2025-12-11 13:01:45.010 [main] DEBUG com.sweepgame.game.SweepLogic - Dealt 4 cards to table: [SEVEN of SPADES, KING of HEARTS, THREE of DIAMONDS, KING of SPADES]
+2025-12-11 13:01:45.010 [main] INFO  com.sweepgame.game.SweepLogic - Game started successfully
+2025-12-11 13:01:45.010 [main] DEBUG com.sweepgame.game.TournamentManager - Initialized 3 players for tournament
+2025-12-11 13:01:45.011 [main] DEBUG com.sweepgame.cards.Player - Johnny: Calculated 0 points from 0 cards
+2025-12-11 13:01:45.011 [main] DEBUG com.sweepgame.cards.Player - Joni: Calculated 0 points from 0 cards
+2025-12-11 13:01:45.011 [main] DEBUG com.sweepgame.cards.Player - Rodrigo: Calculated 0 points from 0 cards
+2025-12-11 13:01:45.026 [main] DEBUG com.sweepgame.ui.PlayerSeatUI - PlayerSeatUI initialized for Joni and Rodrigo
+2025-12-11 13:01:45.029 [main] DEBUG com.sweepgame.ui.PlayerSeatUI - Updated player seats: left=3 cards, right=3 cards
+2025-12-11 13:01:45.029 [main] DEBUG com.sweepgame.game.SweepGameUI - Refreshing UI, current player: Johnny
+2025-12-11 13:01:45.029 [main] DEBUG com.sweepgame.ui.ScoreUI - Updating scores for 3 players
+2025-12-11 13:01:45.029 [main] DEBUG com.sweepgame.cards.Player - Johnny: Calculated 0 points from 0 cards
+2025-12-11 13:01:45.029 [main] DEBUG com.sweepgame.cards.Player - Joni: Calculated 0 points from 0 cards
+2025-12-11 13:01:45.029 [main] DEBUG com.sweepgame.cards.Player - Rodrigo: Calculated 0 points from 0 cards
+2025-12-11 13:01:45.029 [main] DEBUG com.sweepgame.ui.TableUI - Updating table UI with 4 cards
+2025-12-11 13:01:45.069 [main] DEBUG com.sweepgame.ui.HandUI - Updating hand UI for player Johnny, 3 cards
+2025-12-11 13:01:45.084 [main] INFO  com.sweepgame.game.SweepGameUI - Game screen initialized successfully
+2025-12-11 13:01:45.085 [main] DEBUG c.s.ui.SingleplayerDifficultyUI - Disposing difficulty selection screen resources
+2025-12-11 13:01:50.647 [main] DEBUG com.sweepgame.ui.HandUI - Player clicked card: ACE of DIAMONDS
+2025-12-11 13:01:50.647 [main] DEBUG com.sweepgame.ui.HandUI - Playing card ACE of DIAMONDS to table (no capture)
+2025-12-11 13:01:50.647 [main] DEBUG com.sweepgame.game.SweepLogic - Player Johnny played ACE of DIAMONDS to table (sum=1, expected 15)
+2025-12-11 13:01:50.647 [main] DEBUG com.sweepgame.ui.HandUI - Animating 1 cards, capture=false
+2025-12-11 13:01:50.668 [main] DEBUG com.sweepgame.game.SweepGameUI - Refreshing UI, current player: Rodrigo
+2025-12-11 13:01:50.668 [main] DEBUG com.sweepgame.ui.ScoreUI - Updating scores for 3 players
+2025-12-11 13:01:50.668 [main] DEBUG com.sweepgame.cards.Player - Johnny: Calculated 0 points from 0 cards
+2025-12-11 13:01:50.668 [main] DEBUG com.sweepgame.cards.Player - Joni: Calculated 0 points from 0 cards
+2025-12-11 13:01:50.669 [main] DEBUG com.sweepgame.cards.Player - Rodrigo: Calculated 0 points from 0 cards
+2025-12-11 13:01:50.669 [main] DEBUG com.sweepgame.ui.TableUI - Updating table UI with 5 cards
+2025-12-11 13:01:50.694 [main] DEBUG com.sweepgame.ui.HandUI - Updating hand UI for player Johnny, 2 cards
+2025-12-11 13:01:50.706 [main] DEBUG com.sweepgame.game.SweepGameUI - AI turn starting for Rodrigo
+2025-12-11 13:01:52.955 [main] DEBUG com.sweepgame.ui.HandUI - Card click blocked: AI turn in progress
+2025-12-11 13:01:53.210 [main] DEBUG com.sweepgame.game.SweepLogic - Player Rodrigo played SIX of DIAMONDS to table (no valid capture)
+2025-12-11 13:01:53.210 [main] DEBUG com.sweepgame.game.SweepGameUI - Animating 1 cards for AI Rodrigo
+2025-12-11 13:01:53.214 [main] DEBUG com.sweepgame.ui.ScoreUI - Updating scores for 3 players
+2025-12-11 13:01:53.214 [main] DEBUG com.sweepgame.cards.Player - Johnny: Calculated 0 points from 0 cards
+2025-12-11 13:01:53.214 [main] DEBUG com.sweepgame.cards.Player - Joni: Calculated 0 points from 0 cards
+2025-12-11 13:01:53.214 [main] DEBUG com.sweepgame.cards.Player - Rodrigo: Calculated 0 points from 0 cards
+2025-12-11 13:01:53.215 [main] DEBUG com.sweepgame.ui.TableUI - Updating table UI with 6 cards
+2025-12-11 13:01:53.242 [main] DEBUG com.sweepgame.ui.PlayerSeatUI - Updated player seats: left=3 cards, right=2 cards
+2025-12-11 13:01:53.697 [main] DEBUG com.sweepgame.ui.HandUI - Card click blocked: AI turn in progress
+2025-12-11 13:01:54.080 [main] DEBUG com.sweepgame.ui.HandUI - Card click blocked: AI turn in progress
+2025-12-11 13:01:54.235 [main] DEBUG com.sweepgame.ui.HandUI - Card click blocked: AI turn in progress
+2025-12-11 13:01:55.744 [main] DEBUG com.sweepgame.cards.Player - Joni: Collected 3 cards
+2025-12-11 13:01:55.744 [main] DEBUG com.sweepgame.game.SweepLogic - Player Joni played FOUR of HEARTS and collected 3 cards
+2025-12-11 13:01:55.744 [main] DEBUG com.sweepgame.game.SweepGameUI - Animating 3 cards for AI Joni
+2025-12-11 13:01:55.791 [main] DEBUG com.sweepgame.ui.ScoreUI - Updating scores for 3 players
+2025-12-11 13:01:55.793 [main] DEBUG com.sweepgame.cards.Player - Johnny: Calculated 0 points from 0 cards
+2025-12-11 13:01:55.796 [main] DEBUG com.sweepgame.cards.Player - Joni: Calculated 1 points from 3 cards
+2025-12-11 13:01:55.797 [main] DEBUG com.sweepgame.cards.Player - Rodrigo: Calculated 0 points from 0 cards
+2025-12-11 13:01:55.797 [main] DEBUG com.sweepgame.ui.TableUI - Updating table UI with 4 cards
+2025-12-11 13:01:55.849 [main] DEBUG com.sweepgame.ui.PlayerSeatUI - Updated player seats: left=2 cards, right=2 cards
+2025-12-11 13:01:55.849 [main] DEBUG com.sweepgame.ui.PlayerSeatUI - Updated player seats: left=2 cards, right=2 cards
+2025-12-11 13:02:03.838 [main] INFO  com.sweepgame.game.SweepGameUI - Returning to home screen
+2025-12-11 13:02:03.839 [main] INFO  com.sweepgame.game.TournamentManager - Tournament reset
+2025-12-11 13:02:03.839 [main] INFO  com.sweepgame.ui.HomeScreenUI - Initializing home screen
+2025-12-11 13:02:03.851 [main] DEBUG com.sweepgame.ui.HomeScreenUI - Logo loaded successfully
+2025-12-11 13:02:03.851 [main] INFO  com.sweepgame.ui.HomeScreenUI - Home screen initialized successfully
+2025-12-11 13:02:03.852 [main] DEBUG com.sweepgame.game.SweepGameUI - Hiding game screen
+2025-12-11 13:02:03.852 [main] DEBUG com.sweepgame.game.SweepGameUI - Disposing game screen resources
+2025-12-11 13:02:03.852 [main] INFO  com.sweepgame.game.SweepGameUI - Game screen resources disposed successfully

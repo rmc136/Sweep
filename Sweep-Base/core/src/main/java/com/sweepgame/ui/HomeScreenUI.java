@@ -14,10 +14,14 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.graphics.Texture;
 import com.sweepgame.game.SweepGameUI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.badlogic.gdx.Application;
 
 public class HomeScreenUI extends ScreenAdapter {
+    private static final Logger logger = LoggerFactory.getLogger(HomeScreenUI.class);
+    
     private final Game game;
     private Stage stage;
     private Skin skin;
@@ -25,6 +29,7 @@ public class HomeScreenUI extends ScreenAdapter {
     private static final float VIRTUAL_HEIGHT = 720;
 
     public HomeScreenUI(Game game) {
+        logger.info("Initializing home screen");
         this.game = game;
         
         float width = VIRTUAL_WIDTH;
@@ -34,10 +39,12 @@ public class HomeScreenUI extends ScreenAdapter {
         if (Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.iOS) {
             width = 360;
             height = 640;
+            logger.debug("Mobile platform detected, using viewport: {}x{}", width, height);
         }
         
-        stage = new Stage(new FitViewport(width, height));
-        skin = new Skin(Gdx.files.internal("uiskin.json"));
+        try {
+            stage = new Stage(new FitViewport(width, height));
+            skin = new Skin(Gdx.files.internal("uiskin.json"));
         
         // Replace bitmap fonts with crisp TTF fonts
         com.sweepgame.utils.FontManager fontManager = com.sweepgame.utils.FontManager.getInstance();
@@ -54,6 +61,7 @@ public class HomeScreenUI extends ScreenAdapter {
         // Logo + title row
         Table titleRow = new Table();
         Image logo = new Image(new Texture("icon.png"));
+        logger.debug("Logo loaded successfully");
 
         titleRow.add(logo).padRight(10).size(64,64);
         titleRow.add(new com.badlogic.gdx.scenes.scene2d.ui.Label("Sweep", skin));
@@ -72,6 +80,7 @@ public class HomeScreenUI extends ScreenAdapter {
         // Button listeners
         singleBtn.addListener(event -> {
             if (singleBtn.isPressed()) {
+                logger.info("Singleplayer button clicked");
                 game.setScreen(new SingleplayerModeSelectionUI(game));
                 return true;
             }
@@ -81,7 +90,7 @@ public class HomeScreenUI extends ScreenAdapter {
         // For now, other buttons just print
         multiBtn.addListener(event -> {
             if (multiBtn.isPressed()) {
-                System.out.println("Multiplayer not implemented yet!");
+                logger.info("Multiplayer button clicked (not implemented)");
                 return true;
             }
             return false;
@@ -89,11 +98,18 @@ public class HomeScreenUI extends ScreenAdapter {
 
         rulesBtn.addListener(event -> {
             if (rulesBtn.isPressed()) {
+                logger.info("Rules button clicked");
                 game.setScreen((Screen) new RulesScreenUI(game));
                 return true;
             }
             return false;
         });
+        
+        logger.info("Home screen initialized successfully");
+        } catch (Exception e) {
+            logger.error("Error initializing home screen", e);
+            throw e;
+        }
     }
 
     @Override
@@ -106,10 +122,17 @@ public class HomeScreenUI extends ScreenAdapter {
 
     @Override
     public void dispose() {
-        stage.dispose();
-        // Remove shared font from skin so it doesn't get disposed
-        skin.remove("default-font", com.badlogic.gdx.graphics.g2d.BitmapFont.class);
-        skin.dispose();
+        logger.debug("Disposing home screen resources");
+        try {
+            if (stage != null) stage.dispose();
+            // Remove shared font from skin so it doesn't get disposed
+            if (skin != null) {
+                skin.remove("default-font", com.badlogic.gdx.graphics.g2d.BitmapFont.class);
+                skin.dispose();
+            }
+        } catch (Exception e) {
+            logger.error("Error disposing home screen resources", e);
+        }
     }
 
     @Override
