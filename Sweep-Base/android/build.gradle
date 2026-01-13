@@ -39,6 +39,21 @@ android {
       jniLibs.srcDirs = ['libs']
     }
   }
+
+  packagingOptions {
+    pickFirst 'META-INF/spring.schemas'
+    pickFirst 'META-INF/spring.handlers'
+    pickFirst 'META-INF/spring.tooling'
+    pickFirst 'META-INF/DEPENDENCIES'
+    pickFirst 'META-INF/LICENSE'
+    pickFirst 'META-INF/LICENSE.txt'
+    pickFirst 'META-INF/license.txt'
+    pickFirst 'META-INF/NOTICE'
+    pickFirst 'META-INF/NOTICE.txt'
+    pickFirst 'META-INF/notice.txt'
+    pickFirst 'META-INF/ASL2.0'
+    pickFirst 'META-INF/*.kotlin_module'
+  }
 }
 
 repositories {

@@ -29,9 +29,7 @@ dependencies {
   // Jackson for JSON serialization (used by Spring's message converter)
   implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
 
-  // Java WebSocket API (required by StandardWebSocketClient)
-  implementation 'javax.websocket:javax.websocket-api:1.1'
-  
+
   // Tyrus - WebSocket implementation
   implementation 'org.glassfish.tyrus.bundles:tyrus-standalone-client:1.19'
 }

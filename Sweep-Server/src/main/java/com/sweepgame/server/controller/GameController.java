@@ -45,49 +45,98 @@ public class GameController {
 
     @MessageMapping("/game/join")
     public void joinMatchmaking(@Payload Map<String, Object> payload, Principal principal) {
+        if (principal == null) {
+            logger.error("[MATCHMAKING] Join request received without principal");
+            return;
+        }
         String username = principal.getName();
         boolean isRanked = (boolean) payload.getOrDefault("ranked", false);
-        
-        logger.info("Player {} joining matchmaking (ranked: {})", username, isRanked);
+
+        logger.info("[MATCHMAKING] Player {} attempting to join {} queue", username, isRanked ? "ranked" : "casual");
 
         // Get user ID
         var user = userService.getUserByUsername(username);
         if (user == null) {
+            logger.error("[MATCHMAKING] User {} not found in database", username);
             sendError(username, "User not found");
             return;
         }
 
         // Create player connection
         PlayerConnection player = new PlayerConnection(username, user.getId(), principal.getName());
+        logger.debug("[MATCHMAKING] Created PlayerConnection for {}", username);
 
         // Join queue
         String sessionId = matchmakingService.joinQueue(player, isRanked);
 
         if (sessionId != null) {
+            logger.info("[MATCHMAKING] Match FOUND for {}! Session ID: {}", username, sessionId);
             // Match found! Start game
             GameSession session = sessionManager.getSession(sessionId);
             sessionManager.startSession(sessionId);
 
             // Notify all players
             broadcastGameState(session);
-            
-            logger.info("Game started for session: {}", sessionId);
+
+            logger.info("[GAME] Session {} started and broadcast to players", sessionId);
         } else {
             // Still waiting for players
+            int queueSize = matchmakingService.getQueueSize(isRanked);
+            logger.info("[MATCHMAKING] Player {} added to queue. Current queue size: {}", username, queueSize);
+
             Map<String, Object> response = new HashMap<>();
             response.put("status", "waiting");
-            response.put("queueSize", matchmakingService.getQueueSize(isRanked));
+            response.put("queueSize", queueSize);
             messagingTemplate.convertAndSendToUser(username, "/queue/matchmaking", response);
+
+            // Broadcast new size to others in queue
+            broadcastQueueUpdate(isRanked);
         }
     }
 
     @MessageMapping("/game/leave")
     public void leaveMatchmaking(Principal principal) {
+        if (principal == null) {
+            logger.warn("Received leaveMatchmaking request with null principal");
+            return;
+        }
         String username = principal.getName();
-        logger.info("Player {} leaving matchmaking", username);
+        logger.info("[MATCHMAKING] Player {} requesting to leave matchmaking queue", username);
+
+        // We need to know which queue they were in to broadcast update.
+        // For simplicity, we can just broadcast to both or check.
+        // Given existing API doesn't return queue type, we'll brute force broadcast to
+        // both for now
+        // OR better: check if they were in a queue before removing?
+        // MatchmakingService.leaveQueue handles removal efficiently.
+        // Let's just broadcast to both queues to be safe and simple since we don't
+        // track isRanked here easily.
 
         matchmakingService.leaveQueue(username);
+        // Note: We don't remove from session here necessarily, as they might be just
+        // leaving the queue, not an active game.
+        // But if consistent with logic:
         sessionManager.removePlayerFromSession(username);
+        logger.info("[MATCHMAKING] Player {} removed from queue/session", username);
+
+        broadcastQueueUpdate(false); // Update casual
+        broadcastQueueUpdate(true); // Update ranked
+    }
+
+    private void broadcastQueueUpdate(boolean isRanked) {
+        int size = matchmakingService.getQueueSize(isRanked);
+        List<PlayerConnection> waitingPlayers = matchmakingService.getQueuePlayers(isRanked);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "waiting");
+        response.put("queueSize", size);
+
+        for (PlayerConnection player : waitingPlayers) {
+            messagingTemplate.convertAndSendToUser(
+                    player.getUsername(),
+                    "/queue/matchmaking",
+                    response);
+        }
     }
 
     @MessageMapping("/game/move")
@@ -129,7 +178,7 @@ public class GameController {
 
             // Get the card from hand
             Card handCard = gamePlayer.getHand().get(move.getHandCardIndex());
-            
+
             // Get selected table cards
             List<Card> selectedCards = new ArrayList<>();
             for (int tableIndex : move.getTableCardIndices()) {
@@ -185,14 +234,13 @@ public class GameController {
 
     private void broadcastGameState(GameSession session) {
         GameStateDTO state = buildGameState(session);
-        
+
         // Send to all players in the session
         for (PlayerConnection player : session.getPlayers()) {
             messagingTemplate.convertAndSendToUser(
-                player.getUsername(),
-                "/queue/game-state",
-                state
-            );
+                    player.getUsername(),
+                    "/queue/game-state",
+                    state);
         }
     }
 
@@ -241,13 +289,12 @@ public class GameController {
         // Broadcast final state
         GameStateDTO finalState = buildGameState(session);
         finalState.setMessage("Game Over! Winner: " + winnerConnection.getUsername());
-        
+
         for (PlayerConnection player : session.getPlayers()) {
             messagingTemplate.convertAndSendToUser(
-                player.getUsername(),
-                "/queue/game-state",
-                finalState
-            );
+                    player.getUsername(),
+                    "/queue/game-state",
+                    finalState);
         }
 
         // TODO: Save game history to database

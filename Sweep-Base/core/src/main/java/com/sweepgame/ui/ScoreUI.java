@@ -49,12 +49,18 @@ public class ScoreUI {
 
     private String formatScore(Player p) {
         LayoutHelper layout = LayoutHelper.getInstance();
-        int gamesWon = tournamentManager.getWins(p.getName());
-        
-        // Only show games won if not in single game mode
-        String gamesWonText = tournamentManager.isSingleGame() ? "" : "Games: " + gamesWon + "/" + tournamentManager.getWinsNeeded() + "\n";
-        
+        String gamesWonText = "";
+
+        if (tournamentManager != null) {
+            int gamesWon = tournamentManager.getWins(p.getName());
+            // Only show games won if not in single game mode
+            if (!tournamentManager.isSingleGame()) {
+                gamesWonText = "Games: " + gamesWon + "/" + tournamentManager.getWinsNeeded() + "\n";
+            }
+        }
+
         // Use multi-line format for both mobile and desktop for better readability
-        return p.getName() + "\n" + gamesWonText + "Pts: " + p.calculatePoints() + "\nSweeps: " + p.getBrushes() + "\nCards: " + p.getPointsStack().size();
+        return p.getName() + "\n" + gamesWonText + "Pts: " + p.calculatePoints() + "\nSweeps: " + p.getBrushes()
+                + "\nCards: " + p.getPointsStack().size();
     }
 }

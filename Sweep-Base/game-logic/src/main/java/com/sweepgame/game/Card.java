@@ -1,8 +1,12 @@
 package com.sweepgame.game;
 
 public class Card {
-    private final Suit suit;
-    private final Rank rank;
+    private Suit suit;
+    private Rank rank;
+
+    public Card() {
+        // Default constructor for serialization
+    }
 
     public Card(Suit suit, Rank rank) {
         this.suit = suit;

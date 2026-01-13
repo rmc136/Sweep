@@ -22,7 +22,7 @@ public class MatchmakingService {
 
     public String joinQueue(PlayerConnection player, boolean isRanked) {
         Queue<PlayerConnection> queue = isRanked ? rankedQueue : casualQueue;
-        
+
         logger.info("Player {} joining {} queue", player.getUsername(), isRanked ? "ranked" : "casual");
         queue.add(player);
 
@@ -38,8 +38,11 @@ public class MatchmakingService {
 
     private String tryFormMatch(boolean isRanked) {
         Queue<PlayerConnection> queue = isRanked ? rankedQueue : casualQueue;
+        int currentSize = queue.size();
+        logger.debug("[MATCHMAKING] Checking queue (Ranked: {}). Current size: {}", isRanked, currentSize);
 
-        if (queue.size() >= 3) {
+        if (currentSize >= 3) {
+            logger.info("[MATCHMAKING] Threshold reached (3 players). Forming match...");
             // Create new game session
             GameSession session = gameSessionManager.createSession(isRanked);
 
@@ -47,12 +50,17 @@ public class MatchmakingService {
             for (int i = 0; i < 3; i++) {
                 PlayerConnection player = queue.poll();
                 if (player != null) {
+                    logger.debug("[MATCHMAKING] Adding player {} to session {}", player.getUsername(),
+                            session.getSessionId());
                     gameSessionManager.addPlayerToSession(session.getSessionId(), player);
                 }
             }
 
-            logger.info("Match formed! Session: {} (ranked: {})", session.getSessionId(), isRanked);
+            logger.info("[MATCHMAKING] Match successfully formed! Session: {} (ranked: {})", session.getSessionId(),
+                    isRanked);
             return session.getSessionId();
+        } else {
+            logger.debug("[MATCHMAKING] Not enough players yet. Need 3, have {}", currentSize);
         }
 
         return null; // Not enough players yet
@@ -64,5 +72,9 @@ public class MatchmakingService {
 
     public int getTotalQueueSize() {
         return casualQueue.size() + rankedQueue.size();
+    }
+
+    public java.util.List<PlayerConnection> getQueuePlayers(boolean isRanked) {
+        return new java.util.ArrayList<>(isRanked ? rankedQueue : casualQueue);
     }
 }
