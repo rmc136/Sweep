@@ -1,0 +1,8 @@
+# No extra dependencies needed.
+# This agent uses the `claude` CLI (Claude Code) which you already have installed.
+#
+# To run:
+#   python agent/agent.py
+#   python agent/agent.py --phase tests
+#   python agent/agent.py --phase improve
+#   python agent/agent.py --iterations 2
